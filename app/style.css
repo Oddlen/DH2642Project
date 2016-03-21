@@ -1,6 +1,41 @@
 /*Tag by id*/
-#meetingcontent{
+#editpart{
     background:#40a9f5;
+    display:inline-block;
+    border-radius:3px;
+}
+
+#editmeeting{
+    background:#e0e0e0;
+    border-radius:5px;
+}
+
+#meeting{
+    background:#40a9f5;
+}
+#desc{
+    vertical-align:top;
+}
+
+#members{
+    vertical-align:top;
+}
+#participants{
+    display:inline-block;
+}
+
+#meetingname{
+    display:inline-block;
+}
+
+#meetingtime{
+    display:inline-block;
 }
 
 /*Tag by class*/
+
+
+/*Tag by item*/
+textarea {
+    resize: none;
+}

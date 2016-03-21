@@ -1,39 +1,48 @@
 <div id="editmeeting">
     <div id="meetinginfo">
         <div id="meetingname">
-
+            <input type="text"  ng-model="meetingname">
         </div>
         <div id="meetingtime">
             <div id="date">
-
+                <input type="text" ng-model="date">
             </div>
             <div id="starttime">
-
+                <input type="value" ng-model="starttime">
             </div>
         </div>
     </div>
     <div id="meetingcontent">
         <div id="participants">
-
+            <div id="members">
+                <h2>{{invitedheadline}}</h2>
+                <input type="text" ng-model="inviting">
+            </div>
             <button type="button" class="btn btn-success">
-                Confirm agenda
+                {{confirmagenda}}
             </button>
         </div>
         <div id="editpart">
             <div id="parttitle">
-
+                {{titlestring}}
+                <input type="text">
             </div>
             <div id="partduration">
-
+                {{durationstring}}
+                <input type="text">
             </div>
             <div id="partcategory">
-
+                {{categorystring}}
+                <select ng-model="typeList" ng-options="type as type.label for type in types">
+                </select>
             </div>
             <div id="partdescription">
-
+                <p id="desc">{{descriptionstring}}</p>
+                <textarea rows="4" cols="50">
+                </textarea>
             </div>
             <button type="button" class="btn btn-success">
-                Confirm editing
+                {{confirmediting}}
             </button>
         </div>
     </div>
