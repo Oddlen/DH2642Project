@@ -3,13 +3,13 @@ Firebase Model - Wille
 Calender view - Jocke
 Top bar - Jocke
 New event view - Markus
-Edit event view - Mark
-Meeting agenda (drag&drop) - Markus
+Edit event view - Markus
+Meeting agenda (drag&drop) - Mark
 
 Fire base model interface
-Login
+Login profil
 Dag med fler event object
-event - datum, starttid, sluttid, längd, namen, agenda, invited, owner
+event - id, datum, starttid, sluttid, längd, namen, agenda, invited, owner
 Agenda - startid, namn, sluttid, längd, description, catagory
 Catagory - namn, color, description
 
@@ -18,4 +18,5 @@ Get Set day(datum)
 Get days(start/end date)
 Get Set event, agenda
 Get catagoty
+Add/remove (id, username)
 
