@@ -1,7 +1,7 @@
 agendaApp.controller('ScheduleCtrl', function ($scope) {
 
 function handleDragStart(e) {
-	this.style.opacity = '0.4';  // this / e.target is the source node.
+	this.style.opacity = '0.4'; 
 
 	dragSrcEl = this;
 
@@ -15,42 +15,38 @@ function handleDragEnd(e) {
 
 function handleDragOver(e) {
   if (e.preventDefault) {
-    e.preventDefault(); // Necessary. Allows us to drop.
+    e.preventDefault(); 
   }
 
-  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+  e.dataTransfer.dropEffect = 'move';  
 
   return false;
 }
 
 function handleDragEnter(e) {
-  // this / e.target is the current hover target.
   this.classList.add('over');
 }
 
 function handleDragLeave(e) {
-  this.classList.remove('over');  // this / e.target is previous target element.
+  this.classList.remove('over');  
 }
 
 function handleDrop(e) {
-  // this / e.target is current target element.
 
   if (e.stopPropagation) {
-    e.stopPropagation(); // stops the browser from redirecting.
+    e.stopPropagation(); 
   }
 
   if (dragSrcEl != this) {
-    // Set the source column's HTML to the HTML of the column we dropped on.
     dragSrcEl.innerHTML = this.innerHTML;
     this.innerHTML = e.dataTransfer.getData('text/html');
   }
 
-  // See the section on the DataTransfer object.
 
   return false;
 }
 
-var delay=500; //1 seconds
+var delay=500;
 var cols = [];
 
 setTimeout(function(){
