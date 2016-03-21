@@ -1,49 +1,85 @@
-<div id="editmeeting">
+<div id="editmeeting" ng-controller="AgendaCtrl">
     <div id="meetinginfo">
         <div id="meetingname">
-            <input type="text"  ng-model="meetingname">
+            <input id="meetingtitle" class="form-control" type="text" placeholder='{{meetingnameplaceholder}}' ng-model="meetingname" ng-hide="isNotOwner()">
+            <h2 id="guestmeetingtitle" ng-hide="isOwner()">{{meetingname}}</h2>
         </div>
         <div id="meetingtime">
             <div id="date">
-                <input type="text" ng-model="date">
+                <p class="infodesc">{{datestring}}</p>
+                <input id="datepicker" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" ng-hide="isNotOwner()">
+                <button class="btn" ng-click="open()" ng-hide="isNotOwner()"><i class="icon-calendar"></i></button>
+                </input>
+                <p class="infodesc" ng-hide="isOwner()">{{displayDate}}</p>
             </div>
             <div id="starttime">
-                <input type="value" ng-model="starttime">
+                <p class="infodesc">{{startstring}}</p>
+                <span class="btn btn-default" uib-dropdown auto-close="outsideClick" ng-hide="isNotOwner()" >
+                  <a href uib-dropdown-toggle>
+                      {{ displayTime }} <i class="glyphicon glyphicon-time"></i>
+                  </a>
+                  <ul class="uib-dropdown-menu">
+                      <li>
+                          <uib-timepicker ng-model="date" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                      </li>
+                  </ul>
+                </span>
+                <p class="infodesc" ng-hide="isOwner()">{{displayTime}}</p>
             </div>
         </div>
     </div>
     <div id="meetingcontent">
         <div id="participants">
             <div id="members">
-                <h2>{{invitedheadline}}</h2>
-                <input type="text" ng-model="inviting">
+                <h3 id="inviteheadline">{{invitedheadline}}</h3>
+                <div id="memberlist">
+                    <div ng-repeat="participant in participants" class="participantdiv">
+                        <p class="participant">{{participant}}</p>
+                        <button type="button" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()">
+                            <div class="glyphicon glyphicon-remove iconstyle"></div>
+                        </button>
+                    </div>
+                    <div id="addDiv" ng-hide="isNotOwner()">
+                        <input class="form-control" id="invitation" name="inviteUsename" type="text" placeholder='{{invitingplaceholder}}'  ng-model="inviting">
+                        <button ng-click="addParticipant()" type="button" id="addButton" class="btn-success">
+                            <div class="glyphicon glyphicon-plus iconstyle"></div>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-success">
-                {{confirmagenda}}
-            </button>
+            <div id="confirmagenda" ng-hide="isNotOwner()">
+                <button type="button" class="btn btn-success confirmbutton" ng-disabled="agendaButtonDisabled()">
+                    {{confirmagenda}}
+                </button>
+            </div>
         </div>
         <div id="editpart">
             <div id="parttitle">
-                {{titlestring}}
-                <input type="text">
+                <p class="edittext"> {{titlestring}} </p>
+                <input class="form-control" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
+                <p class="edittext" ng-hide="isOwner()">{{entertitle}}</p>
             </div>
             <div id="partduration">
-                {{durationstring}}
-                <input type="text">
+                <p class="edittext">{{durationstring}}</p>
+                <input class="form-control" id="duration" type="number" min="{{durationmin}}" placeholder='{{durationplaceholder}}' ng-model="duration" ng-hide="isNotOwner()">
+                <p class="edittext" ng-hide="isOwner()">{{duration}}</p>
+                <p class="edittext">{{minstring}}</p>
             </div>
             <div id="partcategory">
-                {{categorystring}}
-                <select ng-model="typeList" ng-options="type as type.label for type in types">
-                </select>
+                <p class="edittext">{{categorystring}}</p>
+                <select class="form-control" id="editcategory" ng-init="category = types[0]" ng-model="category" ng-options="type as type.label for type in types" ng-hide="isNotOwner()"></select>
+                <p class="edittext" ng-hide="isOwner()">{{category}}</p>
             </div>
             <div id="partdescription">
-                <p id="desc">{{descriptionstring}}</p>
-                <textarea rows="4" cols="50">
-                </textarea>
+                <textarea class="form-control" id="description" placeholder="{{descriptionplaceholder}}" ng-hide="isNotOwner()" />
+                <div id="guestdescription" ng-hide="isOwner()">{{description}}
+                </div>
             </div>
-            <button type="button" class="btn btn-success">
-                {{confirmediting}}
-            </button>
+            <div id="confirmediting" ng-hide="isNotOwner()">
+                <button type="button" class="btn btn-success confirmbutton" ng-disabled="editButtonDisabled()">
+                    {{confirmediting}}
+                </button>
+            </div>
         </div>
     </div>
 

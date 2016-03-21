@@ -1,17 +1,37 @@
 /*Tag by id*/
+#maindiv{
+    height:100%;
+}
+
 #editpart{
+    position:relative;
     background:#40a9f5;
     display:inline-block;
-    border-radius:3px;
+    border-radius:2%;
+    margin-left:5%;
+    padding:3%;
+    width:52%;
+    height:98%;
 }
 
 #editmeeting{
     background:#e0e0e0;
-    border-radius:5px;
+    border-radius:3%;
+    width:70%;
+    height:90%;
+    margin-left:5%;
+    margin-top:2%;
+    padding:1%;
+    display:inline-block;
+}
+
+#addDiv{
+    margin-top:5%;
 }
 
 #meeting{
     background:#40a9f5;
+    height:90%;
 }
 #desc{
     vertical-align:top;
@@ -19,23 +39,178 @@
 
 #members{
     vertical-align:top;
+    height:80%;
+}
+
+
+#memberlist{
+    height:80%;
+    overflow-y: auto;
+}
+
+#invitation{
+    width:60%;
 }
 #participants{
-    display:inline-block;
+     position:relative;
+     vertical-align:top;
+     display:inline-block;
+     width:40%;
+     height:100%;
+ }
+
+#edittitle{
+    width:80%;
+}
+
+#editcategory{
+    width:50%;
+}
+
+#inviteheadline{
+    margin-top:0%;
 }
 
 #meetingname{
+    vertical-align:top;
     display:inline-block;
+    margin-left:10%;
+    width:25%;
+}
+
+#meetingtitle{
+    width:100%;
+}
+#guestmeetingtitle{
+    margin-top:0%;
+}
+
+#date{
+    width:100%;
+}
+#datepicker{
+    display:inline-block;
+    width:50%;
+}
+
+#timepicker{
+    display:inline-block;
+    width:50%;
+}
+
+#starttime{
+    width:100%;
+}
+
+#meetingcontent{
+    height:80%;
 }
 
 #meetingtime{
+    margin-left:20%;
+    width:40%;
     display:inline-block;
 }
 
+#meetinginfo{
+    padding:2%;
+}
+
+#confirmagenda{
+    position:absolute;
+    top:85%;
+    left:50%;
+}
+#confirmediting{
+    position:absolute;
+    top:90%;
+    left:60%;
+}
+
+#description{
+    width:100%;
+    height: 100%;
+}
+
+#guestdescription{
+    width:100%;
+    height: 100%;
+    background:white;
+    overflow-y: auto;
+    border-radius:2%;
+    padding:2%;
+    color:black;
+
+}
+
+#duration{
+    width:40%;
+}
+#partdescription{
+    margin-top:2%;
+    margin-left:5%;
+    width:90%;
+    height: 40%;
+}
+
+#addButton{
+    border-radius:15%;
+    margin-right:7%;
+    float:right;
+}
+
+#removeButton{
+    border-radius:50%;
+    background:red;
+    border:0px;
+    float:right;
+    margin-right:7%;
+}
+
+
 /*Tag by class*/
 
+.infodesc{
+    display:inline-block;
+    font-weight:bold;
+}
+
+.participantdiv{
+    background:white;
+    margin:1%;
+    border-radius:5%;
+}
+.participant{
+    display:inline-block;
+    margin-left:2%;
+}
+
+.iconstyle{
+    color:white;
+}
+
+.edittext{
+    color:white;
+    font-weight: bold;
+    display:inline-block;
+    font-size:120%;
+    margin-bottom:7%;
+}
 
 /*Tag by item*/
 textarea {
     resize: none;
+}
+
+html{
+    height:100%;
+}
+
+body {
+    height:100%;
+}
+
+.form-control{
+    display:inline-block !important;
+    width:70%;
 }

@@ -13,6 +13,7 @@
     "angular-route": "1.3.x",
     "angular-resource": "1.3.x",
     "angular-animate": "1.3.x",
-    "angular-spinner": "^0.8.1"
+    "angular-spinner": "^0.8.1",
+    "angular-bootstrap": "~0.13.0"
   }
 }
