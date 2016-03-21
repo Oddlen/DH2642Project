@@ -39,11 +39,69 @@
     height:100%;
 }
 
+#sidebar {
+    background-color:#C2C2C2;
+    height:800px;
+    width:300px;
+    border-style:solid;
+    border-radius:25px;
+}
+
 #scheduleSidebar{
     height:100%;
 }
 
+#meetingInfo{
+    background-color:#595959;
+    height:50px;
+    width:250px;
+    margin: auto;
+    margin-top:5%;
+    border-radius:25px;
+}
+
+#meetingInfoText{
+    text-align: center;
+    color:white;
+}
+
+#event1 {
+    background-color: #52D4FF;
+    margin-top: 1%;
+}
+
+#event2 {
+    background-color: #DB4F4F;
+    margin-top: 3%;
+}
+
+#event3 {
+    background-color: #8DEB73;
+    margin-top: 3%;
+}
+
+#textWhiteRight {  
+    margin-left:100px;
+}
+
+
 /*Tag by class*/
+.event {
+    height:100px;
+    width:90%;
+    margin: auto;
+    border-radius:20px;
+}
+
+.eventText {
+    text-align: center;
+    color:white;
+}
+
+.textWhite {
+    color:white;
+    padding-left:12px;
+}
 
 
 /*Tag by item*/
