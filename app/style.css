@@ -1,314 +1,334 @@
 /*Tag by id*/
-#maindiv{
-    height:100%;
+
+#maindiv {
+	height: 100%;
 }
 
-#editpart{
-    position:relative;
-    background:#40a9f5;
-    display:inline-block;
-    border-radius:2%;
-    margin-left:5%;
-    padding:3%;
-    width:52%;
-    height:98%;
+#header {
+	width: 100%;
 }
 
-#editmeeting{
-    background:#e0e0e0;
-    border-radius:3%;
-    width:100%;
-    height:100%;
-    margin-left:5%;
-    margin-top:2%;
-    padding:1%;
-    display:inline-block;
+#headertitle {
+	text-align: center;
+	vertical-align: middle;
 }
 
-#addDiv{
-    margin-top:5%;
+#editpart {
+	position: relative;
+	background: #40a9f5;
+	display: inline-block;
+	border-radius: 2%;
+	margin-left: 5%;
+	padding: 3%;
+	width: 52%;
+	height: 98%;
 }
 
-#meeting{
-    background:#40a9f5;
-    height:90%;
-}
-#desc{
-    vertical-align:top;
-}
-
-#members{
-    vertical-align:top;
-    height:80%;
+#editmeeting {
+	background: #e0e0e0;
+	border-radius: 3%;
+	width: 100%;
+	height: 100%;
+	margin-left: 5%;
+	margin-top: 2%;
+	padding: 1%;
+	display: inline-block;
 }
 
-
-#memberlist{
-    height:80%;
-    overflow-y: auto;
+#addDiv {
+	margin-top: 5%;
 }
 
-#invitation{
-    width:60%;
-}
-#participants{
-     position:relative;
-     vertical-align:top;
-     display:inline-block;
-     width:40%;
-     height:100%;
- }
-
-#edittitle{
-    width:80%;
+#meeting {
+	background: #40a9f5;
+	height: 90%;
 }
 
-#editcategory{
-    width:50%;
+#desc {
+	vertical-align: top;
 }
 
-#inviteheadline{
-    margin-top:0%;
+#members {
+	vertical-align: top;
+	height: 80%;
 }
 
-#meetingname{
-    vertical-align:top;
-    display:inline-block;
-    margin-left:10%;
-    width:25%;
+#memberlist {
+	height: 80%;
+	overflow-y: auto;
 }
 
-#meetingtitle{
-    width:100%;
-}
-#guestmeetingtitle{
-    margin-top:0%;
+#invitation {
+	width: 60%;
 }
 
-#date{
-    width:100%;
-}
-#datepicker{
-    display:inline-block;
-    width:50%;
-}
-
-#timepicker{
-    display:inline-block;
-    width:50%;
+#participants {
+	position: relative;
+	vertical-align: top;
+	display: inline-block;
+	width: 40%;
+	height: 100%;
 }
 
-#starttime{
-    width:100%;
+#edittitle {
+	width: 80%;
 }
 
-#meetingcontent{
-    height:80%;
+#editcategory {
+	width: 50%;
 }
 
-#meetingtime{
-    margin-left:20%;
-    width:40%;
-    display:inline-block;
+#inviteheadline {
+	margin-top: 0%;
 }
 
-#confirmagenda{
-    position:absolute;
-    top:85%;
-    left:50%;
-}
-#confirmediting{
-    position:absolute;
-    top:90%;
-    left:60%;
+#meetingname {
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 10%;
+	width: 25%;
 }
 
-#description{
-    width:100%;
-    height: 100%;
+#meetingtitle {
+	width: 100%;
 }
 
-#guestdescription{
-    width:100%;
-    height: 100%;
-    background:white;
-    overflow-y: auto;
-    border-radius:2%;
-    padding:2%;
-    color:black;
-
+#guestmeetingtitle {
+	margin-top: 0%;
 }
 
-#scheduler{
-    display:inline-block;
+#date {
+	width: 100%;
 }
 
-#editer{
-display:inline-block;
-    vertical-align:top;
-    height:90%;
-    width:80%;
+#datepicker {
+	display: inline-block;
+	width: 50%;
 }
 
-#duration{
-    width:40%;
-}
-#partdescription{
-    margin-top:2%;
-    margin-left:5%;
-    width:90%;
-    height: 40%;
+#timepicker {
+	display: inline-block;
+	width: 50%;
 }
 
-#addButton{
-    border-radius:15%;
-    margin-right:7%;
-    float:right;
+#starttime {
+	width: 100%;
 }
 
-#removeButton{
-    border-radius:50%;
-    background:red;
-    border:0px;
-    float:right;
-    margin-right:7%;
+#meetingcontent {
+	height: 80%;
 }
 
-#agendaSidebar{
-    background-color:red;
-    border-style: solid;
-    min-height:100%;
-    height:100%;
+#meetingtime {
+	margin-left: 20%;
+	width: 40%;
+	display: inline-block;
+}
+
+#confirmagenda {
+	position: absolute;
+	top: 85%;
+	left: 50%;
+}
+
+#confirmediting {
+	position: absolute;
+	top: 90%;
+	left: 60%;
+}
+
+#description {
+	width: 100%;
+	height: 100%;
+}
+
+#guestdescription {
+	width: 100%;
+	height: 100%;
+	background: white;
+	overflow-y: auto;
+	border-radius: 2%;
+	padding: 2%;
+	color: black;
+}
+
+#scheduler {
+	display: inline-block;
+}
+
+#editer {
+	display: inline-block;
+	vertical-align: top;
+	height: 90%;
+	width: 80%;
+}
+
+#duration {
+	width: 40%;
+}
+
+#partdescription {
+	margin-top: 2%;
+	margin-left: 5%;
+	width: 90%;
+	height: 40%;
+}
+
+#addButton {
+	border-radius: 15%;
+	margin-right: 7%;
+	float: right;
+}
+
+#removeButton {
+	border-radius: 50%;
+	background: red;
+	border: 0px;
+	float: right;
+	margin-right: 7%;
+}
+
+#agendaSidebar {
+	background-color: red;
+	border-style: solid;
+	min-height: 100%;
+	height: 100%;
 }
 
 #sidebar {
-    background-color:#C2C2C2;
-    height:800px;
-    width:300px;
-    border-style:solid;
-    border-radius:25px;
+	background-color: #C2C2C2;
+	height: 800px;
+	width: 300px;
+	border-style: solid;
+	border-radius: 25px;
 }
 
-#scheduleSidebar{
-    height:90%;
+#scheduleSidebar {
+	height: 90%;
 }
 
-#meetingInfo{
-    background-color:#595959;
-    height:50px;
-    width:250px;
-    margin: auto;
-    margin-top:5%;
-    border-radius:25px;
+#meetingInfo {
+	background-color: #595959;
+	height: 50px;
+	width: 250px;
+	margin: auto;
+	margin-top: 5%;
+	border-radius: 25px;
 }
 
-#meetingInfoText{
-    text-align: center;
-    font-size: 16px;
-    color:white;
+#meetingInfoText {
+	text-align: center;
+	font-size: 16px;
+	color: white;
 }
 
 #empty {
-    padding-top:10px;
+	padding-top: 10px;
 }
 
 #event1 {
-    background-color: #52D4FF;
-    margin-top: 3%;
-    height:100px;
-    border-radius:15px;
-
+	background-color: #52D4FF;
+	margin-top: 3%;
+	height: 100px;
+	border-radius: 15px;
 }
 
 #event2 {
-    background-color: #DB4F4F;
-    margin-top: 3%;
-    height:100px;
-    border-radius:15px;
-
+	background-color: #DB4F4F;
+	margin-top: 3%;
+	height: 100px;
+	border-radius: 15px;
 }
 
 #event3 {
-    background-color: #8DEB73;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    height:100px;
-    border-radius:15px;
+	background-color: #8DEB73;
+	margin-top: 3%;
+	margin-bottom: 3%;
+	height: 100px;
+	border-radius: 15px;
 }
 
-#textWhiteRight {  
-    text-align:right;
-    color:white;
-    padding-right:12px;
+#textWhiteRight {
+	text-align: right;
+	color: white;
+	padding-right: 12px;
 }
 
 #listOfEvents {
-    background-color:#545454;
-    margin-left: 10px;
-    margin-right: 10px;
-    height:600px;
-    border-radius: 15px;
+	background-color: #545454;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 600px;
+	border-radius: 15px;
 }
 
+
 /*Tag by class*/
+
 .event {
-    height:100px;
-    width:90%;
-    margin: auto;
-    border-radius:20px;
+	height: 100px;
+	width: 90%;
+	margin: auto;
+	border-radius: 20px;
 }
 
 .eventText {
-    text-align: center;
-    color:white;
+	text-align: center;
+	color: white;
 }
 
 .textWhite {
-    color:white;
-    padding-left:12px;
+	color: white;
+	padding-left: 12px;
 }
 
-.infodesc{
-    display:inline-block;
-    font-weight:bold;
+.infodesc {
+	display: inline-block;
+	font-weight: bold;
 }
 
-.participantdiv{
-    background:white;
-    margin:1%;
-    border-radius:5%;
-}
-.participant{
-    display:inline-block;
-    margin-left:2%;
+.participantdiv {
+	background: white;
+	margin: 1%;
+	border-radius: 5%;
 }
 
-.iconstyle{
-    color:white;
+.participant {
+	display: inline-block;
+	margin-left: 2%;
 }
 
-.edittext{
-    color:white;
-    font-weight: bold;
-    display:inline-block;
-    font-size:120%;
-    margin-bottom:7%;
+.iconstyle {
+	color: white;
 }
 
-.form-control{
-    display:inline-block !important;
-    width:70%;
+.edittext {
+	color: white;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 120%;
+	margin-bottom: 7%;
 }
+
+.form-control {
+	display: inline-block !important;
+	width: 70%;
+}
+
+
+/*Tag by class*/
+
 
 /*Tag by item*/
+
 textarea {
-    resize: none;
+	resize: none;
 }
 
-html{
-    height:100%;
+html {
+	height: 100%;
 }
 
 body {
-    height:100%;
+	height: 100%;
 }
