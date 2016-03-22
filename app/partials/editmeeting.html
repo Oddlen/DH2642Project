@@ -1,5 +1,5 @@
 <div id="editmeeting" ng-controller="AgendaCtrl">
-    <div id="meetinginfo">
+    <div id="meetinginformation">
         <div id="meetingname">
             <input id="meetingtitle" class="form-control" type="text" placeholder='{{meetingnameplaceholder}}' ng-model="meetingname" ng-hide="isNotOwner()">
             <h2 id="guestmeetingtitle" ng-hide="isOwner()">{{meetingname}}</h2>
@@ -7,9 +7,16 @@
         <div id="meetingtime">
             <div id="date">
                 <p class="infodesc">{{datestring}}</p>
-                <input id="datepicker" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" ng-hide="isNotOwner()">
-                <button class="btn" ng-click="open()" ng-hide="isNotOwner()"><i class="icon-calendar"></i></button>
-                </input>
+                <div class="form-horizontal" id="datehorizontal">
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" ng-click="open()" is-open="opened" ng-required="true" close-text="Close" />
+
+              <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="open()">
+                  <i class="icon-calendar"></i></button>
+              </span>
+                    </div>
+                </div>
                 <p class="infodesc" ng-hide="isOwner()">{{displayDate}}</p>
             </div>
             <div id="starttime">
@@ -53,7 +60,7 @@
                 </button>
             </div>
         </div>
-        <div id="editpart">
+        <div id="editpart" ng-hide="isNotEditing()">
             <div id="parttitle">
                 <p class="edittext"> {{titlestring}} </p>
                 <input class="form-control" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">

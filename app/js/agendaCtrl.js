@@ -1,5 +1,6 @@
-agendaApp.controller('AgendaCtrl', function ($scope) {
+agendaApp.controller('AgendaCtrl', function ($scope, $timeout) {
     var owner = true;
+    $scope.editing = true;
     $scope.isOwner = function(){
         return owner;
     }
@@ -7,15 +8,37 @@ agendaApp.controller('AgendaCtrl', function ($scope) {
         return !owner;
     }
 
+    $scope.isEditing = function(){
+        return $scope.editing;
+    }
+    $scope.isNotEditing = function(){
+        return !$scope.editing;
+    }
+    $scope.toggleEditing = function(){
+        $scope.editing=!$scope.editing;
+    }
+
     $scope.date = new Date();
-    $scope.displayDate = "2016-03-22";
+    $scope.open = function() {
+
+        $timeout(function() {
+            $scope.opened = true;
+        });
+    };
+
+    var yyyy =  $scope.date.getFullYear().toString();
+    var mm = ( $scope.date.getMonth()+1).toString();
+    var dd  =  $scope.date.getDate().toString();
+    $scope.displayDate = yyyy +"/"+ (mm[1]?mm:"0"+mm[0]) +"/"+ (dd[1]?dd:"0"+dd[0]);
     $scope.displayTime = '';
 
     $scope.$watch('date', function() {
-        var hour = $scope.date.getHours(),
-            hour = hour<10 ? '0'+hour : hour,
-            minutes = ($scope.date.getMinutes()<10 ? '0' :'') + $scope.date.getMinutes();
-        $scope.displayTime = hour+':'+minutes
+        if($scope.date !== undefined){
+            var hour = $scope.date.getHours(),
+                hour = hour<10 ? '0'+hour : hour,
+                minutes = ($scope.date.getMinutes()<10 ? '0' :'') + $scope.date.getMinutes();
+            $scope.displayTime = hour+':'+minutes
+        }
     })
 
     $scope.hstep = 1;
