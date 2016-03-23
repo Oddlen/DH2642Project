@@ -59,6 +59,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout) {
         label: 'Outro'
     }];
 
+
     $scope.participants = ["Mark Wong", "Joakim Hedlund","Marcus Löf", "Willhelm Magnusson"];
     $scope.addParticipant = function(){
         var userAdded = false;
@@ -110,7 +111,11 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout) {
     // Real values
     $scope.entertitle = "";
     $scope.duration = 0;
-    $scope.category = "";
+    if(owner){
+        $scope.category = $scope.types[0];
+    }else{
+        $scope.category = "Intro";
+    }
     $scope.description = "";
 
     $scope.editButtonDisabled = function(){

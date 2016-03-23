@@ -7,6 +7,7 @@
 #editpart{
     position:relative;
     background:#40a9f5;
+	opacity:0.9;
     display:inline-block;
     border-radius:2%;
     margin-left:5%;
@@ -93,7 +94,7 @@
 	vertical-align: top;
 	display: inline-block;
 	margin-left: 10%;
-	width: 25%;
+	width: 35%;
 }
 
 #meetingtitle {
@@ -127,7 +128,7 @@
 
 
 #meetingtime {
-	margin-left: 20%;
+	margin-left: 10%;
 	width: 40%;
 	display: inline-block;
 }

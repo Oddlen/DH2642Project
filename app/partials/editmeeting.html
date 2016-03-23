@@ -7,7 +7,7 @@
         <div id="meetingtime">
             <div id="date">
                 <p class="infodesc">{{datestring}}</p>
-                <div class="form-horizontal" id="datehorizontal">
+                <div class="form-horizontal" id="datehorizontal" ng-hide="isNotOwner()">
                     <div class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" ng-click="open()" is-open="opened" ng-required="true" close-text="Close" />
 
@@ -65,7 +65,7 @@
         <div id="editpart" ng-hide="isNotEditing()">
             <div id="parttitle">
                 <p class="edittext"> {{titlestring}} </p>
-                <input class="form-control" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
+                <input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
                 <p class="edittext" ng-hide="isOwner()">{{entertitle}}</p>
             </div>
             <div id="partduration">
@@ -76,11 +76,11 @@
             </div>
             <div id="partcategory">
                 <p class="edittext">{{categorystring}}</p>
-                <select class="form-control" id="editcategory" ng-init="category = types[0]" ng-model="category" ng-options="type as type.label for type in types" ng-hide="isNotOwner()"></select>
+                <select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.label for type in types" ng-hide="isNotOwner()"></select>
                 <p class="edittext" ng-hide="isOwner()">{{category}}</p>
             </div>
             <div id="partdescription">
-                <textarea class="form-control" id="description" placeholder="{{descriptionplaceholder}}" ng-hide="isNotOwner()" />
+                <textarea class="form-control" id="description" ng-model="description" placeholder="{{descriptionplaceholder}}" ng-hide="isNotOwner()" />
                 <div id="guestdescription" ng-hide="isOwner()">{{description}}
                 </div>
             </div>
