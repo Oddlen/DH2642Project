@@ -1,5 +1,48 @@
 <ng-include src="'partials/header.html'" ng-controller="HeaderCtrl"></ng-include>
 
 <div>
-
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1 changedays">
+				<button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">
+					<<</button>
+						<button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">
+							<</button>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-default" id="day1">
+					<div class="panel-heading">{{"date"}}</div>
+					<div class="panel-body">Panel Content</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-default" id="day1">
+					<div class="panel-heading">{{"date"}}</div>
+					<div class="panel-body">Panel Content</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-default" id="day1">
+					<div class="panel-heading">{{"date"}}</div>
+					<div class="panel-body">Panel Content</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-default" id="day1">
+					<div class="panel-heading">{{"date"}}</div>
+					<div class="panel-body">Panel Content</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel panel-default" id="day1">
+					<div class="panel-heading">{{"date"}}</div>
+					<div class="panel-body">Panel Content</div>
+				</div>
+			</div>
+			<div class="col-md-1 changedays">
+				<button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">></button>
+				<button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">>></button>
+			</div>
+		</div>
+	</div>
 </div>
