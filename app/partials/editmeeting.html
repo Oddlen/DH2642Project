@@ -41,9 +41,11 @@
                 <h3 id="inviteheadline">{{invitedheadline}}</h3>
                 <div id="memberlist">
                     <div ng-repeat="participant in participants" class="participantdiv">
-                        <p class="participant">{{participant}}</p>
-                        <button type="button" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()">
-                            <div class="glyphicon glyphicon-remove iconstyle"></div>
+                        <div class="participantnamediv">
+                            <p class="participant">{{participant}}</p>
+                        </div>
+                        <button type="button" class="btn-danger" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()">
+                            <div class="glyphicon glyphicon-minus iconstyle"></div>
                         </button>
                     </div>
                     <div id="addDiv" ng-hide="isNotOwner()">

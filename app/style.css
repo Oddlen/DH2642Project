@@ -12,19 +12,16 @@
     margin-left:5%;
     padding:3%;
     width:52%;
-    height:95%;
+    height:93%;
 }
 
 #editmeeting {
-    background: #e8e8e8;
-    background: -webkit-linear-gradient(#e8e8e8, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#e8e8e8, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#e8e8e8, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#e8e8e8, white); /* Standard syntax */
+	border-style:solid;
+    background: rgba(232, 232, 232, 0.8);
     border-radius: 3%;
-    width: 100%;
+    width: 96%;
     height: 100%;
-    margin-left: 5%;
+    margin-left: 2%;
     margin-top: 2%;
     padding: 3%;
     display: inline-block;
@@ -40,11 +37,11 @@
 }
 
 #meeting {
-    background: #2d3cc4;
-    background: -webkit-linear-gradient(#2d3cc4, #40a9f5); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#2d3cc4, #40a9f5); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#2d3cc4, #40a9f5); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#2d3cc4, #40a9f5); /* Standard syntax */
+    background: #02dbeb;
+    background: -webkit-linear-gradient(#02dbeb, #00ebd3); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#02dbeb, #00ebd3); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#02dbeb, #00ebd3); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#02dbeb, #00ebd3); /* Standard syntax */
     height: 90%;
 }
 
@@ -164,6 +161,7 @@
 
 #scheduler {
 	display: inline-block;
+	width: 19%;
 }
 
 #editer {
@@ -186,16 +184,16 @@
 
 
 #removeButton {
-    border-radius: 50%;
-    background: red;
-    vertical-align: middle;
-    border: 0px;
-    float: right;
-    margin-right: 7%;
+	float: right;
+	border-radius: 15%;
+	margin-right: 7%;
+	float: right;
+	display:inline-block;
+
 }
 #addButton {
 	border-radius: 15%;
-	margin-right: 7%;
+	margin-right: 20%;
 	float: right;
 }
 
@@ -209,8 +207,8 @@
 
 #sidebar {
 	background-color: #C2C2C2;
-	height: 800px;
-	width: 300px;
+	height: 90%;
+	width: 100%;
 	border-style: solid;
 	border-radius: 25px;
 }
@@ -310,10 +308,18 @@
 }
 
 .participantdiv{
-    background:white;
-    margin:1%;
-    border-radius:50px;
+	width:100%;
+	position:relative;
 }
+
+.participantnamediv{
+	display:inline-block;
+	background:white;
+	margin:1%;
+	width:80%;
+	border-radius:50px;
+}
+
 .participant{
     display:inline-block;
     margin-left:2%;
