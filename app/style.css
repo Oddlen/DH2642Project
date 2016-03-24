@@ -229,7 +229,7 @@
 	
 	#sidebar {
 		background-color: #C2C2C2;
-		height: 90%;
+		height: 100%;
 		width: 100%;
 		border-style: solid;
 		border-radius: 25px;
@@ -285,14 +285,17 @@
 	#textWhiteRight {
 		text-align: right;
 		color: white;
-		padding-right: 12px;
+		padding-right: 5%;
 	}
 	
+	#endTime {
+		margin-top: -10%;
+	}
 	#listOfEvents {
 		background-color: #545454;
 		margin-left: 10px;
 		margin-right: 10px;
-		margin-bottom: 5%;
+		margin-bottom: 10%;
 		height: 600px;
 		border-radius: 15px;
 		position: relative;
