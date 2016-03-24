@@ -23,14 +23,6 @@ function handleDragOver(e) {
   return false;
 }
 
-function handleDragEnter(e) {
-  this.classList.add('over');
-}
-
-function handleDragLeave(e) {
-  this.classList.remove('over');  
-}
-
 function handleDrop(e) {
 
   if (e.stopPropagation) {
@@ -54,13 +46,11 @@ setTimeout(function(){
 	console.log(cols);
 	[].forEach.call(cols, function(col) {
   		col.addEventListener('dragstart', handleDragStart, false);
-		col.addEventListener('dragend', handleDragEnd, false);
-		col.addEventListener('drop', handleDrop, false);
+		  col.addEventListener('dragend', handleDragEnd, false);
+		  col.addEventListener('drop', handleDrop, false);
   		col.addEventListener('dragend', handleDragEnd, false);
   	 	col.addEventListener('dragstart', handleDragStart, false);
-  		col.addEventListener('dragenter', handleDragEnter, false);
   		col.addEventListener('dragover', handleDragOver, false);
-  		col.addEventListener('dragleave', handleDragLeave, false);
 	});
 }, delay); 
 

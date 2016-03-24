@@ -243,8 +243,8 @@
 	
 	#meetingInfo {
 		background-color: #595959;
-		height: 50px;
-		width: 250px;
+		height: 10%;
+		width: 90%;
 		margin: auto;
 		margin-top: 5%;
 		border-radius: 25px;
@@ -292,9 +292,13 @@
 		background-color: #545454;
 		margin-left: 10px;
 		margin-right: 10px;
+		margin-bottom: 5%;
 		height: 600px;
 		border-radius: 15px;
+		position: relative;
 	}
+
+
 	
 	#datehorizontal {
 		width: 70%;
@@ -304,13 +308,19 @@
 	#meetinginformation {
 		margin-bottom: 2%;
 	}
+
+	#addEventButton {
+		position: absolute;
+		right: 3%;
+		bottom: 3%;
+	}
 	/*Tag by class*/
 	
 	.event {
 		height: 100px;
 		width: 90%;
 		margin: auto;
-		border-radius: 20px;
+		border-radius: 15px;
 	}
 	
 	.eventText {
@@ -373,6 +383,13 @@
 	.changedays {
 		margin-top: 15%;
 	}
+
+	.event.over {
+		margin-top: 3%;
+		padding-top:-3%;
+  		border: 2px dashed #000;
+	}
+
 	/*Tag by item*/
 	
 	textarea {
