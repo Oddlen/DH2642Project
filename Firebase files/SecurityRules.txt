@@ -1,0 +1,36 @@
+{
+    "rules": {
+        "users": {
+          ".read": "auth !== null",
+          ".write": "!newData.exists() && auth !== null",
+          "$username": {
+            ".write": "!data.exists() && auth !== null || auth.uid == root.child('users').child($username).child('id').val()",
+            "id": {
+              ".write": "!data.exists() && auth !== null"  
+            },
+            "days": {
+              "$day": {
+                "$event": {
+                  ".write": "!data.exists() && newData.exists() && auth !== null || auth.uid == root.child('users').child($username).child('id').val()"
+                }
+              }
+            }
+          }
+        },
+        "events": {
+         // ".read": "auth !== null",
+          ".write": "auth !== null && !data.exists()",
+          "$day": {
+            ".write": "auth !== null && newData.exists()",
+            "$event": {
+              ".read": "root.child('events').child($day).child($event).child('invited').hasChild(auth.uid)",
+              ".write": "root.child('events').child($day).child($event).child('ownerid').val() === auth.uid"
+            }
+          }
+        },
+        "catagories": {
+          ".write": false,
+          ".read": true
+        }
+    }
+}

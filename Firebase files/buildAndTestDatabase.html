@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+	<head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  	</head>
+  	<body>
+    	<script>
+      		//var myDataRef = new Firebase('https://dh2642.firebaseIO.com/');
+      		var usersRef = myDataRef.child("users");
+      		var eventRef = myDataRef.child("events");
+      		var catRef = myDataRef.child("catagories");
+      		createUsers();
+      		createCatagories();
+      		createEventsStep1();
+
+      		function createUsers(){
+
+      			myDataRef.createUser({
+  						email: "Wille@mail.com",
+  						password: "WillePassword"
+					}, function(error, userData) {
+  						if (error) {
+    						console.log("Error creating user:", error);
+  						} else {
+    						console.log("Successfully created user account with uid:", userData.uid);
+  						}
+					}
+				);	
+
+				myDataRef.createUser({
+  						email: "Mark@mail.com",
+  						password: "MarkPassword"
+					}, function(error, userData) {
+  						if (error) {
+    						console.log("Error creating user:", error);
+  						} else {
+    						console.log("Successfully created user account with uid:", userData.uid);
+  						}
+					}
+				);
+
+				myDataRef.createUser({
+  						email: "Marcus@mail.com",
+  						password: "MarcusPassword"
+					}, function(error, userData) {
+  						if (error) {
+   	 						console.log("Error creating user:", error);
+  						} else {
+   	 						console.log("Successfully created user account with uid:", userData.uid);
+  						}
+					}
+				);
+			}
+
+			function createCatagories(){
+				catRef.set({
+      				Introduction: "Blue",
+      				Break: "Green",
+      				Other: "Red",
+      				Discussion: "Yellow",
+      				Presentation: "Purple"
+      			});
+			}
+
+			function createEventsStep1(){
+				myDataRef.authWithPassword({
+  						email: "Wille@mail.com",
+  						password: "WillePassword"
+					}, function(error, authData) {
+  						if (error) {
+    						console.log("Login Failed!", error);
+    						console.log("Stopped at createEventsStep1.");
+  						} else {
+    						console.log("Authenticated successfully with payload:", authData);
+    						createEventsStep2();
+  						}
+					}
+				);
+			}
+
+			function createEventsStep2(){	
+				var myAuth = myDataRef.getAuth();
+				var myid = myAuth.uid;
+      		
+				usersRef.update({
+  					Wille: {
+  						id: myid,
+  						days: {
+  							d01m04y2016: {
+  								eventName1_Wille: true
+  							}
+  						}
+  					}
+  				});
+
+      			eventRef.update({
+      				d01m04y2016: {
+      					eventName1_Wille: {
+      						ownerid: myid,
+      						invited: {
+      							[myid]: true,
+      						},
+      						name: "eventName1",
+      						start: "08:10",
+      						end: "09:10",
+     						length: "1h0m",
+     						agenda: {
+     							name1: {
+     								start: "08:10",
+     								end: "08:30",
+     								length: "0h20m",
+     								description: "Very important stuff",
+     								catagory: "Introduction"
+     							},
+     							name2: {
+     								start: "08:30",
+     								end: "08:40",
+     								length: "0h10m",
+     								description: "Very relaxing",
+     									catagory: "Break"
+     							},
+     							name3: {
+     								start: "08:40",
+     								end: "09:10",
+     								length: "0h30m",
+     								description: "Very Cool stuff",
+     								catagory: "Other"
+     							}
+     						}
+      					}
+      				}
+      			});
+      			
+      			myDataRef.unauth();
+
+				myDataRef.authWithPassword({
+  						email: "Mark@mail.com",
+  						password: "MarkPassword"
+					}, function(error, authData) {
+  						if (error) {
+    						console.log("Login Failed!", error);
+    						console.log("Stopped at createEventsStep2");
+  						} else {
+    						console.log("Authenticated successfully with payload:", authData);
+    						createEventsStep3();
+  						}
+					}
+				);
+			}
+
+			function createEventsStep3(){
+      			var myAuth = myDataRef.getAuth();
+				var myid = myAuth.uid;
+      		
+				usersRef.update({
+  					Mark: {
+  						id: myid,
+  						days: {
+  							d01m04y2016: {
+  								eventName1_Mark: true
+  							}
+  						}
+  					}
+  				});
+
+      			eventRef.child("d01m04y2016").update({
+      				eventName1_Mark: {
+      					ownerid: myid,
+      					invited: {
+      						[myid]: true,
+      					},
+      					name: "eventName1",
+      					start: "08:10",
+      					end: "09:10",
+     					length: "1h0m",
+     					agenda: {
+     						name1: {
+     							start: "08:10",
+     							end: "08:40",
+     							length: "0h30m",
+     							description: "Very important stuff",
+     							catagory: "Other"
+     						},
+     						name2: {
+     							start: "08:40",
+     							end: "09:10",
+     							length: "0h30m",
+     							description: "Very other important stuff",
+     							catagory: "Other"
+     						}
+     					}
+      				}
+      			});
+
+      			myDataRef.unauth();
+      			myDataRef.authWithPassword({
+  						email: "Marcus@mail.com",
+  						password: "MarcusPassword"
+					}, function(error, authData) {
+  						if (error) {
+    						console.log("Login Failed!", error);
+    						console.log("Stopped at createEventsStep3");
+  						} else {
+    						console.log("Authenticated successfully with payload:", authData);
+    						createEventsStep4();
+  						}
+					}
+				);
+      		}
+
+      		function createEventsStep4(){
+      			myAuth = myDataRef.getAuth();
+				myid = myAuth.uid;
+      		
+				usersRef.update({
+  					Marcus: {
+  						id: myid,
+  						days: {
+  							d01m04y2016: {
+  								eventNameOther_Marcus: true
+  							}
+  						}
+  					}
+  				});
+
+      			eventRef.update({
+      				d02m04y2016: {
+      					eventNameOther_Marcus: {
+      						ownerid: myid,
+      						invited: {
+      							[myid]: true,
+      						},
+      						name: "eventNameOther",
+      						start: "12:00",
+      						end: "15:10",
+     						length: "3h10m",
+     						agenda: {
+     							name1: {
+     								start: "12:00",
+     								end: "13:40",
+     								length: "1h40m",
+     								description: "Very Introduction",
+     								catagory: "Introduction"
+     							},
+     							name2: {
+     								start: "13:40",
+     								end: "14:00",
+     								length: "0h20m",
+     								description: "Very Break",
+     								catagory: "Break"
+     							},
+     							name3: {
+     								start: "14:00",
+     								end: "14:30",
+     								length: "0h30m",
+     								description: "Very Discussion",
+     								catagory: "Discussion"
+     							},
+     							name4: {
+     								start: "14:30",
+     								end: "15:10",
+     								length: "0h40m",
+     								description: "Very Presentation",
+     								catagory: "Presentation"
+     							}
+     						}
+      					}
+      				}
+      			});
+      			tryToDeleteStep1();
+      		}
+			
+			function invitePeopleStep1(){
+
+			}
+
+			function tryToDeleteStep1(){
+				myDataRef.unauth();
+      			myDataRef.authWithPassword({
+  						email: "Marcus@mail.com",
+  						password: "MarcusPassword"
+					}, function(error, authData) {
+  						if (error) {
+    						console.log("Login Failed!", error);
+    						console.log("Stopped at tryToDeleteStep1");
+  						} else {
+    						console.log("Authenticated successfully with payload:", authData);
+    						tryToDeleteStep2();
+  						}
+					}
+				);
+			}
+
+			function tryToDeleteStep2(){
+
+			// Should fail
+			usersRef.child("Wille").set({
+  					id: "myid",
+  					days: {
+  						d01m04y2016: {
+  							shouldNotBeHere_TestData: true
+  						}
+  					}
+  				}
+  			);
+
+  				// Should work
+  				usersRef.child("Wille").child("days").child("d01m04y2016").update({
+  					ShouldBeHere_TestData: true
+  				});
+
+  				myDataRef.unauth();
+      			myDataRef.authWithPassword({
+  						email: "Wille@mail.com",
+  						password: "WillePassword"
+					}, function(error, authData) {
+  						if (error) {
+    						console.log("Login Failed!", error);
+    						console.log("Stopped at tryToDeleteStep2");
+  						} else {
+    						console.log("Authenticated successfully with payload:", authData);
+    						tryToDeleteStep3();
+  						}
+					}
+				);
+			}
+
+			function tryToDeleteStep3(){
+				var myAuth = myDataRef.getAuth();
+				var myid = myAuth.uid;
+      		
+				usersRef.update({
+  					Wille: {
+  						id: myid,
+  						days: {
+  							d01m04y2016: {
+  								eventName1_Wille: true
+  							}
+  						}
+  					}
+  				});
+  				tryWorkingEvent();
+			}
+
+			function tryWorkingEvent(){
+				var myAuth = myDataRef.getAuth();
+				var myid = myAuth.uid;
+
+				eventRef.set({
+      				d01m04y2016: {
+      					eventNameOther_Marcus: {
+      						ownerid: myid,
+      						invited: {
+      							[myid]: true,
+      						},
+      						name: "eventNameOther",
+      						start: "12:00",
+      						end: "15:10",
+     						length: "3h10m",
+     						agenda: {
+     							name1: {
+     								start: "12:00",
+     								end: "13:40",
+     								length: "1h40m",
+     								description: "Very Introduction",
+     								catagory: "Introduction"
+     							},
+     							name2: {
+     								start: "13:40",
+     								end: "14:00",
+     								length: "0h20m",
+     								description: "Very Break",
+     								catagory: "Break"
+     							},
+     							name3: {
+     								start: "14:00",
+     								end: "14:30",
+     								length: "0h30m",
+     								description: "Very Discussion",
+     								catagory: "Discussion"
+     							},
+     							name4: {
+     								start: "14:30",
+     								end: "15:10",
+     								length: "0h40m",
+     								description: "Very Presentation",
+     								catagory: "Presentation"
+     							}
+     						}
+      					}
+      				}
+      			});
+
+      			eventRef.child("d01m04y2016").on("value", 
+      				function(snapshot) {
+  						console.log(snapshot.val());
+					}, 
+					function (errorObject) {
+  						console.log("The read failed: " + errorObject.code);
+					}
+				);
+				eventRef.child("d01m04y2016").child("eventName1_Wille").on("value", 
+      				function(snapshot) {
+  						console.log(snapshot.val());
+					}, 
+					function (errorObject) {
+  						console.log("The read failed: " + errorObject.code);
+					}
+				);
+				eventRef.child("d01m04y2016").child("eventName1_Mark").on("value", 
+      				function(snapshot) {
+  						console.log(snapshot.val());
+					}, 
+					function (errorObject) {
+  						console.log("The read failed: " + errorObject.code);
+					}
+				);
+			}
+    </script>
+    <div><h3>Working on database, please look at console.</h3></div>
+  </body>
+</html>
