@@ -1,10 +1,15 @@
 // Example of function arguments.
+
+// Should use date objects (converted to an int in ms) instead of start, end and dates (day,month,year).
+// Ex. One can run new Date().getTime() to get the current time in ms from 1970, storing that int is much easier
+// Than having ex. day,month,year.
+
 var exampleAgendaObject1 = {
 	name:"name1",
 	start:"08:25",
 	end:"09:00",
 	length:"0h35m",
-	catagoty:"Introduction"
+	category:"Introduction"
 };
 
 var exampleAgendaObject2 = {
@@ -12,7 +17,7 @@ var exampleAgendaObject2 = {
 	start:"09:00",
 	end:"10:36",
 	length:"1h36m",
-	catagoty:"Other"
+	category:"Other"
 };
 
 var exampleEventObject = {
@@ -35,7 +40,7 @@ function exampleCallbackFunction(booleanFalseIfError, stringMessage) {
 dataRef = new Firebase('https://dh2642.firebaseIO.com/');
 useRef = dataRef.child("users");
 eveRef = dataRef.child("events");
-catRef = dataRef.child("catagories");
+catRef = dataRef.child("catagories"); // categories
 usernameRef = "";
 auth = null;
 
@@ -119,11 +124,11 @@ function getEvent(day, month, year, eventName, callbackFunction) {
 	// body...
 }
 
-function setEvent(enventObject, callbackFunction) {
+function setEvent(eventObject, callbackFunction) {
 	// body...
 }
 
-function getCatagories(callbackFunction) {
+function getCategories(callbackFunction) {
 	// body...
 }
 

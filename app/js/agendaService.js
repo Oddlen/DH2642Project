@@ -1,4 +1,4 @@
-agendaApp.factory('Dinner',function ($resource, $cookieStore) {
+  agendaApp.factory('Agenda',function ($resource, $cookieStore) {
 
 
   // Angular service needs to return an object that has all the

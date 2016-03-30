@@ -15,6 +15,10 @@ agendaApp.config(['$routeProvider',
         templateUrl: 'partials/agenda.html',
         controller: 'AgendaCtrl'
       }).
+    when('/register', {
+      templateUrl: 'partials/register.html',
+      controller: 'RegisterCtrl'
+    }).
       otherwise({
         redirectTo: '/home'
       });

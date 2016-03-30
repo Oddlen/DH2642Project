@@ -1,3 +1,24 @@
-<div>
+<div id="homemain" ng-controller="HomeCtrl">
+    <div id="homeicondiv">
+    <img src="homeicon.png" alt="HomeIcon" id="homeicon">
+        <h1 id="homeheadline">AGENDA PLANNER</h1>
+    </div>
+    <div id="loginbox">
+        <h2>LOGIN</h2>
+        <input class="form-control" id="inputusername" name="username" type="text" placeholder='{{usernameplaceholder}}'  ng-model="username">
+        <input class="form-control" id="inputpassword" name="password" type="password" placeholder='{{passwordplaceholder}}'  ng-model="password">
+        <div class="horizontalbuttons">
+            <a href="/#calendar">
+                <button type="button" class="btn-primary btn-md" id="loginButton" ng-click="login()">
+                    LOGIN
+                </button>
+            </a>
+            <a href="/#register">
+            <button type="button" class="btn-primary btn-md" id="registerButton">
+                REGISTER
+            </button>
+            </a>
+        </div>
+    </div>
 
 </div>
