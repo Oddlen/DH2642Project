@@ -362,6 +362,25 @@
 		right: 3%;
 		bottom: 3%;
 	}
+
+	#services {
+		background-color: #306d9f;
+		color: #ffffff;
+	}
+
+	#services .glyphicon {
+		border: 2px solid #FFFFFF;
+		border-radius: 50%;
+		display: inline-block;
+		font-size: 60px;
+		height: 140px;
+		line-height: 140px;
+		text-align: center;
+		vertical-align: middle;
+		width: 140px;
+	}
+
+
 	/*Tag by class*/
 	
 	.event {
@@ -394,6 +413,10 @@
 	.participantdiv {
 		width: 100%;
 		position: relative;
+	}
+
+	.pad-section {
+		padding: 2% 2% 2% 4%;
 	}
 	
 	.participantnamediv {
@@ -446,6 +469,13 @@
 		text-align:center;
 	}
 
+	.mainfeatures {
+		padding:0;
+		margin-right: 0;
+	}
+
+
+
 	/*Tag by item*/
 	
 	textarea {
@@ -463,3 +493,4 @@
 	input {
 		height: 30px !important;
 	}
+
