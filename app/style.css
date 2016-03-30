@@ -332,6 +332,16 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
+	#takenusername{
+		color:red;
+	}
+	#nonmatchingpassword{
+		color:red;
+	}
+	#nonmatchinglogin{
+		color:red;
+	}
+
 	#homeicondiv{
 		text-align:center;
 		padding:3%;

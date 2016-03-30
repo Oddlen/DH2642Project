@@ -5,14 +5,16 @@
     </div>
     <div id="registerbox">
         <h2 class="homeformheadline">REGISTER</h2>
-        <h4>Username:</h4>
+        <h4 id="registerusername">Username:</h4>
         <input class="form-control registerinput" name="username" type="text" ng-model="username">
-        <h4>Password:</h4>
+        <h4 id="registerpassword">Password:</h4>
         <input class="form-control registerinput" name="password" type="password" ng-model="password">
-        <h4>Confirm Password:</h4>
+        <h4 id="registerconfirmpassword">Confirm Password:</h4>
         <input class="form-control registerinput" name="password" type="password" ng-model="confirmpassword">
+        <p id="takenusername" ng-show="passwordTaken">* The username is already taken</p>
+        <p id="nonmatchingpassword" ng-show="nonmatchingPasswords">* The passwords do not match</p>
         <div class="horizontalbuttons">
-                <button type="button" class="btn-primary btn-md" id="registerButton" ng-click="register()">
+                <button type="button" class="btn-primary btn-md" id="registerButton" ng-disabled="registerButtonDisabled()" ng-click="register()">
                     REGISTER
                 </button>
         </div>

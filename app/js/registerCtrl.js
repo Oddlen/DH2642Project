@@ -3,13 +3,23 @@ agendaApp.controller('RegisterCtrl', function ($scope) {
     $scope.username ="";
     $scope.password ="";
     $scope.confirmpassword ="";
+    $scope.passwordTaken = false;
+    $scope.nonmatchingPasswords = false;
+
     $scope.register = function(){
-        console.log($scope.password);
-        if($scope.password != "" && $scope.password === $scope.confirmpassword){
+        if($scope.password === $scope.confirmpassword){
             // agenda.createUser(username,password);
-            window.location="/#home";
+            window.location="/#calendar";
         }else{
-            alert("The passwords do not match");
+            $scope.nonmatchingPasswords = true;
+        }
+    }
+
+    $scope.registerButtonDisabled = function(){
+        if($scope.username!=="" &&  $scope.password!=="" && $scope.confirmpassword!=="" ){
+            return false;
+        }else{
+            return true;
         }
     }
 
