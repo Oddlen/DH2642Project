@@ -11,7 +11,7 @@
         <input class="form-control registerinput" name="password" type="password" ng-model="password">
         <h4 id="registerconfirmpassword">Confirm Password:</h4>
         <input class="form-control registerinput" name="password" type="password" ng-model="confirmpassword">
-        <p id="takenusername" ng-show="passwordTaken">* The username is already taken</p>
+        <p id="takenusername" ng-show="usernameTaken">* The username is already taken</p>
         <p id="nonmatchingpassword" ng-show="nonmatchingPasswords">* The passwords do not match</p>
         <div class="horizontalbuttons">
                 <button type="button" class="btn-primary btn-md" id="registerButton" ng-disabled="registerButtonDisabled()" ng-click="register()">

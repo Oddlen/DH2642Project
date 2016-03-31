@@ -112,7 +112,7 @@ this.login = function (username, password, callbackFunction) {
   			} else {
     			console.log("Authenticated successfully.");
     			vm.usernameRef = username;
-              console.log(this.usernameRef);
+              console.log(vm.usernameRef);
     			vm.auth = dataRef.getAuth();
     			callbackFunction(true, "Authenticated successfully.");
   			}
