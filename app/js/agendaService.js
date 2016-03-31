@@ -44,7 +44,7 @@ useRef = dataRef.child("users");
 eveRef = dataRef.child("events");
 catRef = dataRef.child("catagories"); // categories
 this.usernameRef = "";
-auth = null;
+this.auth = null;
 
 this.createUser = function (username, password, callbackFunction) {
 	dataRef.createUser({
@@ -69,7 +69,7 @@ function createUserStep2(username, password, callbackFunction) {
 		if (ok){
 			useRef.update({
   					[username]: {
-  						id: auth.uid,
+  						id: this.auth.uid,
   						days: {
   							working: true
   						}
@@ -88,17 +88,20 @@ function createUserStep2(username, password, callbackFunction) {
 			callbackFunction(false, "Error when creating user.");
 		}
 	}
+  console.log("this.login");
 	this.login(username, password, calbck);
 }
 
 this.logout =  function(){
 	dataRef.unauth();
-	usernameRed = "";
-	auth = null;
+	this.usernameRef = "";
+	this.auth = null;
 }
 
 this.login = function (username, password, callbackFunction) {
+  console.log("Login");
 	this.logout();
+  var vm = this;
 	dataRef.authWithPassword({
   			email: username + "@mail.com",
   			password: password
@@ -108,8 +111,9 @@ this.login = function (username, password, callbackFunction) {
    				callbackFunction(false, "Login Failed.");
   			} else {
     			console.log("Authenticated successfully.");
-    			usernameRef = username;
-    			auth = dataRef.getAuth();
+    			vm.usernameRef = username;
+              console.log(this.usernameRef);
+    			vm.auth = dataRef.getAuth();
     			callbackFunction(true, "Authenticated successfully.");
   			}
 		}
