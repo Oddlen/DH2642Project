@@ -8,7 +8,7 @@ agendaApp.controller('RegisterCtrl', function ($scope) {
 
     $scope.register = function(){
         if($scope.password === $scope.confirmpassword){
-            // agenda.createUser(username,password);
+            //agenda.createUser(username,password);
             window.location="/#calendar";
         }else{
             $scope.nonmatchingPasswords = true;

@@ -1,4 +1,6 @@
-agendaApp.controller('HeaderCtrl', function ($scope) {
+agendaApp.controller('HeaderCtrl', function ($scope, Agenda) {
+
+	$scope.user = Agenda.usernameRef;
 	$scope.loadHome = function () {
 		window.location = "#/home";
 	};
