@@ -1,5 +1,6 @@
-  agendaApp.factory('Agenda',function ($resource, $cookieStore) {
+agendaApp.factory('Agenda',function ($resource, $cookieStore) {
 
+  vm = this;
 // Example of function arguments.
 
 // Should use date objects (converted to an int in ms) instead of start, end and dates (day,month,year).
@@ -43,19 +44,22 @@ dataRef = new Firebase('https://dh2642.firebaseIO.com/');
 useRef = dataRef.child("users");
 eveRef = dataRef.child("events");
 catRef = dataRef.child("catagories"); // categories
-this.usernameRef = "";
-this.auth = null;
+vm.usernameRef = "";
+vm.auth = null;
 
-    this.logout =  function(){
+  vm.getUser = function(){
+    return vm.usernameRef;
+  }
+
+    vm.logout =  function(){
       dataRef.unauth();
-      this.usernameRef = "";
-      this.auth = null;
+      vm.usernameRef = "";
+      vm.auth = null;
     }
 
-    this.login = function (username, password, callbackFunction) {
+    vm.login = function (username, password, callbackFunction) {
       console.log("Login");
-      this.logout();
-      var vm = this;
+      vm.logout();
       dataRef.authWithPassword({
             email: username + "@mail.com",
             password: password
@@ -66,7 +70,6 @@ this.auth = null;
             } else {
               console.log("Authenticated successfully.");
               vm.usernameRef = username;
-              console.log(vm.usernameRef);
               vm.auth = dataRef.getAuth();
               callbackFunction(true, "Authenticated successfully.");
             }
@@ -74,7 +77,7 @@ this.auth = null;
       );
     }
 
-this.createUser = function (username, password, callbackFunction) {
+vm.createUser = function (username, password, callbackFunction) {
 	dataRef.createUser({
   			email: username + "@mail.com",
   			password: password
@@ -93,12 +96,11 @@ this.createUser = function (username, password, callbackFunction) {
 }
 
 function createUserStep2(username, password, callbackFunction) {
-  var vm = this;
 	var calbck = function createUserStep3(ok, message) {
 		if (ok){
 			useRef.update({
   					[username]: {
-  						id: this.auth.uid,
+  						id: vm.auth.uid,
   						days: {
   							working: true
   						}
@@ -108,7 +110,6 @@ function createUserStep2(username, password, callbackFunction) {
     					console.log('Synchronization failed', error);
     					callbackFunction(false, "Error when creating user.");
   					} else {
-    					vm.logout();
   						callbackFunction(true, "User has been created.");
   					}
   				}
@@ -149,6 +150,6 @@ function invite(username, callbackFunction) {
   // methods created in it. You can consider that this is instead
   // of calling var model = new DinnerModel() we did in the previous labs
   // This is because Angular takes care of creating it when needed.
-  return this;
+  return vm;
 
 });
