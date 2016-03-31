@@ -1,4 +1,8 @@
-agendaApp.controller('AgendaCtrl', function ($scope, $timeout) {
+agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
+    var user = Agenda.getUser();
+    if(user===""){
+        window.location="/#home";
+    }
     var owner = true;
     $scope.editing = true;
     $scope.isOwner = function(){
