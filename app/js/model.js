@@ -4,7 +4,7 @@
 // Ex. One can run new Date().getTime() to get the current time in ms from 1970, storing that int is much easier
 // Than having ex. day,month,year.
 
-var exampleAgendaObject1 = {
+/*var exampleAgendaObject1 = {
 	name:"name1",
 	start:"08:25",
 	end:"09:00",
@@ -135,3 +135,4 @@ function getCategories(callbackFunction) {
 function invite(username, callbackFunction) {
 	// body...
 }
+*/

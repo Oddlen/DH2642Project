@@ -7,8 +7,6 @@ agendaApp.controller('RegisterCtrl', function ($scope,Agenda) {
     $scope.usernameTaken = false;
 
     $scope.getUsernameTaken = function(){
-        console.log("get");
-        console.log($scope.usernameTaken)
         return $scope.usernameTaken;
     }
 
@@ -19,7 +17,6 @@ agendaApp.controller('RegisterCtrl', function ($scope,Agenda) {
             var testFunc = function (ok, msg) {
                 console.log(msg);
                 if(ok){
-                    console.log("ok")
                     $scope.$apply(function() {
                         $scope.usernameTaken = false;
                     });

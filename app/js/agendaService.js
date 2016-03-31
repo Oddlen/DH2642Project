@@ -46,6 +46,34 @@ catRef = dataRef.child("catagories"); // categories
 this.usernameRef = "";
 this.auth = null;
 
+    this.logout =  function(){
+      dataRef.unauth();
+      this.usernameRef = "";
+      this.auth = null;
+    }
+
+    this.login = function (username, password, callbackFunction) {
+      console.log("Login");
+      this.logout();
+      var vm = this;
+      dataRef.authWithPassword({
+            email: username + "@mail.com",
+            password: password
+          }, function(error, authData) {
+            if (error) {
+              console.log("Login Failed!", error);
+              callbackFunction(false, "Login Failed.");
+            } else {
+              console.log("Authenticated successfully.");
+              vm.usernameRef = username;
+              console.log(vm.usernameRef);
+              vm.auth = dataRef.getAuth();
+              callbackFunction(true, "Authenticated successfully.");
+            }
+          }
+      );
+    }
+
 this.createUser = function (username, password, callbackFunction) {
 	dataRef.createUser({
   			email: username + "@mail.com",
@@ -65,6 +93,7 @@ this.createUser = function (username, password, callbackFunction) {
 }
 
 function createUserStep2(username, password, callbackFunction) {
+  var vm = this;
 	var calbck = function createUserStep3(ok, message) {
 		if (ok){
 			useRef.update({
@@ -79,7 +108,7 @@ function createUserStep2(username, password, callbackFunction) {
     					console.log('Synchronization failed', error);
     					callbackFunction(false, "Error when creating user.");
   					} else {
-    					this.logout();
+    					vm.logout();
   						callbackFunction(true, "User has been created.");
   					}
   				}
@@ -88,37 +117,9 @@ function createUserStep2(username, password, callbackFunction) {
 			callbackFunction(false, "Error when creating user.");
 		}
 	}
-  console.log("this.login");
-	this.login(username, password, calbck);
+	vm.login(username, password, calbck);
 }
 
-this.logout =  function(){
-	dataRef.unauth();
-	this.usernameRef = "";
-	this.auth = null;
-}
-
-this.login = function (username, password, callbackFunction) {
-  console.log("Login");
-	this.logout();
-  var vm = this;
-	dataRef.authWithPassword({
-  			email: username + "@mail.com",
-  			password: password
-		}, function(error, authData) {
-  			if (error) {
-    			console.log("Login Failed!", error);
-   				callbackFunction(false, "Login Failed.");
-  			} else {
-    			console.log("Authenticated successfully.");
-    			vm.usernameRef = username;
-              console.log(vm.usernameRef);
-    			vm.auth = dataRef.getAuth();
-    			callbackFunction(true, "Authenticated successfully.");
-  			}
-		}
-	);
-}
 
 function getUID(username, callbackFunction) {
 	
