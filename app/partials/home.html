@@ -7,7 +7,7 @@
         <h2>LOGIN</h2>
         <input class="form-control" id="inputusername" name="username" type="text" placeholder='{{usernameplaceholder}}'  ng-model="username">
         <input class="form-control" id="inputpassword" name="password" type="password" placeholder='{{passwordplaceholder}}'  ng-model="password">
-        <p id="nonmatchinglogin" ng-model="nonmatchingLogin" ng-show="nonmatchingLogin">* Username and password do not match</p>
+        <p id="nonmatchinglogin" ng-model="nonmatchingLogin" ng-show="getNonmatchingLogin()">* Username and password do not match</p>
         <div class="horizontalbuttons">
                 <button type="button" class="btn-primary btn-md" id="loginButton" ng-click="login()">
                     LOGIN

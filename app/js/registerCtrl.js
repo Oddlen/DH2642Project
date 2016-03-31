@@ -6,6 +6,12 @@ agendaApp.controller('RegisterCtrl', function ($scope,Agenda) {
     $scope.nonmatchingPasswords = false;
     $scope.usernameTaken = false;
 
+    $scope.getUsernameTaken = function(){
+        console.log("get");
+        console.log($scope.usernameTaken)
+        return $scope.usernameTaken;
+    }
+
 
     $scope.register = function(){
         if($scope.password === $scope.confirmpassword){
@@ -13,10 +19,15 @@ agendaApp.controller('RegisterCtrl', function ($scope,Agenda) {
             var testFunc = function (ok, msg) {
                 console.log(msg);
                 if(ok){
-                    $scope.usernameTaken = false;
+                    console.log("ok")
+                    $scope.$apply(function() {
+                        $scope.usernameTaken = false;
+                    });
                     window.location="/#calendar";
                 }else{
-                    $scope.usernameTaken = true;
+                    $scope.$apply(function() {
+                        $scope.usernameTaken = true;
+                    });
                 }
             }
             Agenda.createUser($scope.username,$scope.password,testFunc);

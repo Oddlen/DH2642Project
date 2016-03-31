@@ -9,14 +9,21 @@ agendaApp.controller('HomeCtrl', function ($scope, Agenda) {
     $scope.passwordplaceholder = "*******";
 
 
+    $scope.getNonmatchingLogin=function(){
+        return $scope.nonmatchingLogin;
+    }
     $scope.login = function(){
         var callback = function(ok,msg){
             console.log(msg);
             if(ok){
-                $scope.nonmatchingLogin=false;
+                $scope.$apply(function() {
+                    $scope.nonmatchingLogin=false;
+                });
                 window.location = "/#calendar";
             }else{
-                $scope.nonmatchingLogin=true;
+                $scope.$apply(function() {
+                    $scope.nonmatchingLogin=true;
+                });
             }
         }
         Agenda.login( $scope.username, $scope.password, callback);
