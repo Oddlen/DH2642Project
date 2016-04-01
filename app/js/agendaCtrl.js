@@ -53,7 +53,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         schedule.owner=user;
         schedule.year =  $scope.date.getFullYear().toString();
         schedule.month = ( $scope.date.getMonth()+1).toString();
+        schedule.month =  schedule.month[1]?schedule.month:"0"+schedule.month[0];
         schedule.day  =  $scope.date.getDate().toString();
+        schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
+
         schedule.name = "";
         schedule.invited=[];
         schedule.agenda = [];
@@ -266,6 +269,40 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
                 alert("Created Event");
             }
         }
+
+        var hour = $scope.date.getHours(),
+            hour = hour<10 ? '0'+hour : hour,
+            minutes = ($scope.date.getMinutes()<10 ? '0' :'') + $scope.date.getMinutes();
+        schedule.start = hour+':'+minutes;
+
+        var length = 0;
+        for(var i = 0; i < schedule.agenda.length; i++){
+            var agendalength = schedule.agenda[i].length;
+            var modulehoursAndMins = agendalength.split("h");
+            length += (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]));
+        }
+        console.log(length);
+        var min = length % 60;
+        var h = 0;
+        while(length>=0){
+            length = length-60;
+            if(length>=0){
+                h++;
+            }
+        }
+
+
+        schedule.length = h+"h"+min+"m";
+        schedule.owner=user;
+        schedule.year =  $scope.date.getFullYear().toString();
+        schedule.month = ( $scope.date.getMonth()+1).toString();
+        schedule.month =  schedule.month[1]?schedule.month:"0"+schedule.month[0];
+        schedule.day  =  $scope.date.getDate().toString();
+        schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
+        schedule.name = $scope.meetingname;
+        schedule.invited=$scope.participants;
+
+        console.log(schedule);
 
         Agenda.setEvent(schedule, callbk)
     };

@@ -141,7 +141,7 @@ function getEvent(day, month, year, eventName, callbackFunction) {
 	// body...
 }
 
-function setEvent(eventObject, callbackFunction) {
+this.setEvent = function(eventObject, callbackFunction) {
 	// body...
 }
 
