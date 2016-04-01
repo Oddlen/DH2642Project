@@ -202,7 +202,7 @@ function getEvent(day, eventName, callbackFunction) {
 	// body...
 }
 
-function setEvent(eventObject, callbackFunction) {
+this.setEvent = function(eventObject, callbackFunction) {
 	// body...
 }
 

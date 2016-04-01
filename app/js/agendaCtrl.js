@@ -53,7 +53,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         schedule.owner=user;
         schedule.year =  $scope.date.getFullYear().toString();
         schedule.month = ( $scope.date.getMonth()+1).toString();
+        schedule.month =  schedule.month[1]?schedule.month:"0"+schedule.month[0];
         schedule.day  =  $scope.date.getDate().toString();
+        schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
+
         schedule.name = "";
         schedule.invited=[];
         schedule.agenda = [];
@@ -184,6 +187,16 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.durationplaceholder = "0";
     $scope.descriptionplaceholder = "Describe the meeting part...";
 
+    /*
+        Clears all information, which then will make it possible to create a new module
+     */
+    function createAgendaModule(){
+        $scope.category = $scope.types[0];
+        $scope.duration = 0;
+        $scope.entertitle = "";
+        $scope.description = "";
+    }
+
     var existingModule = true;
     var agenda = null;
     if(existingModule){
@@ -254,8 +267,18 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         agenda.push(agendaObject);
     };
 
+    // Removes the given module from the agenda
     $scope.removeModule = function(module) {
-        // Remove module from schedule.agenda
+        var agenda = schedule.agenda;
+        for(var i = 0; i < agenda.length; i++){
+            var tempMod = agenda[i];
+
+            if(tempMod.start === module.start && tempMod.end === module.end && tempMod.name===name.end){
+                agenda.splice(i,1);
+                break;
+            }
+        }
+        schedule.agenda = agenda;
     }
 
     $scope.submitAgenda = function(){
@@ -266,6 +289,45 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
                 alert("Created Event");
             }
         }
+
+        var hour = $scope.date.getHours(),
+            hour = hour<10 ? '0'+hour : hour,
+            minutes = ($scope.date.getMinutes()<10 ? '0' :'') + $scope.date.getMinutes();
+        schedule.start = hour+':'+minutes;
+
+        var length = 0;
+        for(var i = 0; i < schedule.agenda.length; i++){
+            var agendalength = schedule.agenda[i].length;
+            var modulehoursAndMins = agendalength.split("h");
+            length += (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]));
+        }
+        var meetinglength = length*60*1000;
+        var min = length % 60;
+        var h = 0;
+        while(length>=0){
+            length = length-60;
+            if(length>=0){
+                h++;
+            }
+        }
+        var endTime = new Date($scope.date.getTime()+meetinglength);
+        var endhour = endTime.getHours(),
+            endhour = endhour<10 ? '0'+endhour : endhour,
+            endmin = (endTime.getMinutes()<10 ? '0' :'') + endTime.getMinutes();
+        schedule.end = endhour + ':' + endmin;
+
+
+        schedule.length = h+"h"+min+"m";
+        schedule.owner=user;
+        schedule.year =  $scope.date.getFullYear().toString();
+        schedule.month = ( $scope.date.getMonth()+1).toString();
+        schedule.month =  schedule.month[1]?schedule.month:"0"+schedule.month[0];
+        schedule.day  =  $scope.date.getDate().toString();
+        schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
+        schedule.name = $scope.meetingname;
+        schedule.invited=$scope.participants;
+
+        console.log(schedule);
 
         Agenda.setEvent(schedule, callbk)
     };
