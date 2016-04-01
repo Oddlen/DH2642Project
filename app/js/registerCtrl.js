@@ -3,17 +3,31 @@ agendaApp.controller('RegisterCtrl', function ($scope,Agenda) {
     $scope.username ="";
     $scope.password ="";
     $scope.confirmpassword ="";
-    $scope.passwordTaken = false;
     $scope.nonmatchingPasswords = false;
+    $scope.usernameTaken = false;
+
+    $scope.getUsernameTaken = function(){
+        return $scope.usernameTaken;
+    }
+
 
     $scope.register = function(){
         if($scope.password === $scope.confirmpassword){
-
+            $scope.nonmatchingPasswords = false;
             var testFunc = function (ok, msg) {
                 console.log(msg);
+                if(ok){
+                    $scope.$apply(function() {
+                        $scope.usernameTaken = false;
+                    });
+                    window.location="/#calendar";
+                }else{
+                    $scope.$apply(function() {
+                        $scope.usernameTaken = true;
+                    });
+                }
             }
             Agenda.createUser($scope.username,$scope.password,testFunc);
-            window.location="/#calendar";
         }else{
             $scope.nonmatchingPasswords = true;
         }

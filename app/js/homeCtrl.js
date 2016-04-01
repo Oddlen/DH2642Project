@@ -1,16 +1,32 @@
-agendaApp.controller('HomeCtrl', function ($scope) {
+agendaApp.controller('HomeCtrl', function ($scope, Agenda) {
 
     $scope.username ="";
     $scope.password ="";
 
-    $scope.nonmatchingLoginfalse;
+    $scope.nonmatchingLogin=false;
     // Placeholders
     $scope.usernameplaceholder = "Enter Username...";
     $scope.passwordplaceholder = "*******";
 
 
+    $scope.getNonmatchingLogin=function(){
+        return $scope.nonmatchingLogin;
+    }
     $scope.login = function(){
-        //agenda.login(username,password);
+        var callback = function(ok,msg){
+            console.log(msg);
+            if(ok){
+                $scope.$apply(function() {
+                    $scope.nonmatchingLogin=false;
+                });
+                window.location = "/#calendar";
+            }else{
+                $scope.$apply(function() {
+                    $scope.nonmatchingLogin=true;
+                });
+            }
+        }
+        Agenda.login( $scope.username, $scope.password, callback);
 
     }
 })

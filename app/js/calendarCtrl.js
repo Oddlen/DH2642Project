@@ -1,4 +1,10 @@
-agendaApp.controller('CalendarCtrl', function ($scope) {
+agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
+
+var user = Agenda.getUser();
+if(user===""){
+ //window.location="/";
+ //return;
+}
 
 	$scope.prevday = function () {
 		console.log("ladda föregående dag");

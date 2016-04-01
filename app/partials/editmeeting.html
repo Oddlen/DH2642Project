@@ -45,19 +45,19 @@
                             <p class="participant">{{participant}}</p>
                         </div>
                         <button type="button" class="btn-danger" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()">
-                            <div class="glyphicon glyphicon-minus iconstyle"></div>
+                            <div class="glyphicon glyphicon-minus iconstyle particons"></div>
                         </button>
                     </div>
                     <div id="addDiv" ng-hide="isNotOwner()">
                         <input class="form-control" id="invitation" name="inviteUsename" type="text" placeholder='{{invitingplaceholder}}'  ng-model="inviting">
                         <button ng-click="addParticipant()" type="button" id="addButton" class="btn-success">
-                            <div class="glyphicon glyphicon-plus iconstyle"></div>
+                            <div class="glyphicon glyphicon-plus iconstyle particons"></div>
                         </button>
                     </div>
                 </div>
             </div>
             <div id="confirmagenda" ng-hide="isNotOwner()">
-                <button type="button" class="btn btn-success confirmbutton" ng-disabled="agendaButtonDisabled()">
+                <button type="button" class="btn btn-success confirmbutton" ng-click="submitAgenda()" ng-disabled="agendaButtonDisabled()">
                     {{confirmagenda}}
                 </button>
             </div>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div id="confirmediting" ng-hide="isNotOwner()">
-                <button type="button" class="btn btn-success confirmbutton" ng-disabled="editButtonDisabled()">
+                <button type="button" class="btn btn-success confirmbutton" ng-click="addModule()" ng-disabled="editButtonDisabled()">
                     {{confirmediting}}
                 </button>
             </div>

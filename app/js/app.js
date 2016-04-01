@@ -11,7 +11,7 @@ agendaApp.config(['$routeProvider',
         templateUrl: 'partials/calendar.html',
         controller: 'CalendarCtrl'
       }).
-      when('/agenda/:id', {
+      when('/agenda', {
         templateUrl: 'partials/agenda.html',
         controller: 'AgendaCtrl'
       }).
