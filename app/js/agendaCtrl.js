@@ -1,6 +1,6 @@
 agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
-    // For testing
+    // For testing, for Mark
     var exampleAgendaObject1 = {
         name:"name1",
         start:"08:25",
@@ -61,7 +61,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
 
     var owner = false;
-        if(user===schedule.owner){
+        if(user!==schedule.owner){
             owner = true;
         }
     $scope.editing = true;
@@ -207,7 +207,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         if(existingModule) {
             $scope.category = agenda.category;
         }else{
-            $scope.category = $scope.types[0].label;;
+            $scope.category = $scope.types[0].label;
         }
     }
     if(existingModule){
@@ -225,12 +225,51 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     }
 
     $scope.agendaButtonDisabled = function(){
-        var agenda = [];
+        var agenda = schedule.agenda;
         if(agenda.length !== 0){
             return false;
         }else{
             return true;
         }
     }
+
+    $scope.addModule = function(){
+        var agenda = schedule.agenda;
+        var agendaObject = {};
+        agendaObject.name=$scope.entertitle;
+        agendaObject.start="08:25";
+        agendaObject.end="09:00";
+        var lengthMin = $scope.duration;
+        var min = lengthMin % 60;
+        var h = 0;
+        while(lengthMin>=0){
+            lengthMin = lengthMin-60;
+            if(lengthMin>=0){
+                h++;
+            }
+        }
+        agendaObject.length=h+"h"+min+"m";
+        agendaObject.category=$scope.category.label;
+        agendaObject.description=$scope.description;
+        agenda.push(agendaObject);
+    };
+
+    $scope.removeModule = function(module) {
+        // Remove module from schedule.agenda
+    }
+
+    $scope.submitAgenda = function(){
+        var callbk = function(status, msg){
+            if(status===false){
+                alert("Fail");
+            }else{
+                alert("Created Event");
+            }
+        }
+
+        Agenda.setEvent(schedule, callbk)
+    };
+
+
 
 })
