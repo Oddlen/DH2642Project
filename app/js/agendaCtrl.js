@@ -187,6 +187,16 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.durationplaceholder = "0";
     $scope.descriptionplaceholder = "Describe the meeting part...";
 
+    /*
+        Clears all information, which then will make it possible to create a new module
+     */
+    function createAgendaModule(){
+        $scope.category = $scope.types[0];
+        $scope.duration = 0;
+        $scope.entertitle = "";
+        $scope.description = "";
+    }
+
     var existingModule = true;
     var agenda = null;
     if(existingModule){
@@ -257,8 +267,18 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         agenda.push(agendaObject);
     };
 
+    // Removes the given module from the agenda
     $scope.removeModule = function(module) {
-        // Remove module from schedule.agenda
+        var agenda = schedule.agenda;
+        for(var i = 0; i < agenda.length; i++){
+            var tempMod = agenda[i];
+
+            if(tempMod.start === module.start && tempMod.end === module.end && tempMod.name===name.end){
+                agenda.splice(i,1);
+                break;
+            }
+        }
+        schedule.agenda = agenda;
     }
 
     $scope.submitAgenda = function(){
