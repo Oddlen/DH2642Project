@@ -301,7 +301,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
             var modulehoursAndMins = agendalength.split("h");
             length += (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]));
         }
-        console.log(length);
+        var meetinglength = length*60*1000;
         var min = length % 60;
         var h = 0;
         while(length>=0){
@@ -310,6 +310,11 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
                 h++;
             }
         }
+        var endTime = new Date($scope.date.getTime()+meetinglength);
+        var endhour = endTime.getHours(),
+            endhour = endhour<10 ? '0'+endhour : endhour,
+            endmin = (endTime.getMinutes()<10 ? '0' :'') + endTime.getMinutes();
+        schedule.end = endhour + ':' + endmin;
 
 
         schedule.length = h+"h"+min+"m";
