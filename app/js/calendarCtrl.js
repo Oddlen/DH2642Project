@@ -2,7 +2,8 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 
 var user = Agenda.getUser();
 if(user===""){
-window.location="/";
+ //window.location="/";
+ //return;
 }
 
 	$scope.prevday = function () {

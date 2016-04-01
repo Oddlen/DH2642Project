@@ -12,7 +12,8 @@ var exampleAgendaObject1 = {
 	start:"08:25",
 	end:"09:00",
 	length:"0h35m",
-	category:"Introduction"
+	category:"Introduction",
+	description:"This is the introduction" // Observe this field is required
 };
 
 var exampleAgendaObject2 = {
@@ -20,20 +21,26 @@ var exampleAgendaObject2 = {
 	start:"09:00",
 	end:"10:36",
 	length:"1h36m",
-	category:"Other"
+	category:"Other",
+	description:"This is the other" // Observe this field is required
 };
 
 var exampleEventObject = {
     day:"01",
     month:"06",
     year:"2016",
-    name:"OnlyLettersAndNumbers",
+    name:"OnlyLetters AndNumbers",
+	owner:"Kalle", // Observe this is needed in the db
     start:"08:25",
     end:"10:36",
     length:"2h11m",
     invited:['username1', 'username2', 'username3'],
     agenda:[exampleAgendaObject1, exampleAgendaObject2]
 };
+	// Until Joakim gets data and pass it to agenda
+	this.getExampleData = function(){
+		return exampleEventObject;
+	}
 
 // callback function api.
 function exampleCallbackFunction(booleanFalseIfError, stringMessage) {
@@ -138,7 +145,7 @@ function setEvent(eventObject, callbackFunction) {
 	// body...
 }
 
-function getCategories(callbackFunction) {
+this.getCategories = function(callbackFunction) {
 	// body...
 }
 
