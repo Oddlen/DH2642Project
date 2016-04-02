@@ -13,12 +13,9 @@ function handleDragStart(e) {
 
 	e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.innerHTML);
-  console.log("dragged");
-  //testFunction();
 }
 
 function testFunction() {
-    //$scope.ingrName = $sce.trustAsHtml(nameString);
     
     eventRef.child("d01m04y2016").child("eventName1_Mark").child("agenda").on("value", 
               function(snapshot) {
@@ -81,20 +78,13 @@ function handleDrop(e) {
   }
 
   if (dragSrcEl != this) {
+    console.log(this.innerHTML.substr(73,6));
     dragSrcEl.innerHTML = this.innerHTML;
+    //console.log(dragSrcEl);
     this.innerHTML = e.dataTransfer.getData('text/html');
   }
-
-
   return false;
 }
-
-
-
-
-
-
-
 
 
 })
