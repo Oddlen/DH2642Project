@@ -23,4 +23,3 @@ agendaApp.config(['$routeProvider',
         redirectTo: '/home'
       });
   }]);
-  
