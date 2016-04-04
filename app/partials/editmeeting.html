@@ -1,4 +1,63 @@
-<div id="editmeeting" ng-controller="AgendaCtrl">
+
+<div id="scheduler">
+    <div id="scheduleSidebar">
+
+        <div id="sidebar">
+            <div id="meetingInfo">
+                <p id="meetingInfoText"> {{displayDate}}
+                    <br>
+                    {{meetingname}}
+                </p>
+            </div>
+
+            <div id="startTime">
+                <p class="textWhite">{{displayTime}}</p>
+            </div>
+
+            <script type="text/ng-template" id="list.html">
+                <ul dnd-list="modules">
+                    <li ng-model="modules" ng-repeat="module in modules"
+                        dnd-draggable="module"
+                        dnd-effect-allowed="move"
+                        dnd-moved="onMove({{$index}})"
+                        dnd-dragstart="logEvent('Started to drag {{$index}}', event)"
+                        dnd-selected="selected = module"
+                        ng-class="{selected: selected === module}"
+                        ng-include="'item.html'"
+                        ng-click="changeActiveModule(module)">
+                    </li>
+                </ul>
+            </script>
+
+            <script type="text/ng-template" id="item.html">
+                <div class="module">
+                    <p class="textWhite">{{module.start}}</p>
+                    <p class="eventText">{{module.name}}</p>
+                    <p class="textWhite">{{module.end}}</p>
+                </div>
+            </script>
+
+            <div id="listOfEvents" class="dropzone">
+
+                <div ng-include="'list.html'"></div>
+
+            </div>
+            <div id="addEvent" ng-if="isOwner()">
+                <button type="button" id="addEventButton" class="btn-success" ng-click="createAgendaModule()">
+                    <div class="glyphicon glyphicon-plus iconstyle particons"></div>
+                </button>
+            </div>
+
+
+            <div id="endTime">
+                <p id="textWhiteRight">{{endTime}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editer">
+<div id="editmeeting">
     <div id="meetinginformation">
         <div id="meetingname">
             <input id="meetingtitle" class="form-control" type="text" placeholder='{{meetingnameplaceholder}}' ng-model="meetingname" ng-hide="isNotOwner()">
@@ -84,6 +143,12 @@
                 <div id="guestdescription" ng-hide="isOwner()">{{getDescription()}}
                 </div>
             </div>
+            <div id="cancelediting" ng-hide="isNotOwner()">
+                <button type="button" class="btn btn-danger" ng-click="cancelChanges()">
+                    {{cancelediting}}
+                </button>
+            </div>
+
             <div id="confirmediting" ng-hide="isNotOwner()">
                 <button type="button" class="btn btn-success confirmbutton" ng-click="addModule()" ng-disabled="editButtonDisabled()">
                     {{confirmediting}}
@@ -92,4 +157,5 @@
         </div>
     </div>
 
+</div>
 </div>

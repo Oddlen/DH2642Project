@@ -204,9 +204,15 @@
 	}
 	
 	#confirmediting {
+			 position: absolute;
+			 top: 90%;
+			 left: 60%;
+		 }
+
+	#cancelediting {
 		position: absolute;
 		top: 90%;
-		left: 60%;
+		left: 20%;
 	}
 	
 	#scheduler {
