@@ -42,7 +42,7 @@
 		background: #40a9f5;
 		display: inline-block;
 		border-radius: 2%;
-		margin-left: 2%;
+		margin-left: 1%;
 		padding: 3%;
 		width: 52%;
 		height: 90%;
@@ -212,6 +212,7 @@
 	#scheduler {
 		display: inline-block;
 		width: 19%;
+		height:100%;
 	}
 	
 	#editer {
@@ -261,10 +262,12 @@
 	
 	#sidebar {
 		background-color: #C2C2C2;
-		height: 100%;
+		margin-top:5%;
+		height: 101%;
 		width: 100%;
 		border-style: solid;
-		border-radius: 25px;
+		border-radius: 15px;
+		position:relative;
 	}
 	
 	#scheduleSidebar {
@@ -325,12 +328,13 @@
 	}
 	#listOfEvents {
 		background-color: #545454;
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: 1%;
+		margin-right: 1%;
 		margin-bottom: 10%;
-		height: 600px;
+		height: 80%;
 		border-radius: 15px;
 		position: relative;
+		overflow-y:auto;
 	}
 
 	#homeicon{
@@ -368,10 +372,10 @@
 		margin-bottom: 2%;
 	}
 
-	#addEventButton {
+	#addEvent {
 		position: absolute;
-		right: 3%;
-		bottom: 3%;
+		right: 15%;
+		bottom: 5%;
 	}
 
 	#services {
@@ -395,10 +399,11 @@
 	/*Tag by class*/
 	
 	.event {
-		height: 100px;
+		display:block;
+		height: 10%;
 		width: 90%;
 		margin: auto;
-		border-radius: 15px;
+		margin-bottom:3%;
 	}
 	
 	.eventText {
@@ -490,6 +495,19 @@
 		margin-right: 0;
 	}
 
+	.module{
+		background-color: #52D4FF;
+		border-radius:10px;
+		height:100%;
+		width:94%;
+		margin:auto;
+		margin-top:1%;
+		cursor:pointer;
+	}
+
+	.column.over {
+		border: 2px dashed #000;
+	}
 
 
 	/*Tag by item*/
@@ -509,4 +527,70 @@
 	input {
 		height: 30px !important;
 	}
+
+
+
+	/***************************** Dropzone Styling *****************************/
+
+	ul[dnd-list],
+	ul[dnd-list] > li {
+		position: relative;
+	}
+
+	ul[dnd-list] {
+		min-height: 42px;
+		margin: 0px;
+		padding-left: 0px;
+	}
+
+	.dropzone li {
+		display: block;
+		padding: 0px;
+	}
+
+	.dropzone .dndDragging {
+		opacity: 0.7;
+	}
+
+	.dropzone .dndDraggingSource {
+		display: none;
+	}
+
+	.dropzone .dndPlaceholder {
+		background-color: #ddd;
+		min-height: 42px;
+		display: block;
+		position: relative;
+	}
+
+
+	.dropzone .selected .item {
+		color: #3c763d;
+		background-color: #dff0d8;
+	}
+
+	.dropzone .selected .box {
+		border-color: #d6e9c6;
+	}
+
+	.dropzone .selected .box > h3 {
+		color: #3c763d;
+		background-color: #dff0d8;
+		background-image: linear-gradient(to bottom,#dff0d8 0,#d0e9c6 100%);
+		border-color: #d6e9c6;
+	}
+
+	.dropzone .item {
+		padding: 10px 15px;
+	}
+
+	.dropzone .container-element {
+		margin: 10px;
+	}
+
+	.dropzone .container-element .column {
+		float: left;
+		width: 50%;
+	}
+
 

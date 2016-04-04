@@ -66,22 +66,22 @@
             <div id="parttitle">
                 <p class="edittext"> {{titlestring}} </p>
                 <input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
-                <p class="edittext" ng-hide="isOwner()">{{entertitle}}</p>
+                <p class="edittext" ng-hide="isOwner()">{{getModuleName()}}</p>
             </div>
             <div id="partduration">
                 <p class="edittext">{{durationstring}}</p>
                 <input class="form-control" id="duration" type="number" min="{{durationmin}}" placeholder='{{durationplaceholder}}' ng-model="duration" ng-hide="isNotOwner()">
-                <p class="edittext" ng-hide="isOwner()">{{duration}}</p>
+                <p class="edittext" ng-hide="isOwner()">{{getDuration()}}</p>
                 <p class="edittext">{{minstring}}</p>
             </div>
             <div id="partcategory">
                 <p class="edittext">{{categorystring}}</p>
                 <select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.label for type in types" ng-hide="isNotOwner()"></select>
-                <p class="edittext" ng-hide="isOwner()">{{category}}</p>
+                <p class="edittext" ng-hide="isOwner()">{{getCategory()}}</p>
             </div>
             <div id="partdescription">
                 <textarea class="form-control" id="description" ng-model="description" placeholder="{{descriptionplaceholder}}" ng-hide="isNotOwner()" />
-                <div id="guestdescription" ng-hide="isOwner()">{{description}}
+                <div id="guestdescription" ng-hide="isOwner()">{{getDescription()}}
                 </div>
             </div>
             <div id="confirmediting" ng-hide="isNotOwner()">

@@ -1,56 +1,56 @@
-
 <div id="scheduleSidebar">
 
 	<div id="sidebar">
 		<div id="meetingInfo">
-			<p id="meetingInfoText"> 1/1-70
-			<br>
-			Styrelsemöte
+			<p id="meetingInfoText"> {{displayDate}}
+				<br>
+				{{meetingname}}
 			</p>
 		</div>
 
 		<div id="startTime">
-			<p class="textWhite">08:00</p>
+			<p class="textWhite">{{displayTime}}</p>
+		</div>
+
+		<script type="text/ng-template" id="list.html">
+			<ul dnd-list="modules">
+				<li ng-model="modules" ng-repeat="module in modules"
+					dnd-draggable="module"
+					dnd-effect-allowed="move"
+					dnd-moved="onMove({{$index}})"
+					dnd-dragstart="logEvent('Started to drag {{$index}}', event)"
+					dnd-selected="selected = module"
+					ng-class="{selected: selected === module}"
+					ng-include="'item.html'">
+				</li>
+			</ul>
+		</script>
+
+		<script type="text/ng-template" id="item.html">
+			<div class="module">
+					<p class="textWhite">{{module.start}}</p>
+					<p class="eventText">{{module.name}}</p>
+					<p class="textWhite">{{module.end}}</p>
+			</div>
+		</script>
+
+		<div id="listOfEvents" class="dropzone">
+
+				<div ng-include="'list.html'"></div>
+
+		</div>
+		<div id="addEvent">
+			<button type="button" id="addEventButton" class="btn-success" ng-click="createAgendaModule()">
+				<div class="glyphicon glyphicon-plus iconstyle particons"></div>
+			</button>
 		</div>
 
 
-	
-		<div id="listOfEvents" ng-bind-html="listOfEvents">
-			<!--<div id="empty">
-			</div>
-			<div class="event" draggable="true">
-				<div id="event1">
-					<p class="textWhite">08:00</p>
-					<h4><p class="eventText">Intro</p></h4>
-				</div>
-			</div>
-			<div class="event" draggable="true">
-				<div id="event2">
-					<p class="textWhite">08:10</p>
-					<h4><p class="eventText">Idea 1</p></h4>
-				</div>
-			</div>
-			<div class="event" draggable="true">
-				<div id="event3">
-					<p class="textWhite">09:00</p>
-					<h4><p class="eventText">Hatt</p></h4>
-				</div>
-			</div>
-
-			<div id="addEventButton">
-            <button type="button" id="addButton" class="btn-success">
-                <div class="glyphicon glyphicon-plus iconstyle"></div>
-            </button>
-        	</div>-->
-            
-		</div>
-
-	
 		<div id="endTime">
-			<p id="textWhiteRight">10:00</p>
+			<p id="textWhiteRight">{{endTime}}</p>
 		</div>
-	</div>	
-	
+	</div>
+
 
 
 
