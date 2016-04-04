@@ -1,4 +1,4 @@
-<div id="scheduleSidebar">
+<div id="scheduleSidebar" ng-controller="AgendaCtrl">
 
 	<div id="sidebar">
 		<div id="meetingInfo">
@@ -21,7 +21,8 @@
 					dnd-dragstart="logEvent('Started to drag {{$index}}', event)"
 					dnd-selected="selected = module"
 					ng-class="{selected: selected === module}"
-					ng-include="'item.html'">
+					ng-include="'item.html'"
+					ng-click="changeActiveModule(module)">
 				</li>
 			</ul>
 		</script>
@@ -39,7 +40,7 @@
 				<div ng-include="'list.html'"></div>
 
 		</div>
-		<div id="addEvent">
+		<div id="addEvent" ng-if="isOwner()">
 			<button type="button" id="addEventButton" class="btn-success" ng-click="createAgendaModule()">
 				<div class="glyphicon glyphicon-plus iconstyle particons"></div>
 			</button>

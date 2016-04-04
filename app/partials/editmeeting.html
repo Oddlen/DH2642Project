@@ -62,7 +62,7 @@
                 </button>
             </div>
         </div>
-        <div id="editpart" ng-hide="isNotEditing()">
+        <div id="editpart" ng-model="editing" ng-show="isEditing()" ng-hide="isNotEditing()">
             <div id="parttitle">
                 <p class="edittext"> {{titlestring}} </p>
                 <input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
