@@ -362,6 +362,14 @@
 		width:10%;
 		height:10%;
 	}
+	#headericon{
+		float:left;
+		width:50px;
+		height:50px;
+		left:5%;
+		top:1%;
+		cursor:pointer;
+	}
 	#homeheadline{
 		display:inline-block;
 		font-family: Arial, Helvetica, sans-serif;
@@ -380,6 +388,10 @@
 	#homeicondiv{
 		text-align:center;
 		padding:3%;
+	}
+
+	#logoutbtn{
+		pointer:cursor;
 	}
 
 	
@@ -415,9 +427,19 @@
 		width: 140px;
 	}
 
+	#welcomeUser{
+		color:white;
+	}
+
+	#navbarhead{
+		cursor: auto;
+	}
 
 	/*Tag by class*/
-	
+
+	.navbar{
+		margin-bottom:0.5% !important;
+	}
 	.event {
 		display:block;
 		height: 10%;
@@ -470,6 +492,10 @@
 		margin: 1%;
 		width: 80%;
 		border-radius: 50px;
+	}
+
+	.navbar-text{
+		margin-top:0% !important;
 	}
 	
 	.participant {
@@ -553,7 +579,9 @@
 		height: 30px !important;
 	}
 
-
+	a{
+		cursor:pointer;
+	}
 
 	/***************************** Dropzone Styling *****************************/
 

@@ -1,10 +1,11 @@
-<div class="jumbotron" id="header" ng-controller="HeaderCtrl">
+<!--<div class="jumbotron" id="header" ng-controller="HeaderCtrl">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col-md-3"></div>
+			<div class="col-md-3">
+			</div>
 			<div class="col-md-4 text-center">
-				<h2 ng-model="user">Welcome {{user}}!</h2>
+				<h2 id="welcomeUser" ng-model="user">Welcome {{user}}!</h2>
 			</div>
 			<div class="col-md-3"></div>
 			<div class="col-md-1">
@@ -12,4 +13,26 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<img src="homeicon.png" alt="HeaderIcon" id="headericon" ng-click="loadHome()">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" id="navbarhead" ng-click="loadHome()">AGENDA PLANNER</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><p class="navbar-text">Welcome {{user}}!</p> </li>
+				<li><a href="#/calendar">My Calendar <span class="sr-only">(current)</span></a></li>
+				<li><a id="logoutbtn" ng-click="logout()">Log out <span class="sr-only">(current)</span></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
