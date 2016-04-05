@@ -2,6 +2,7 @@ agendaApp.controller('HeaderCtrl', function ($scope, Agenda) {
 
 	$scope.user = Agenda.getUser();
 	$scope.loadHome = function () {
+		console.log("load");
 		if($scope.user===""){
 			window.location = "#/home";
 		}else{
