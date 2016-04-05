@@ -16,22 +16,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		//return;
 	}
 
-	$scope.prevday = function () {
-		console.log("ladda föregående dag");
-	};
 
-	$scope.prevweek = function () {
-		console.log("ladda föregående 5 dagar");
-	};
-
-	$scope.nextday = function () {
-		console.log("ladda kommande dag");
-
-	};
-
-	$scope.nextweek = function () {
-		console.log("ladda kommande 5 dagar");
-	};
 
 
 
@@ -57,12 +42,47 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		return datestring;
 	}
 
-	$scope.day1 = loaddates(0); //set to 4 for shifting 5 days forward and -5 to shift 5 days backward
+	$scope.day1 = loaddates(0); //set to 4 for shifting 5 days forward and -5 to shift 1 days backward
 	$scope.day2 = loaddates(1);
 	$scope.day3 = loaddates(1);
 	$scope.day4 = loaddates(1);
 	$scope.day5 = loaddates(1);
 
+	$scope.prevday = function () {
+		console.log("ladda föregående dag");
+		$scope.day1 = loaddates(-5);
+		$scope.day2 = loaddates(1);
+		$scope.day3 = loaddates(1);
+		$scope.day4 = loaddates(1);
+		$scope.day5 = loaddates(1);
+	};
+
+	$scope.prevweek = function () {
+		console.log("ladda föregående 5 dagar");
+		$scope.day1 = loaddates(-9);
+		$scope.day2 = loaddates(1);
+		$scope.day3 = loaddates(1);
+		$scope.day4 = loaddates(1);
+		$scope.day5 = loaddates(1);
+	};
+
+	$scope.nextday = function () {
+		console.log("ladda kommande dag");
+		$scope.day1 = loaddates(-3);
+		$scope.day2 = loaddates(1);
+		$scope.day3 = loaddates(1);
+		$scope.day4 = loaddates(1);
+		$scope.day5 = loaddates(1);
+	};
+
+	$scope.nextweek = function () {
+		console.log("ladda kommande 5 dagar");
+		$scope.day1 = loaddates(1);
+		$scope.day2 = loaddates(1);
+		$scope.day3 = loaddates(1);
+		$scope.day4 = loaddates(1);
+		$scope.day5 = loaddates(1);
+	};
 
 	function myFunction() {
 
