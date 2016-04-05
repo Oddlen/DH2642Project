@@ -32,7 +32,10 @@
 
 				<script type="text/ng-template" id="item.html">
 					<div class="module">
-						<p class="textWhite">{{module.start}}</p>
+						<p class="textWhite modStart">{{module.start}}</p>
+						<button type="button" class="btn-danger" id="removeModule" ng-click="removeModule(module)" ng-hide="isNotOwner()">
+							<div class="glyphicon glyphicon-minus iconstyle modicons"></div>
+						</button>
 						<p class="eventText">{{module.name}}</p>
 						<p class="textWhite">{{module.end}}</p>
 					</div>

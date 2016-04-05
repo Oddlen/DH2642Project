@@ -231,6 +231,14 @@
 	#duration {
 		width: 40%;
 	}
+
+	#removeModule{
+		display:inline-block;
+		width:10%;
+		height:10%;
+		text-align: center;
+		float:right;
+	}
 	
 	#partdescription {
 		margin-top: 2%;
@@ -445,6 +453,10 @@
 	.particons{
 		font-size: 1.1vw;
 	}
+
+	.modicons{
+		font-size: 0.7vw;
+	}
 	
 	.participantnamediv {
 		display: inline-block;
@@ -511,8 +523,9 @@
 		cursor:pointer;
 	}
 
-	.column.over {
-		border: 2px dashed #000;
+
+	.modStart{
+		display:inline-block;
 	}
 
 
