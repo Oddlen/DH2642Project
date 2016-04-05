@@ -155,6 +155,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.endTime = schedule.end;
 
     var owner = false;
+
+    // This should be if(user===schedule.owner){ when everything works
         if(user!==schedule.owner){
             owner = true;
         }
@@ -324,6 +326,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.confirmagenda ="Confirm agenda"
     $scope.confirmediting ="Confirm editing"
     $scope.cancelediting ="Cancel editing"
+    $scope.closedetails ="Close"
     $scope.invitedheadline ="Invited"
     $scope.titlestring ="Title:"
     $scope.durationstring ="Duration:"
@@ -413,6 +416,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         }
     }
 
+    $scope.closeDetails = function(){
+        $scope.editing = false;
+    }
+
     $scope.addModule = function(){
 
         $scope.activeModule.name = $scope.entertitle;
@@ -441,7 +448,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         for(var i = 0; i < $scope.modules.length; i++){
             var tempMod = $scope.modules[i];
 
-            //if(tempMod.start === module.start && tempMod.end === module.end && tempMod.name===module.name){
             if(tempMod === module){
                 console.log("Removed");
                 $scope.modules.splice(i,1);
@@ -449,6 +455,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
             }
         }
         schedule.agenda = $scope.modules.slice();
+        $scope.editing = false;
+        $scope.creatingModule = false;
+        $scope.recalculateSchedule();
     }
 
     $scope.submitAgenda = function(){

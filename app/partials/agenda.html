@@ -147,6 +147,13 @@
 						<div id="guestdescription" ng-hide="isOwner()">{{getDescription()}}
 						</div>
 					</div>
+
+					<div id="closedetails" ng-hide="isOwner()">
+						<button type="button" class="btn btn-success confirmbutton" ng-click="closeDetails()">
+							{{closedetails}}
+						</button>
+					</div>
+
 					<div id="cancelediting" ng-hide="isNotOwner()">
 						<button type="button" class="btn btn-danger" ng-click="cancelChanges()">
 							{{cancelediting}}
