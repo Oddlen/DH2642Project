@@ -226,10 +226,19 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     //$scope.types = Agenda.getCategories();
    $scope.types = [{
         Label: 'Introduction',
-        Color: '#2a4cd4'
+        Color: '#005de0'
+    }, {
+        Label: 'Presentation',
+        Color: '#d4c32a'
+    }, {
+        Label: 'Discussion',
+        Color: '#6fd952'
+    }, {
+        Label: 'Break',
+        Color: '#e0b955'
     }, {
         Label: 'Other',
-        Color: '#d4c32a'
+        Color: '#9c8581'
     }];
 
     $scope.getColor = function(module){
@@ -315,6 +324,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.durationplaceholder = "0";
     $scope.descriptionplaceholder = "Describe the meeting part...";
 
+    $scope.durationmin = 0;
+
        $scope.creatingModule = false;
 
     /*
@@ -371,7 +382,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     }
 
     $scope.editButtonDisabled = function(){
-        if( $scope.entertitle !== "" &&  $scope.duration !== 0 &&  $scope.category !== "" &&  $scope.description !== ""){
+        if( $scope.entertitle !== "" &&  $scope.duration !== 0 && $scope.duration !== "" &&  $scope.category !== ""){
             return false;
         }else{
             return true;
