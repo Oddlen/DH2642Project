@@ -478,6 +478,7 @@
 	.eventText {
 		text-align: center;
 		font-weight:bold;
+		font-size:120%;
 	}
 	
 	.textWhite {
@@ -589,6 +590,22 @@
 
 	.modStart{
 		display:inline-block;
+		font-size:120%;
+		padding-top:2%;
+		padding-left:2%;
+	}
+
+	.modEnd{
+		display:inline-block;
+		font-size:120%;
+		padding-left:2%;
+	}
+
+	.modDuration {
+		padding-left:56%;
+		display:inline;
+		text-align: right;
+		font-size:110%;
 	}
 
 	.textRight {
@@ -597,6 +614,7 @@
 		padding-top: 3%;
 		font-size:150%;
 	}
+
 
 	
 
@@ -655,7 +673,6 @@
 		display: block;
 		position: relative;
 	}
-
 
 	.dropzone .selected .item {
 		color: #3c763d;

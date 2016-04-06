@@ -20,31 +20,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         $scope.recalculateSchedule();
     }
 
-    $scope.recalculateSchedule = function(){
-        console.log("calc");
-        var scheduleStart = schedule.start;
-        var timeStart = scheduleStart.split(":");
-        var hour = +timeStart[0];
-        var minute = +timeStart[1];
-        var totalLength = 0;
-
-        for(var i = 0; i < $scope.modules.length; i++){
-            $scope.modules[i].start = $scope.formattedTime(hour,minute,totalLength);
-            var modulehoursAndMins = $scope.modules[i].length.split("h");
-            var duration = (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]));
-
-            totalLength += duration;
-            $scope.modules[i].end = $scope.formattedTime(hour,minute,totalLength);
-        }
-
-        if($scope.modules.length>0){
-            schedule.end = $scope.modules[$scope.modules.length-1].end;
-            $scope.endTime = $scope.modules[$scope.modules.length-1].end;
-        }else{
-            schedule.end = $scope.displayTime;
-            $scope.endTime = $scope.displayTime;
-        }
-    }
     $scope.formattedTime = function(hour, minute, totalLength){
         var min = totalLength % 60;
         var h = 0;
@@ -63,7 +38,38 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         return formatTime;
     }
 
+    $scope.recalculateSchedule = function(){
+        console.log("calc");
+        var scheduleStart = schedule.start;
+        var timeStart = scheduleStart.split(":");
+        var hour = +timeStart[0];
+        var minute = +timeStart[1];
+        var totalLength = 0;
 
+        for(var i = 0; i < $scope.modules.length; i++){
+            $scope.modules[i].start = $scope.formattedTime(hour,minute,totalLength);
+            var modulehoursAndMins = $scope.modules[i].length.split("h");
+            var duration = (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]));
+
+            totalLength += duration;
+            $scope.modules[i].end = $scope.formattedTime(hour,minute,totalLength);
+            $scope.modules[i].duration = "Time: " + $scope.formattedTime(0,0,duration);
+
+        }
+
+        if($scope.modules.length>0){
+            schedule.end = $scope.modules[$scope.modules.length-1].end;
+            $scope.endTime = $scope.modules[$scope.modules.length-1].end;
+
+        }else{
+            schedule.end = $scope.displayTime;
+            $scope.endTime = $scope.displayTime;
+
+        }
+
+
+    }
+    
     if(existingMeeting){
         schedule = Agenda.getExampleData();
         tempstarttime = schedule.start;
@@ -326,7 +332,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     $scope.durationmin = 0;
 
-       $scope.creatingModule = false;
+    $scope.creatingModule = false;
 
     /*
         Clears all information, which then will make it possible to create a new module
@@ -347,9 +353,12 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         if($scope.modules.length>0){
             $scope.activeModule.start = $scope.modules[$scope.modules.length-1].end;
             $scope.activeModule.end = $scope.modules[$scope.modules.length-1].end;
+            //DURATION 
+            $scope.activeModule.duration = "Time: 00:00";
         }else{
             $scope.activeModule.start = $scope.displayTime;
             $scope.activeModule.end = $scope.displayTime;
+            $scope.activeModule.duration = 10;
         }
         $scope.activeModule.length = "0h0m";
         $scope.activeModule.category = $scope.types[0].Label;
@@ -361,7 +370,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.cancelChanges = function(){
         $scope.editing = false;
         $scope.creatingModule = false;
-            $scope.modules = schedule.agenda.slice();
+        $scope.modules = schedule.agenda.slice();
 
     }
 

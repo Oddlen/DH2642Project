@@ -6,7 +6,7 @@ agendaApp.factory('Agenda',function ($resource, $cookieStore) {
 // Than having ex. day,month,year.
 
 var exampleAgendaObject1 = {
-	name:"name1",
+	name:"Testar med en lång sträng",
 	start:"08:25",
 	end:"09:00",
 	length:"0h35m",
@@ -15,7 +15,7 @@ var exampleAgendaObject1 = {
 };
 
 var exampleAgendaObject2 = {
-	name:"name2",
+	name:"Kort sträng",
 	start:"09:00",
 	end:"10:36",
 	length:"1h36m",
