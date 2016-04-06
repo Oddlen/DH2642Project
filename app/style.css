@@ -39,9 +39,7 @@
 	
 	#editpart {
 		position: relative;
-		background: #40a9f5;
-		border-style: solid;
-		border-weight:1px;
+		background: rgba(231, 231, 231, 0.9);
 		display: inline-block;
 		border-radius: 2%;
 		margin-left: 1%;
@@ -57,7 +55,7 @@
 	#editmeeting {
 		border-style: solid;
 		background: rgba(232, 232, 232, 0.8);
-		border-radius: 3%;
+		border-radius: 5px;
 		width: 96%;
 		height: 90%;
 		margin-left: 2%;
@@ -303,7 +301,7 @@
 		height: 101%;
 		width: 100%;
 		border-style: solid;
-		border-radius: 15px;
+		border-radius: 5px;
 		position:relative;
 	}
 	
@@ -314,12 +312,12 @@
 	}
 	
 	#meetingInfo {
-		background-color: #595959;
+		background-color: rgba(82, 82, 82, 0.8);
 		height: 10%;
 		width: 90%;
 		margin: auto;
 		margin-top: 5%;
-		border-radius: 25px;
+		border-radius: 5px;
 	}
 	
 	#meetingInfoText {
@@ -452,6 +450,10 @@
 		cursor: auto;
 	}
 
+	#itemlist{
+		margin-top:2%;
+	}
+
 	/*Tag by class*/
 
 	.navbar{
@@ -527,7 +529,6 @@
 	}
 	
 	.edittext {
-		color: white;
 		font-weight: bold;
 		display: inline-block;
 		font-size: 120%;
@@ -568,7 +569,7 @@
 
 	.module{
 		background-color: #52D4FF;
-		border-radius:10px;
+		border-radius:5px;
 		height:100%;
 		width:94%;
 		margin:auto;

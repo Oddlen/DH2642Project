@@ -16,7 +16,7 @@
 				</div>
 
 				<script type="text/ng-template" id="list.html">
-					<ul dnd-list="modules">
+					<ul id="itemlist" dnd-list="modules">
 						<li ng-model="modules" ng-repeat="module in modules"
 							dnd-draggable="module"
 							dnd-effect-allowed="move"
