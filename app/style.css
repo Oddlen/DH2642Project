@@ -43,9 +43,11 @@
 	
 	#editpart {
 		position: relative;
-		background: rgba(231, 231, 231, 0.9);
 		display: inline-block;
 		border-radius: 2%;
+		border-color: rgba(221, 221, 221, 1);
+		border-width:2px;
+		border-style:solid;
 		margin-left: 1%;
 		padding: 3%;
 		width: 52%;
@@ -575,7 +577,6 @@
 	}
 
 	.module{
-		background-color: rgba(221,221,221,1);
 		border-radius:5px;
 		height:100%;
 		width:94%;

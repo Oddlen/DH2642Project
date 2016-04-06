@@ -31,7 +31,7 @@
 				</script>
 
 				<script type="text/ng-template" id="item.html">
-					<div class="module">
+					<div class="module" ng-style="{ 'background-color':getColor(module)}">
 						<p class="modStart">{{module.start}}</p>
 						<button type="button" class="btn-danger" id="removeModule" ng-click="removeModule(module)" ng-hide="isNotOwner()">
 							<div class="glyphicon glyphicon-minus iconstyle modicons"></div>
@@ -125,7 +125,7 @@
 						</button>
 					</div>
 				</div>
-				<div id="editpart" ng-model="editing" ng-show="isEditing()" ng-hide="isNotEditing()">
+				<div id="editpart" ng-model="editing" ng-show="isEditing()" ng-hide="isNotEditing()" ng-style="{ 'background-color':getActiveColor()}">
 					<div id="parttitle">
 						<p class="edittext"> {{titlestring}} </p>
 						<input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">

@@ -111,6 +111,11 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     $scope.activeModule = {};
     $scope.changeActiveModule = function(mod){
+        if($scope.creatingModule){
+            alert("You have to finish or cancel the creating of the module first!")
+            return;
+        }
+
         var module = JSON.parse(JSON.stringify(mod));
         if($scope.activeModule === module){
             $scope.editing = !$scope.editing;
@@ -217,10 +222,33 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     //$scope.types = Agenda.getCategories()
     $scope.types = [{
-        label: 'Introduction'
+        label: 'Introduction',
+        color: '#2a4cd4'
     }, {
-        label: 'Other'
+        label: 'Other',
+        color: '#d4c32a'
     }];
+
+    $scope.getColor = function(module){
+        if($scope.creatingModule && module.name === "Pending.."){
+            return 'rgba(221,221,221,1)';
+        }
+        var category = module.category;
+        for(var i = 0; i < $scope.types.length;i++){
+            if($scope.types[i].label===category){
+                return $scope.types[i].color
+            }
+        }
+        return 'rgba(221,221,221,1)';
+    }
+
+    $scope.getActiveColor = function(){
+        if($scope.creatingModule){
+            return 'rgba(221,221,221,1)';
+        }else{
+            return $scope.getColor($scope.activeModule);
+        }
+    }
 
     function indexOfCategory(category){
         for(var i = 0; i < $scope.types.length; i++){
