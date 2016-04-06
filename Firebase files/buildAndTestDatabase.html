@@ -9,7 +9,7 @@
       		var myDataRef = new Firebase('https://dh2642.firebaseIO.com/');
       		var usersRef = myDataRef.child("users");
       		var eventRef = myDataRef.child("events");
-      		var catRef = myDataRef.child("catagories");
+      		var catRef = myDataRef.child("categories");
       		createUsers();
       		createCatagories();
       		createEventsStep1();
@@ -55,11 +55,26 @@
 
 			function createCatagories(){
 				catRef.set({
-      				Introduction: "Blue",
-      				Break: "Green",
-      				Other: "Red",
-      				Discussion: "Yellow",
-      				Presentation: "Purple"
+      				Cat1: {
+                Label: "Introduction", 
+                Color: "Blue"
+              },
+              Cat2: {
+                Label: "Break", 
+                Color: "Green"
+              },
+              Cat3: {
+                Label: "Other", 
+                Color: "Red"
+              },
+              Cat4: {
+                Label: "Discussion", 
+                Color: "Yellow"
+              },
+              Cat5: {
+                Label: "Presentation", 
+                Color: "Purple"
+              }
       			});
 			}
 

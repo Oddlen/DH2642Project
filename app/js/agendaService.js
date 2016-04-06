@@ -32,7 +32,7 @@ var exampleEventObject = {
     start:"08:25",
     end:"10:36",
     length:"2h11m",
-    invited:['username1', 'username2', 'username3'],
+    invited:['Kalle', 'username2', 'username3'],
     agenda:[exampleAgendaObject1, exampleAgendaObject2]
 };
 	// Until Joakim gets data and pass it to agenda
@@ -48,7 +48,7 @@ function exampleCallbackFunction(booleanFalseIfError, stringMessage, JSONData) {
 dataRef = new Firebase('https://dh2642.firebaseIO.com/');
 useRef = dataRef.child("users");
 eveRef = dataRef.child("events");
-catRef = dataRef.child("catagories"); // categories
+catRef = dataRef.child("categories"); // categories
 vm = this;
 waiting = 0;
 dataArray = [];
@@ -181,7 +181,7 @@ function getDay(day, callbackFunction) {
 	var mm = day.getMonth();
 	if (mm < 10)
 	{
-		mm = "0" + dd;
+		mm = "0" + mm;
 	}
 	var yy = day.getFullYear();
 	var vm = this;
@@ -198,19 +198,48 @@ function getDay(day, callbackFunction) {
   	);
 }
 
-function getEvent(day, eventName, callbackFunction) {
-	// body...
+vm.getEvent = function (day, eventName, ownerName, callbackFunction) {
+	var dd = day.getDate();
+	if (dd < 10)
+	{
+		dd = "0" + dd;
+	}
+	var mm = day.getMonth();
+	if (mm < 10)
+	{
+		mm = "0" + mm;
+	}
+	var yy = day.getFullYear();
+	var vm = this;
+	var dayCode = "d" + dd + "m" + mm + "y" + yy;
+	eveRef.child(dayCode).child(eventName + "_" + ownerName).on("value", 
+		function(snapshot) {
+			callbackFunction(true, "data for " + dayCode + "->" + eventName + "_" + ownerName, snapshot.val());
+		}, 
+		function (errorObject) {
+			console.log("read for " + dayCode + "->" + eventName + "_" + ownerName + "failed", errorObject.code);
+			callbackFunction(false, "data for " + dayCode + "->" + eventName + "_" + ownerName + "could not be accesed", null);
+		}
+	);
 }
 
-this.setEvent = function(eventObject, callbackFunction) {
+vm.setEvent = function(eventObject, callbackFunction) {
 	// body...
 }
 
 vm.getCategories = function(callbackFunction) {
-	// body...
+	catRef.on("value", 
+		function(snapshot) {
+			callbackFunction(true, "All categories fetched", snapshot.val());
+		}, 
+		function (errorObject) {
+			console.log("The read of categories failed: " + errorObject.code);
+			callbackFunction(false, "Could not fetch categories", null);
+		}
+	);
 }
 
-function invite(username, callbackFunction) {
+vm.invite = function (eventDay, eventName, username, callbackFunction) {
 	// body...
 }
 
