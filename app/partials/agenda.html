@@ -1,3 +1,4 @@
+<span ng-show='loading' us-spinner="spinnerOptions"></span>
 <ng-include src="'partials/header.html'" ng-controller="HeaderCtrl"></ng-include>
 <div id="meeting">
 	<div id="scheduler">
@@ -12,7 +13,7 @@
 				</div>
 
 				<div>
-					<p class="textWhite">{{displayTime}}</p>
+					<p>{{displayTime}}</p>
 				</div>
 
 				<script type="text/ng-template" id="list.html">
@@ -54,7 +55,7 @@
 
 
 				<div id="endTime">
-					<p id="textWhiteRight">{{endTime}}</p>
+					<p class="textRight">{{endTime}}</p>
 				</div>
 			</div>
 		</div>
@@ -139,7 +140,7 @@
 					</div>
 					<div id="partcategory">
 						<p class="edittext">{{categorystring}}</p>
-						<select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.label for type in types" ng-hide="isNotOwner()"></select>
+						<select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.Label for type in types" ng-hide="isNotOwner()"></select>
 						<p class="edittext" ng-hide="isOwner()">{{getCategory()}}</p>
 					</div>
 					<div id="partdescription">

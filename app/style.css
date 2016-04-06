@@ -359,12 +359,6 @@
 		border-radius: 15px;
 	}
 	
-	#textWhiteRight {
-		text-align: right;
-		color: white;
-		padding-right: 5%;
-	}
-	
 	#endTime {
 		margin-top: -10%;
 	}
@@ -588,6 +582,11 @@
 
 	.modStart{
 		display:inline-block;
+	}
+
+	.textRight {
+		text-align: right;
+		padding-right: 5%;
 	}
 
 

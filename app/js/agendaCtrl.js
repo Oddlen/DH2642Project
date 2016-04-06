@@ -1,5 +1,8 @@
 agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
+    $scope.loading = false;
+    $scope.spinnerOptions = {radius:10, width:5, length: 16};
+
     var user = Agenda.getUser();
     if(user===""){
         //window.location="/#home";
@@ -220,13 +223,13 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     }
     $scope.format = 'yyyy/MM/dd';
 
-    //$scope.types = Agenda.getCategories()
-    $scope.types = [{
-        label: 'Introduction',
-        color: '#2a4cd4'
+    //$scope.types = Agenda.getCategories();
+   $scope.types = [{
+        Label: 'Introduction',
+        Color: '#2a4cd4'
     }, {
-        label: 'Other',
-        color: '#d4c32a'
+        Label: 'Other',
+        Color: '#d4c32a'
     }];
 
     $scope.getColor = function(module){
@@ -235,8 +238,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         }
         var category = module.category;
         for(var i = 0; i < $scope.types.length;i++){
-            if($scope.types[i].label===category){
-                return $scope.types[i].color
+            if($scope.types[i].Label===category){
+                return $scope.types[i].Color
             }
         }
         return 'rgba(221,221,221,1)';
@@ -252,7 +255,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     function indexOfCategory(category){
         for(var i = 0; i < $scope.types.length; i++){
-            if($scope.types[i].label===category){
+            if($scope.types[i].Label===category){
                 return i;
             }
         }
@@ -338,7 +341,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
             $scope.activeModule.end = $scope.displayTime;
         }
         $scope.activeModule.length = "0h0m";
-        $scope.activeModule.category = $scope.types[0].label;
+        $scope.activeModule.category = $scope.types[0].Label;
         $scope.activeModule.description = "";
         $scope.modules.push($scope.activeModule);
 
@@ -391,7 +394,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     $scope.addModule = function(){
 
         $scope.activeModule.name = $scope.entertitle;
-        $scope.activeModule.category=$scope.category.label;
+        $scope.activeModule.category=$scope.category.Label;
         $scope.activeModule.description=$scope.description;
         schedule.agenda = $scope.modules.slice();
         $scope.editing = false;
@@ -475,8 +478,16 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         schedule.name = $scope.meetingname;
         schedule.invited=$scope.participants;
 
+        var callbk = function(ok,msg){
+            $scope.loading = false;
+            if(ok){
+                window.location="#calendar";
+            }else{
+                alert(msg);
+            }
+        }
         console.log(schedule);
-
+        $scope.loading = true;
         Agenda.setEvent(schedule, callbk)
     };
 

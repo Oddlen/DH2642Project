@@ -45,6 +45,7 @@ function exampleCallbackFunction(booleanFalseIfError, stringMessage, JSONData) {
 	// body...
 }
 
+	// Cookies should be added to store certains things (like categories, usernameRef etc.) on reload
 dataRef = new Firebase('https://dh2642.firebaseIO.com/');
 useRef = dataRef.child("users");
 eveRef = dataRef.child("events");
@@ -54,6 +55,20 @@ waiting = 0;
 dataArray = [];
 vm.usernameRef = "";
 vm.auth = null;
+	vm.categoryList = [];
+
+	catRef.on("value",
+		function(snapshot) {
+			var categories = snapshot.val();
+			for(var key in categories) {
+				vm.categoryList.push(categories[key]);
+			}
+			console.log("All categories fetched");
+		},
+		function (errorObject) {
+			console.log("The read of categories failed: " + errorObject.code);
+		}
+	);
 
 vm.getUser = function(){
 	return vm.usernameRef;
@@ -227,16 +242,8 @@ vm.setEvent = function(eventObject, callbackFunction) {
 	// body...
 }
 
-vm.getCategories = function(callbackFunction) {
-	catRef.on("value", 
-		function(snapshot) {
-			callbackFunction(true, "All categories fetched", snapshot.val());
-		}, 
-		function (errorObject) {
-			console.log("The read of categories failed: " + errorObject.code);
-			callbackFunction(false, "Could not fetch categories", null);
-		}
-	);
+vm.getCategories = function() {
+	return vm.categoryList;
 }
 
 vm.invite = function (eventDay, eventName, username, callbackFunction) {
