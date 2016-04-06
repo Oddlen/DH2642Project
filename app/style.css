@@ -422,8 +422,8 @@
 
 	#addEvent {
 		position: absolute;
-		right: 15%;
-		bottom: 5%;
+		right: 7%;
+		bottom: 7%;
 	}
 
 	#services {
@@ -453,6 +453,13 @@
 
 	#itemlist{
 		margin-top:2%;
+	}
+
+	#textLeft {
+		text-align: left;
+		padding-top: 3%;
+		padding-left: 4%;
+		font-size:150%;
 	}
 
 	/*Tag by class*/
@@ -587,7 +594,11 @@
 	.textRight {
 		text-align: right;
 		padding-right: 5%;
+		padding-top: 3%;
+		font-size:150%;
 	}
+
+	
 
 
 	/*Tag by item*/
