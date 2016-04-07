@@ -38,7 +38,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	// Until Joakim gets data and pass it to agenda
 	this.getExampleData = function () {
 		return exampleEventObject;
-	}
+	};
 
 	// callback function api.
 	function exampleCallbackFunction(booleanFalseIfError, stringMessage, JSONData) {

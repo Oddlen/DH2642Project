@@ -1,15 +1,13 @@
 agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 
-	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/');
-	var eventRef = myDataRef.child("events");
-	var agendaArray = [];
-	var date = new Date();
-	date.setFullYear(2016, 6, 1); //inita dagen att vara 1:a april
-	var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	var datestring;
-	var dd;
-	var mm;
-	var yyyy;
+	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/'),
+		eventRef = myDataRef.child("events"),
+		agendaArray = [],
+		date = new Date(),
+		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+		datestring, dd, mm, yyyy;
+	date.setFullYear(2016, 6, 1); //inita dagen att vara 1:a juni
+
 
 
 	var user = Agenda.getUser();
@@ -56,23 +54,23 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 			console.log(Agenda.getExampleData());
 			switch (wday) {
 			case 1:
-				$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 2:
-				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday' id='daysched2'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule1 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 3:
-				$scope.dayschedule3 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule3 = $sce.trustAsHtml("<div class='calday' id='daysched3'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule2 = $scope.dayschedule1 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 4:
-				$scope.dayschedule4 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule4 = $sce.trustAsHtml("<div class='calday' id='daysched4'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule1 = $scope.dayschedule5 = "";
 				break;
 			case 5:
-				$scope.dayschedule5 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule5 = $sce.trustAsHtml("<div class='calday' id='daysched5'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule1 = "";
 				break;
 			}
