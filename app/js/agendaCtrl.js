@@ -39,7 +39,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     }
 
     $scope.recalculateSchedule = function(){
-        console.log("calc");
         var scheduleStart = schedule.start;
         var timeStart = scheduleStart.split(":");
         var hour = +timeStart[0];
@@ -61,16 +60,16 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
                     h++;
                 }
             }
+            h = h<10 ? '0'+h : h;
+            min = (min<10 ? '0'+min :min);
             $scope.modules[i].length = h+"h"+min+"m";
 
         }
 
         if($scope.modules.length>0){
-            schedule.end = $scope.modules[$scope.modules.length-1].end;
             $scope.endTime = $scope.modules[$scope.modules.length-1].end;
 
         }else{
-            schedule.end = $scope.displayTime;
             $scope.endTime = $scope.displayTime;
 
         }
@@ -94,7 +93,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
             minutes = ($scope.date.getMinutes()<10 ? '0' :'') + $scope.date.getMinutes();
         schedule.start = hour+':'+minutes;
         schedule.end = hour+':'+minutes;
-        schedule.length = "0h0m";
+        schedule.length = "00h00m";
         schedule.owner=user;
         schedule.year =  $scope.date.getFullYear().toString();
         schedule.month = ( $scope.date.getMonth()+1).toString();
@@ -105,10 +104,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         schedule.name = "";
         schedule.invited=[];
         schedule.agenda = [];
-        //schedule.agenda = [exampleAgendaObject1, exampleAgendaObject2, exampleAgendaObject3];
     }
 
-    $scope.modules = schedule.agenda.slice();;
+    $scope.modules = schedule.agenda.slice();
     $scope.endTime = schedule.end;
 
     var owner = false;
@@ -184,7 +182,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     var vm = $scope;
     $scope.$watch('date', function() {
-        console.log("watch");
         if($scope.date !== undefined){
             var hour = $scope.date.getHours(),
                 hour = hour<10 ? '0'+hour : hour,
@@ -346,6 +343,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         Clears all information, which then will make it possible to create a new module
      */
     $scope.createAgendaModule = function(){
+        $scope.modules = schedule.agenda.slice();
         $scope.activeModule = {};
         if($scope.creatingModule === true){
             return;
@@ -361,14 +359,11 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         if($scope.modules.length>0){
             $scope.activeModule.start = $scope.modules[$scope.modules.length-1].end;
             $scope.activeModule.end = $scope.modules[$scope.modules.length-1].end;
-            //DURATION 
-            $scope.activeModule.duration = "Time: 00:00";
         }else{
             $scope.activeModule.start = $scope.displayTime;
             $scope.activeModule.end = $scope.displayTime;
-            $scope.activeModule.duration = 10;
         }
-        $scope.activeModule.length = "0h0m";
+        $scope.activeModule.length = "00h00m";
         $scope.activeModule.category = $scope.types[0].Label;
         $scope.activeModule.description = "";
         $scope.modules.push($scope.activeModule);
@@ -379,6 +374,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         $scope.editing = false;
         $scope.creatingModule = false;
         $scope.modules = schedule.agenda.slice();
+        $scope.recalculateSchedule();
 
     }
 
@@ -443,12 +439,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
     // Removes the given module from the agenda
     $scope.removeModule = function(module) {
-        console.log("removeModule");
         for(var i = 0; i < $scope.modules.length; i++){
             var tempMod = $scope.modules[i];
 
             if(tempMod === module){
-                console.log("Removed");
                 $scope.modules.splice(i,1);
                 break;
             }
@@ -495,8 +489,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         schedule.end = endhour + ':' + endmin;
         $scope.endTime = schedule.end;
 
-
+        h = h<10 ? '0'+h : h;
+        min = (min<10 ? '0'+min :min);
         schedule.length = h+"h"+min+"m";
+
         schedule.owner=user;
         schedule.year =  $scope.date.getFullYear().toString();
         schedule.month = ( $scope.date.getMonth()+1).toString();
