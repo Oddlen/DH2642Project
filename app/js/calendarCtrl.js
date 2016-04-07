@@ -8,17 +8,20 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 	var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	var datestring;
 
-	myFunction();
 
 	var user = Agenda.getUser();
 	if (user === "") {
 		console.log("inte inloggad");
 		//window.location="/";
 		//return;
-	}
+	};
 
 
 
+	var callback = function (ok, msg, value) {
+		console.log("wut: " + value);
+	};
+	Agenda.getDay(date, callback);
 
 
 	function loaddates(int, wday) {
@@ -65,7 +68,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 
 		}
 		return datestring;
-	}
+	};
 
 	function resetday() {
 		$scope.dayschedule1 = "";
@@ -73,9 +76,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		$scope.dayschedule3 = "";
 		$scope.dayschedule4 = "";
 		$scope.dayschedule5 = "";
-	}
+	};
 
-	$scope.day1 = loaddates(0, 1); //set to 4 for shifting 5 days forward and -5 to shift 1 days backward
+	$scope.day1 = loaddates(0, 1); //set to 1 for shifting 5 days forward and -5 to shift 1 days backward
 	$scope.day2 = loaddates(1, 2);
 	$scope.day3 = loaddates(1, 3);
 	$scope.day4 = loaddates(1, 4);
@@ -116,10 +119,5 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		$scope.day4 = loaddates(1, 4);
 		$scope.day5 = loaddates(1, 5);
 	};
-
-	function myFunction() {
-
-	};
-
 
 });
