@@ -53,7 +53,15 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
 
             totalLength += duration;
             $scope.modules[i].end = $scope.formattedTime(hour,minute,totalLength);
-            $scope.modules[i].duration = "Time: " + $scope.formattedTime(0,0,duration);
+            var min = duration % 60;
+            var h = 0;
+            while(duration>=0){
+                duration = duration-60;
+                if(duration>=0){
+                    h++;
+                }
+            }
+            $scope.modules[i].length = h+"h"+min+"m";
 
         }
 
