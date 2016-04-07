@@ -3,41 +3,40 @@
 	#maindiv {
 		height: 100%;
 	}
-
-	#homemain{
+	
+	#homemain {
 		background: #5bc0de;
-		background: -webkit-linear-gradient(#5bc0de,#0088cc);
+		background: -webkit-linear-gradient(#5bc0de, #0088cc);
 		/* For Safari 5.1 to 6.0 */
-		background: -o-linear-gradient(#5bc0de,#0088cc);
+		background: -o-linear-gradient(#5bc0de, #0088cc);
 		/* For Opera 11.1 to 12.0 */
-		background: -moz-linear-gradient(#5bc0de,#0088cc);
+		background: -moz-linear-gradient(#5bc0de, #0088cc);
 		/* For Firefox 3.6 to 15 */
-		background: linear-gradient(#5bc0de,#0088cc);
+		background: linear-gradient(#5bc0de, #0088cc);
 		/* Standard syntax */
 		height: 100%;
 	}
-
-	#loginbox{
+	
+	#loginbox {
 		background: rgba(245, 245, 245, 1);
 		border-color: rgba(221, 221, 221, 1);
 		border-style: solid;
-		border-width:2px;
-		width:40%;
-		padding:3%;
-		margin:auto;
-		margin-top:2%;
+		border-width: 2px;
+		width: 40%;
+		padding: 3%;
+		margin: auto;
+		margin-top: 2%;
 		border-radius: 2%;
 	}
-
-
-	#registerbox{
+	
+	#registerbox {
 		background: rgba(245, 245, 245, 1);
 		border-color: rgba(221, 221, 221, 1);
 		border-style: solid;
-		border-width:2px;
-		width:40%;
-		padding:3%;
-		margin:auto;
+		border-width: 2px;
+		width: 40%;
+		padding: 3%;
+		margin: auto;
 		border-radius: 2%;
 	}
 	
@@ -46,8 +45,8 @@
 		display: inline-block;
 		border-radius: 2%;
 		border-color: rgba(221, 221, 221, 1);
-		border-width:2px;
-		border-style:solid;
+		border-width: 2px;
+		border-style: solid;
 		margin-left: 1%;
 		padding: 3%;
 		width: 52%;
@@ -57,11 +56,11 @@
 	#previouspagebtn {
 		margin-left: 50%;
 	}
-
+	
 	#editmeeting {
 		background: rgba(255, 255, 255, 1);
-		border-style:solid;
-		border-color:rgba(221, 221, 221, 1);
+		border-style: solid;
+		border-color: rgba(221, 221, 221, 1);
 		border-radius: 4px;
 		width: 96%;
 		height: 90%;
@@ -87,29 +86,28 @@
 	
 	#meeting {
 		background: #5bc0de;
-		background: -webkit-linear-gradient(#5bc0de,#0088cc);
+		background: -webkit-linear-gradient(#5bc0de, #0088cc);
 		/* For Safari 5.1 to 6.0 */
-		background: -o-linear-gradient(#5bc0de,#0088cc);
+		background: -o-linear-gradient(#5bc0de, #0088cc);
 		/* For Opera 11.1 to 12.0 */
-		background: -moz-linear-gradient(#5bc0de,#0088cc);
+		background: -moz-linear-gradient(#5bc0de, #0088cc);
 		/* For Firefox 3.6 to 15 */
-		background: linear-gradient(#5bc0de,#0088cc);
+		background: linear-gradient(#5bc0de, #0088cc);
 		/* Standard syntax */
 		height: 110%;
 	}
-
-	#calendarmain{
-
+	
+	#calendarmain {
 		background: #5bc0de;
-		background: -webkit-linear-gradient(#5bc0de,#0088cc);
+		background: -webkit-linear-gradient(#5bc0de, #0088cc);
 		/* For Safari 5.1 to 6.0 */
-		background: -o-linear-gradient(#5bc0de,#0088cc);
+		background: -o-linear-gradient(#5bc0de, #0088cc);
 		/* For Opera 11.1 to 12.0 */
-		background: -moz-linear-gradient(#5bc0de,#0088cc);
+		background: -moz-linear-gradient(#5bc0de, #0088cc);
 		/* For Firefox 3.6 to 15 */
-		background: linear-gradient(#5bc0de,#0088cc);
+		background: linear-gradient(#5bc0de, #0088cc);
 		/* Standard syntax */
-		height:100%;
+		height: 100%;
 	}
 	
 	#addDiv {
@@ -160,19 +158,19 @@
 		display: inline-block;
 		margin-left: 5%;
 		width: 40%;
-		height:100%;
-		overflow-x:auto;
-		overflow-y:auto;
+		height: 100%;
+		overflow-x: auto;
+		overflow-y: auto;
 	}
 	
 	#meetingtitle {
 		width: 100%;
-		height:100%;
+		height: 100%;
 	}
 	
 	#guestmeetingtitle {
 		margin-top: 0%;
-		height:100%;
+		height: 100%;
 	}
 	
 	#date {
@@ -225,17 +223,17 @@
 	}
 	
 	#confirmediting {
-			 position: absolute;
-			 top: 90%;
-			 left: 60%;
-		 }
-
+		position: absolute;
+		top: 90%;
+		left: 60%;
+	}
+	
 	#closedetails {
 		position: absolute;
 		top: 90%;
 		left: 60%;
 	}
-
+	
 	#cancelediting {
 		position: absolute;
 		top: 90%;
@@ -245,7 +243,7 @@
 	#scheduler {
 		display: inline-block;
 		width: 19%;
-		height:100%;
+		height: 100%;
 	}
 	
 	#editer {
@@ -258,14 +256,14 @@
 	#duration {
 		width: 40%;
 	}
-
-	#removeModule{
-		display:inline-block;
-		width:10%;
-		height:10%;
+	
+	#removeModule {
+		display: inline-block;
+		width: 10%;
+		height: 10%;
 		text-align: center;
-		border-radius:5px;
-		float:right;
+		border-radius: 5px;
+		float: right;
 	}
 	
 	#partdescription {
@@ -279,20 +277,20 @@
 		float: right;
 		border-radius: 15%;
 		margin-right: 7%;
-		height:90%;
-		width:8%;
+		height: 90%;
+		width: 8%;
 		float: right;
 		display: inline-block;
-		text-align:center;
+		text-align: center;
 	}
 	
 	#addButton {
 		border-radius: 15%;
 		margin-right: 20%;
 		float: right;
-		height:90%;
-		width:8%;
-		text-align:center;
+		height: 90%;
+		width: 8%;
+		text-align: center;
 	}
 	
 	#agendaSidebar {
@@ -303,13 +301,13 @@
 	
 	#sidebar {
 		background: rgba(255, 255, 255, 1);
-		border-style:solid;
-		border-color:rgba(221, 221, 221, 1);
+		border-style: solid;
+		border-color: rgba(221, 221, 221, 1);
 		border-radius: 4px;
-		margin-top:5%;
+		margin-top: 5%;
 		height: 101%;
 		width: 100%;
-		position:relative;
+		position: relative;
 	}
 	
 	#scheduleSidebar {
@@ -319,7 +317,7 @@
 	}
 	
 	#meetingInfo {
-		background-color: rgba(240,240 ,240, 1);
+		background-color: rgba(240, 240, 240, 1);
 		height: 10%;
 		width: 90%;
 		margin: auto;
@@ -330,7 +328,7 @@
 	#meetingInfoText {
 		text-align: center;
 		font-size: 110%;
-		font-weight:bold;
+		font-weight: bold;
 	}
 	
 	#empty {
@@ -362,6 +360,7 @@
 	#endTime {
 		margin-top: -10%;
 	}
+	
 	#listOfEvents {
 		background-color: rgba(245, 245, 245, 1);
 		margin-left: 1%;
@@ -370,46 +369,49 @@
 		height: 75%;
 		border-radius: 15px;
 		position: relative;
-		overflow-y:auto;
+		overflow-y: auto;
 	}
-
-	#homeicon{
-		display:inline-block;
-		width:10%;
-		height:10%;
+	
+	#homeicon {
+		display: inline-block;
+		width: 10%;
+		height: 10%;
 	}
-	#headericon{
-		float:left;
-		width:50px;
-		height:50px;
-		left:5%;
-		top:1%;
-		cursor:pointer;
+	
+	#headericon {
+		float: left;
+		width: 50px;
+		height: 50px;
+		left: 5%;
+		top: 1%;
+		cursor: pointer;
 	}
-	#homeheadline{
-		display:inline-block;
+	
+	#homeheadline {
+		display: inline-block;
 		font-family: Arial, Helvetica, sans-serif;
 	}
-
-	#takenusername{
-		color:red;
+	
+	#takenusername {
+		color: red;
 	}
-	#nonmatchingpassword{
-		color:red;
+	
+	#nonmatchingpassword {
+		color: red;
 	}
-	#nonmatchinglogin{
-		color:red;
+	
+	#nonmatchinglogin {
+		color: red;
 	}
-
-	#homeicondiv{
-		text-align:center;
-		padding:3%;
+	
+	#homeicondiv {
+		text-align: center;
+		padding: 3%;
 	}
-
-	#logoutbtn{
-		pointer:cursor;
+	
+	#logoutbtn {
+		pointer: cursor;
 	}
-
 	
 	#datehorizontal {
 		width: 70%;
@@ -419,18 +421,18 @@
 	#meetinginformation {
 		margin-bottom: 2%;
 	}
-
+	
 	#addEvent {
 		position: absolute;
 		right: 7%;
 		bottom: 10%;
 	}
-
+	
 	#services {
 		background-color: #306d9f;
 		color: #ffffff;
 	}
-
+	
 	#services .glyphicon {
 		border: 2px solid #FFFFFF;
 		border-radius: 50%;
@@ -442,58 +444,70 @@
 		vertical-align: middle;
 		width: 140px;
 	}
-
-	#welcomeUser{
-		color:white;
+	
+	#welcomeUser {
+		color: white;
 	}
-
-	#navbarhead{
+	
+	#navbarhead {
 		cursor: auto;
 	}
-
-	#itemlist{
-		margin-top:2%;
+	
+	#itemlist {
+		margin-top: 2%;
 	}
-
+	
 	#textLeft {
 		text-align: left;
 		padding-top: 3%;
 		padding-left: 4%;
-		font-size:150%;
+		font-size: 150%;
 	}
-
 	/*Tag by class*/
-
-	.navbar{
-		margin-bottom:0.5% !important;
+	
+	.calday {
+		background: rgba(245, 245, 245, 1);
+		border-color: rgba(221, 221, 221, 1);
+		border-style: solid;
+		border-width: 2px;
+		width: 95%;
+		padding: 3%;
+		margin: auto;
+		margin-top: 2%;
+		border-radius: 2%;
 	}
+	
+	.navbar {
+		margin-bottom: 0.5% !important;
+	}
+	
 	.event {
-		display:block;
+		display: block;
 		height: 10%;
 		width: 90%;
 		margin: auto;
-		margin-bottom:3%;
+		margin-bottom: 3%;
 	}
 	
 	.eventText {
 		text-align: center;
-		font-weight:bold;
-		font-size:120%;
+		font-weight: bold;
+		font-size: 120%;
 	}
 	
 	.textWhite {
 		color: white;
 		padding-left: 12px;
 	}
-
-	.homeformheadline{
-		margin-top:0%;
+	
+	.homeformheadline {
+		margin-top: 0%;
 	}
 	
 	.infodesc {
 		display: inline-block;
 		font-weight: bold;
-		font-size:120%;
+		font-size: 120%;
 		vertical-align: top;
 	}
 	
@@ -501,31 +515,31 @@
 		width: 100%;
 		position: relative;
 	}
-
+	
 	.pad-section {
 		padding: 2% 2% 2% 4%;
 	}
-
-	.particons{
+	
+	.particons {
 		font-size: 1.1vw;
 	}
-
-	.modicons{
+	
+	.modicons {
 		font-size: 0.7vw;
 	}
 	
 	.participantnamediv {
 		display: inline-block;
 		background: rgba(245, 245, 245, 1);
-		border-color: rgba(221,221,221,1);
+		border-color: rgba(221, 221, 221, 1);
 		border: 1px solid transparent;
 		margin: 1%;
 		width: 80%;
 		border-radius: 10px;
 	}
-
-	.navbar-text{
-		margin-top:0% !important;
+	
+	.navbar-text {
+		margin-top: 0% !important;
 	}
 	
 	.participant {
@@ -558,67 +572,62 @@
 	.changedays {
 		margin-top: 15%;
 	}
-
+	
 	.event.over {
 		margin-top: 3%;
-		padding-top:-3%;
-  		border: 2px dashed #000;
+		padding-top: -3%;
+		border: 2px dashed #000;
 	}
-	.horizontalbuttons{
-		padding:2%;
-		text-align:center;
+	
+	.horizontalbuttons {
+		padding: 2%;
+		text-align: center;
 	}
-
+	
 	.mainfeatures {
-		padding:0;
+		padding: 0;
 		margin-right: 0;
 	}
-
-	.btn-primary{
-		border-radius:5px;
+	
+	.btn-primary {
+		border-radius: 5px;
 	}
-
-	.module{
-		border-radius:5px;
-		height:100%;
-		width:94%;
-		margin:auto;
-		margin-top:1%;
-		cursor:pointer;
+	
+	.module {
+		border-radius: 5px;
+		height: 100%;
+		width: 94%;
+		margin: auto;
+		margin-top: 1%;
+		cursor: pointer;
 	}
-
-
-	.modStart{
-		display:inline-block;
-		font-size:120%;
-		padding-top:2%;
-		padding-left:2%;
+	
+	.modStart {
+		display: inline-block;
+		font-size: 120%;
+		padding-top: 2%;
+		padding-left: 2%;
 	}
-
-	.modEnd{
-		display:inline-block;
-		font-size:120%;
-		padding-left:2%;
+	
+	.modEnd {
+		display: inline-block;
+		font-size: 120%;
+		padding-left: 2%;
 	}
-
+	
 	.modDuration {
-		margin-left:3%;
-		display:inline-block;
+		margin-left: 3%;
+		display: inline-block;
 		text-align: right;
-		font-size:80%;
+		font-size: 80%;
 	}
-
+	
 	.textRight {
 		text-align: right;
 		padding-right: 5%;
-		padding-top:5%;
-		font-size:150%;
+		padding-top: 5%;
+		font-size: 150%;
 	}
-
-
-	
-
-
 	/*Tag by item*/
 	
 	textarea {
@@ -636,71 +645,68 @@
 	input {
 		height: 30px !important;
 	}
-
-	a{
-		cursor:pointer;
+	
+	a {
+		cursor: pointer;
 	}
-
 	/***************************** Dropzone Styling *****************************/
-
+	
 	ul[dnd-list],
 	ul[dnd-list] > li {
 		position: relative;
 	}
-
+	
 	ul[dnd-list] {
 		min-height: 42px;
 		margin: 0px;
 		padding-left: 0px;
 	}
-
+	
 	.dropzone li {
 		display: block;
 		padding: 0px;
 	}
-
+	
 	.dropzone .dndDragging {
 		opacity: 0.7;
 	}
-
+	
 	.dropzone .dndDraggingSource {
 		display: none;
 	}
-
+	
 	.dropzone .dndPlaceholder {
-		background-color: rgba(81, 163, 81,0.6);
+		background-color: rgba(81, 163, 81, 0.6);
 		min-height: 42px;
 		display: block;
 		position: relative;
 	}
-
+	
 	.dropzone .selected .item {
 		color: #3c763d;
 		background-color: #dff0d8;
 	}
-
+	
 	.dropzone .selected .box {
 		border-color: #d6e9c6;
 	}
-
+	
 	.dropzone .selected .box > h3 {
 		color: #3c763d;
 		background-color: #dff0d8;
-		background-image: linear-gradient(to bottom,#dff0d8 0,#d0e9c6 100%);
+		background-image: linear-gradient(to bottom, #dff0d8 0, #d0e9c6 100%);
 		border-color: #d6e9c6;
 	}
-
+	
 	.dropzone .item {
 		padding: 10px 15px;
 	}
-
+	
 	.dropzone .container-element {
 		margin: 10px;
 	}
-
+	
 	.dropzone .container-element .column {
 		float: left;
 		width: 50%;
 	}
-
-

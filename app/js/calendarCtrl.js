@@ -1,12 +1,15 @@
-agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
+agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 
 	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/');
 	var eventRef = myDataRef.child("events");
 	var agendaArray = [];
 	var date = new Date();
-	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
+	date.setFullYear(2016, 6, 1); //inita dagen att vara 1:a april
 	var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	var datestring;
+	var dd;
+	var mm;
+	var yyyy;
 
 
 	var user = Agenda.getUser();
@@ -19,9 +22,10 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 
 
 	var callback = function (ok, msg, value) {
-		console.log("wut: " + value);
+		console.log(value);
+		var schedule = value;
 	};
-	Agenda.getDay(date, callback);
+
 
 
 	function loaddates(int, wday) {
@@ -29,9 +33,10 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 
 		var today = date;
 		today.setDate(date.getDate() + int);
-		var dd = today.getDate();
-		var mm = today.getMonth() + 1; //January is 0!
-		var yyyy = today.getFullYear();
+		Agenda.getDay(date, callback);
+		dd = today.getDate();
+		mm = today.getMonth(); //January is 0!
+		yyyy = today.getFullYear();
 
 		if (dd < 10) {
 			dd = '0' + dd;
@@ -44,31 +49,40 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		datestring = dd + '/' + mm + '/' + yyyy;
 		datestring = weekday[today.getDay()] + " - " + datestring;
 
+
 		//console.log("day " + Agenda.getExampleData().day + " -> " + dd + " && " + Agenda.getExampleData().month + " -> " + mm + " && " + Agenda.getExampleData().year + " -> " + yyyy);
 		if (Agenda.getExampleData().day == dd && Agenda.getExampleData().month == mm && Agenda.getExampleData().year == yyyy) {
 			console.log("bingo: " + wday);
+			console.log(Agenda.getExampleData());
 			switch (wday) {
 			case 1:
-				$scope.dayschedule1 = "dag 1";
-				myFunction();
+				$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 2:
-				$scope.dayschedule2 = "dag 2";
+				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule1 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 3:
-				$scope.dayschedule3 = "dag 3";
+				$scope.dayschedule3 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $scope.dayschedule1 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 4:
-				$scope.dayschedule4 = "dag 4";
+				$scope.dayschedule4 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule1 = $scope.dayschedule5 = "";
 				break;
 			case 5:
-				$scope.dayschedule5 = "dag 5";
+				$scope.dayschedule5 = $sce.trustAsHtml("<div class='calday'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule1 = "";
 				break;
 			}
 
 		}
+		dd = "";
+		mm = "";
+		yyyy = "";
 		return datestring;
-	};
+	}
 
 	function resetday() {
 		$scope.dayschedule1 = "";
@@ -76,7 +90,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, Agenda) {
 		$scope.dayschedule3 = "";
 		$scope.dayschedule4 = "";
 		$scope.dayschedule5 = "";
-	};
+	}
 
 	$scope.day1 = loaddates(0, 1); //set to 1 for shifting 5 days forward and -5 to shift 1 days backward
 	$scope.day2 = loaddates(1, 2);
