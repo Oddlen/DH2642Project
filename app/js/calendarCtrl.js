@@ -44,7 +44,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 			mm = '0' + mm;
 		}
 
-		datestring = dd + '/' + (mm - 2) + '/' + yyyy;
+		datestring = dd + '/' + mm + '/' + yyyy;
 		datestring = weekday[today.getDay()] + " - " + datestring;
 
 
