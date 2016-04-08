@@ -5,9 +5,12 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		agendaArray = [],
 		date = new Date(),
 		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-		datestring, dd, mm, yyyy;
+		datestring,
+		dd,
+		mm,
+		yyyy;
 	date.setFullYear(2016, 4, 30); //inita dagen att vara 1:a juni
-
+	myfunc();
 
 
 	var user = Agenda.getUser();
@@ -15,17 +18,44 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		console.log("inte inloggad");
 		//window.location="/";
 		//return;
-	};
+	}
 
-
+	function compare(a, b) {
+		if (a.start < b.start)
+			return -1;
+		else if (a.start > b.start)
+			return 1;
+		else
+			return 0;
+	}
 
 	var callback = function (ok, msg, value) {
 		console.log(value);
 		var schedule = value;
+		/*
+		schedule.sort(compare);
+		if schedule.date == $scope.day1
+		for each meeting in day
+			$scope.dayschedule1 += $sce.trustAsHtml("<div class='calday' id='daysched_NÅGOTSMARTID'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
+		*/
 	};
 
+	function myfunc() {
+		abc = Agenda.getExampleData();
+		console.log(abc.agenda[0].start);
+		console.log(abc.agenda[1].start);
+		abc.agenda.sort(compare);
+		abc.agenda.reverse();
+		console.log(abc.agenda[0].start);
+		console.log(abc.agenda[1].start);
+
+	}
 
 
+	/*
+	 * @param int 1 for shifting 5 days forward and -5 to shift 1 days backward
+	 * @param wday which day of the visible calendar that the function handles
+	 */
 	function loaddates(int, wday) {
 
 
@@ -91,12 +121,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		$scope.dayschedule5 = "";
 	}
 
-	$scope.day1 = loaddates(0, 1); //set to 1 for shifting 5 days forward and -5 to shift 1 days backward
-	$scope.day2 = loaddates(1, 2);
-	$scope.day3 = loaddates(1, 3);
-	$scope.day4 = loaddates(1, 4);
-	$scope.day5 = loaddates(1, 5);
-
 	$scope.prevday = function () {
 		resetday();
 		$scope.day1 = loaddates(-5, 1);
@@ -132,5 +156,12 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		$scope.day4 = loaddates(1, 4);
 		$scope.day5 = loaddates(1, 5);
 	};
+
+	//init calendar week
+	$scope.day1 = loaddates(0, 1);
+	$scope.day2 = loaddates(1, 2);
+	$scope.day3 = loaddates(1, 3);
+	$scope.day4 = loaddates(1, 4);
+	$scope.day5 = loaddates(1, 5);
 
 });
