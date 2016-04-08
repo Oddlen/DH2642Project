@@ -31,26 +31,26 @@ agendaApp.factory('MeetingAgenda', function () {
         agenda: [exampleAgendaObject1, exampleAgendaObject2]
     };
 
-    vm = this;
-    vm.meeting = {};
-    vm.existingMeeting = true;
-    vm.meeting = exampleEventObject;
-    
-    vm.getMeeting = function(){
-        return vm.meeting;
+    ms = this;
+    ms.meeting = {};
+    ms.existingMeeting = true;
+    ms.meeting = exampleEventObject;
+
+    ms.getMeeting = function(){
+        return ms.meeting;
     }
 
-    vm.setMeeting = function(newmeeting){
-        vm.meeting = newmeeting;
+    ms.setMeeting = function(newmeeting){
+        ms.meeting = newmeeting;
     }
 
-    vm.setExistingMeeting = function(bool){
-        vm.existingMeeting = bool;
+    ms.setExistingMeeting = function(bool){
+        ms.existingMeeting = bool;
     }
 
-    vm.getExistingMeeting = function(){
-        return vm.existingMeeting;
+    ms.getExistingMeeting = function(){
+        return ms.existingMeeting;
     }
 
-    return vm;
+    return ms;
 });
