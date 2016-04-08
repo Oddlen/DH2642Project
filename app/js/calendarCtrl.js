@@ -6,7 +6,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		date = new Date(),
 		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		datestring, dd, mm, yyyy;
-	date.setFullYear(2016, 6, 1); //inita dagen att vara 1:a juni
+	date.setFullYear(2016, 4, 30); //inita dagen att vara 1:a juni
 
 
 
@@ -41,6 +41,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		}
 
 		if (mm < 10) {
+			mm = mm + 1;
 			mm = '0' + mm;
 		}
 
