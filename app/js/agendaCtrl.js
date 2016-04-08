@@ -1,4 +1,4 @@
-agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
+agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAgenda) {
 
     $scope.loading = false;
     $scope.spinnerOptions = {radius:10, width:5, length: 16};
@@ -9,8 +9,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
         //return;
     }
 
-    var existingMeeting = true;
     var schedule = {};
+    var existingMeeting = MeetingAgenda.getExistingMeeting();
+
     var tempstarttime = null;
     var hoursAndMins = null;
 
@@ -78,7 +79,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda) {
     }
     
     if(existingMeeting){
-        schedule = Agenda.getExampleData();
+        schedule = MeetingAgenda.getMeeting();
         tempstarttime = schedule.start;
         hoursAndMins = tempstarttime.split(":");
         if(hoursAndMins.length !== 2){
