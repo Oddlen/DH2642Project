@@ -35,8 +35,7 @@ agendaApp.factory('MeetingAgenda', function () {
     vm.meeting = {};
     vm.existingMeeting = true;
     vm.meeting = exampleEventObject;
-
-    //vm.meeting = exampleEventObject;
+    
     vm.getMeeting = function(){
         return vm.meeting;
     }

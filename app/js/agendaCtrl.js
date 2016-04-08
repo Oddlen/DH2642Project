@@ -74,8 +74,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
             $scope.endTime = $scope.displayTime;
 
         }
-
-
     }
     
     if(existingMeeting){
@@ -133,7 +131,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
         }
 
         var module = JSON.parse(JSON.stringify(mod));
-        if($scope.activeModule === module){
+        if(JSON.parse(JSON.stringify($scope.activeModule)) === JSON.stringify(module)){
             $scope.editing = !$scope.editing;
         }else if(Object.keys($scope.activeModule).length === 0 && JSON.stringify($scope.activeModule) === JSON.stringify({})){
             $scope.editing = !$scope.editing;
@@ -142,15 +140,18 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
         }
 
         if($scope.editing){
+            if(JSON.stringify($scope.activeModule) !== JSON.stringify(module)){
             $scope.activeModule = module;
-            var modulehoursAndMins  = module.length.split("h");
-            $scope.duration = (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]))
-            $scope.entertitle = module.name;
-            $scope.description = module.description;
-            if(!owner){
-                $scope.category = module.category;
+                var modulehoursAndMins  = module.length.split("h");
+                $scope.duration = (+modulehoursAndMins[0]*60) + (+(modulehoursAndMins[1].split("m")[0]))
+                $scope.entertitle = module.name;
+                $scope.description = module.description;
+                if(!owner){
+                    $scope.category = module.category;
+                }else{
+                    $scope.category = $scope.types[indexOfCategory(module.category)];
+                }
             }else{
-                $scope.category = $scope.types[indexOfCategory(module.category)];
             }
         }else{
 
@@ -424,6 +425,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
         schedule.agenda = $scope.modules.slice();
         $scope.editing = false;
         $scope.creatingModule = false;
+
+        for(var i = 0; i < $scope.modules.length;i++){
+            console.log($scope.modules[i].category)
+        }
     };
 
     $scope.removeTempModule = function(){
