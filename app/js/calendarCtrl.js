@@ -1,4 +1,4 @@
-agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
+agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda, MeetingAgenda) {
 
 	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/'),
 		eventRef = myDataRef.child("events"),
@@ -10,7 +10,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		mm,
 		yyyy;
 	date.setFullYear(2016, 4, 30); //inita dagen att vara 1:a juni
-	myfunc();
+
 
 
 	var user = Agenda.getUser();
@@ -19,6 +19,25 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		//window.location="/";
 		//return;
 	}
+
+
+	$scope.toAgenda = function (bool, obj) {
+		if (bool) {
+			MeetingAgenda.setExistingMeeting(true);
+			MeetingAgenda.setMeeting(obj);
+			window.location = "#/agenda";
+			console.log("to agenda w/ meeting info");
+			return;
+
+		} else {
+			MeetingAgenda.setExistingMeeting(false);
+			window.location = "#/agenda";
+			console.log("to agenda w/o meeting info");
+			return;
+		}
+
+	}
+
 
 	function compare(a, b) {
 		if (a.start < b.start)
@@ -36,10 +55,11 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		schedule.sort(compare);
 		if schedule.date == $scope.day1
 		for each meeting in day
-			$scope.dayschedule1 += $sce.trustAsHtml("<div class='calday' id='daysched_NÅGOTSMARTID'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
+			$scope.dayschedule1 += $sce.trustAsHtml("<div class='calday' id='daysched" + meeting + "' ng-click='toAgenda(true,schedule[meeting])'> <p align='left'><b>" + schedule[meeting].start + "</b></p><p align='center'>" + schedule[meeting].name + "</p><p align='right'><b>" + schedule[meeting].end + "</b></p></div>");
 		*/
 	};
 
+	//to showcase how and that the sort works
 	function myfunc() {
 		abc = Agenda.getExampleData();
 		console.log(abc.agenda[0].start);
@@ -82,14 +102,14 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda) {
 		//console.log("day " + Agenda.getExampleData().day + " -> " + dd + " && " + Agenda.getExampleData().month + " -> " + mm + " && " + Agenda.getExampleData().year + " -> " + yyyy);
 		if (Agenda.getExampleData().day == dd && Agenda.getExampleData().month == mm && Agenda.getExampleData().year == yyyy) {
 			console.log("bingo: " + wday);
-			console.log(Agenda.getExampleData());
+			//console.log(Agenda.getExampleData());
 			switch (wday) {
 			case 1:
 				$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 2:
-				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday' id='daysched2'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday' id='daysched2' ng-click='toAgenda(true," + Agenda.getExampleData() + ")'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 				$scope.dayschedule1 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
 				break;
 			case 3:

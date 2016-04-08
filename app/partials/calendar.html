@@ -40,7 +40,10 @@
 						<div class="panel-body" data-ng-bind-html="dayschedule5"></div>
 					</div>
 				</div>
-
+				<p id="addmeetingtext">Add meeting</p>
+				<button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
+					<div class="glyphicon glyphicon-plus iconstyle particons"></div>
+				</button>
 				<div class="col-md-1 changedays">
 					<button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">></button>
 					<button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">>></button>

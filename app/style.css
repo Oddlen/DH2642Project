@@ -17,6 +17,16 @@
 		height: 100%;
 	}
 	
+	#addmeeting {
+		background: green;
+	}
+	
+	#addmeetingtext {
+		padding-top: 15px;
+		color: white;
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+	}
+	
 	#loginbox {
 		background: rgba(245, 245, 245, 1);
 		border-color: rgba(221, 221, 221, 1);
