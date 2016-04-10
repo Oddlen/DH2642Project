@@ -239,21 +239,28 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     //$scope.types = Agenda.getCategories();
    $scope.types = [{
         Label: 'Introduction',
-        Color: '#005de0'
+        Color: '#09baeb'
     }, {
         Label: 'Presentation',
-        Color: '#d4c32a'
+        Color: '#e8d956'
     }, {
         Label: 'Discussion',
         Color: '#6fd952'
     }, {
         Label: 'Break',
-        Color: '#e0b955'
+        Color: '#d69d40'
     }, {
         Label: 'Other',
-        Color: '#9c8581'
+        Color: '#de9d81'
     }];
 
+    $scope.getModuleBorder = function(module){
+        if(module===$scope.activeModule){
+            return "dotted";
+        }else{
+            return "none";
+        }
+    }
     $scope.getColor = function(module){
         if($scope.creatingModule && module.name === "Pending.."){
             return 'rgba(221,221,221,1)';
