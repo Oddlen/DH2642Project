@@ -399,7 +399,7 @@
 	
 	#homeheadline {
 		display: inline-block;
-		color:#3b3b3b;
+		color:rgba(240,240,240,1);
 	}
 
 	#loginheadline{
@@ -535,11 +535,11 @@
 	}
 
 	.navbar-text{
-		color:#3b3b3b !important;
+		color:rgba(240,240,240,1)!important;
 	}
 
 	.navbar-link{
-		color:#3b3b3b !important;
+		color:rgba(240,240,240,1) !important;
 		font-weight:bold;
 	}
 	.navbar-link:hover{
