@@ -133,7 +133,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 						console.log('Synchronization failed', error);
 						callbackFunction(false, "Error when creating user.", null);
 					} else {
-						vm.logout();
 						callbackFunction(true, "User has been created.", null);
 					}
 				});
