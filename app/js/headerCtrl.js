@@ -1,12 +1,12 @@
-agendaApp.controller('HeaderCtrl', function ($scope, Agenda) {
+agendaApp.controller('HeaderCtrl', function ($scope,$location, Agenda) {
 
 	$scope.user = Agenda.getUser();
 	$scope.loadHome = function () {
 		console.log("load");
 		if($scope.user===""){
-			window.location = "#/home";
+			$location.url('/home');
 		}else{
-			window.location = "#/calendar";
+			$location.url('/agenda');
 		}
 	};
 
@@ -17,7 +17,7 @@ agendaApp.controller('HeaderCtrl', function ($scope, Agenda) {
 	$scope.logout = function () {
 		console.log("logging out user somehow");
 		Agenda.logout();
-		window.location = "#/home";
+		$location.url('/home');
 	};
 
 });

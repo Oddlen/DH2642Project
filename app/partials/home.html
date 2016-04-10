@@ -4,6 +4,7 @@
         <h1 id="homeheadline">AGENDA PLANNER</h1>
     </div>
     <div id="loginbox">
+        <span ng-show='loading' us-spinner="spinnerOptions"></span>
         <h2>LOGIN</h2>
         <input class="form-control" id="inputusername" name="username" type="text" placeholder='{{usernameplaceholder}}'  ng-model="username">
         <input class="form-control" id="inputpassword" name="password" type="password" placeholder='{{passwordplaceholder}}'  ng-model="password">

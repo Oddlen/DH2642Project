@@ -1,4 +1,12 @@
-agendaApp.controller('HomeCtrl', function ($scope, Agenda) {
+agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
+
+    if(Agenda.getUser()!==""){
+        $location.url('/calendar');
+        return;
+    }
+
+    $scope.loading = false;
+    $scope.spinnerOptions = {radius:10, width:5, length: 16};
 
     $scope.username ="";
     $scope.password ="";
@@ -13,13 +21,15 @@ agendaApp.controller('HomeCtrl', function ($scope, Agenda) {
         return $scope.nonmatchingLogin;
     }
     $scope.login = function(){
+        $scope.loading = true;
         var callback = function(ok,msg){
+            $scope.loading = false;
             console.log(msg);
             if(ok){
                 $scope.$apply(function() {
                     $scope.nonmatchingLogin=false;
                 });
-                window.location = "/#calendar";
+                window.location="/#calendar";
             }else{
                 $scope.$apply(function() {
                     $scope.nonmatchingLogin=true;

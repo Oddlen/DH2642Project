@@ -1,4 +1,4 @@
-agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda, MeetingAgenda) {
+agendaApp.controller('CalendarCtrl', function ($scope, $sce,$location, Agenda, MeetingAgenda) {
 
 	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/'),
 		eventRef = myDataRef.child("events"),
@@ -15,9 +15,8 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda, MeetingAgen
 
 	var user = Agenda.getUser();
 	if (user === "") {
-		console.log("inte inloggad");
-		//window.location="/";
-		//return;
+		$location.url('/home');
+		return;
 	}
 
 
@@ -25,13 +24,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, Agenda, MeetingAgen
 		if (bool) {
 			MeetingAgenda.setExistingMeeting(true);
 			MeetingAgenda.setMeeting(obj);
-			window.location = "#/agenda";
+			$location.url('/agenda');
 			console.log("to agenda w/ meeting info");
 			return;
 
 		} else {
 			MeetingAgenda.setExistingMeeting(false);
-			window.location = "#/agenda";
+			 $location.url('/agenda');
 			console.log("to agenda w/o meeting info");
 			return;
 		}

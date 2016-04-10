@@ -240,11 +240,11 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		var d = new Date(eventObject.year, eventObject.month, eventObject.day, 0, 0, 0, 0);
 		var returnFunction = function (ok, msg, data) {
 			if (ok){
-				callbackFunction(ok, "Event has been created", null);
+				callbackFunction(ok, "Event has been created");
 			}
 			else
 			{
-				callbackFunction(false, msg, null)
+				callbackFunction(false, msg)
 			}
 		}
 		vm.inviteAll(d, eventObject.name, eventObject.invited, returnFunction);
@@ -301,7 +301,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		myid = vm.auth.uid;
 
   		eveRef.child(dayCode).child(nameCode).set({
-  			null    
+  			//null
   		});
 	}
 

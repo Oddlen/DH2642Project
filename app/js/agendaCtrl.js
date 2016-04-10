@@ -1,11 +1,11 @@
-agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAgenda) {
+agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda, MeetingAgenda) {
 
     $scope.loading = false;
     $scope.spinnerOptions = {radius:10, width:5, length: 16};
 
     var user = Agenda.getUser();
     if(user===""){
-        //window.location="/#home";
+        // $location.url('/home');
         //return;
     }
 
@@ -81,7 +81,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
         tempstarttime = schedule.start;
         hoursAndMins = tempstarttime.split(":");
         if(hoursAndMins.length !== 2){
-            window.location="/#home";
+            $location.url('/home');
             return;
         }
         $scope.date = new Date(schedule.year, +schedule.month-1, schedule.day, hoursAndMins[0], hoursAndMins[1]);
@@ -511,7 +511,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout, Agenda, MeetingAg
         var callbk = function(ok,msg){
             $scope.loading = false;
             if(ok){
-                window.location="#calendar";
+                window.location="/#calendar";
             }else{
                 alert(msg);
             }
