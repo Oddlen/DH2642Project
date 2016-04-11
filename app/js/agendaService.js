@@ -169,7 +169,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	function getDayStep2(day, data, callbackFunction) {
 		for (var key in data) {
-			console.log("day: ");
 			waiting++;
 			eveRef.child(day).child(key).on("value",
 				function (snapshot) {
@@ -192,7 +191,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		console.log(dayCode);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
-				console.log(snapshot.val()); //HÄR
 				getDayStep2(dayCode, snapshot.val(), callbackFunction);
 			},
 			function (errorObject) {
