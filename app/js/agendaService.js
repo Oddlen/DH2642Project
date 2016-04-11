@@ -156,8 +156,20 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		);
 	}
 
+	function getDayStep3(ok, data, callbackFunction) {
+		if (ok) {
+			dataArray.push(data);
+		}
+		if (waiting == 0) {
+			var tempArray = dataArray;
+			dataArray = [];
+			callbackFunction(true, "ok", tempArray);
+		}
+	}
+
 	function getDayStep2(day, data, callbackFunction) {
 		for (var key in data) {
+			console.log("day: ");
 			waiting++;
 			eveRef.child(day).child(key).on("value",
 				function (snapshot) {
@@ -173,21 +185,14 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 	}
 
-	function getDayStep3(ok, data, callbackFunction) {
-		if (ok) {
-			dataArray.push(data);
-		}
-		if (waiting == 0) {
-			var tempArray = dataArray;
-			dataArray = [];
-			callbackFunction(true, "ok", tempArray);
-		}
-	}
+
 
 	vm.getDay = function (day, callbackFunction) {
 		var dayCode = getDayCode(day);
+		console.log(dayCode);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
+				console.log(snapshot.val()); //HÄR
 				getDayStep2(dayCode, snapshot.val(), callbackFunction);
 			},
 			function (errorObject) {
@@ -215,34 +220,32 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		nameCode = eventObject.name + "_" + eventObject.Owner;
 		myid = vm.auth.uid;
 
-  		eveRef.child(dayCode).child(nameCode).set({
-  			ownerid: myid,
-  			name: eventObject.name,
-  			date: eventObject.day + "/" + eventObject.month + "/" + eventObject.year,
-  			start: eventObject.start,
-  			end: eventObject.end,
-  			length: eventObject.length,    
-  		});
+		eveRef.child(dayCode).child(nameCode).set({
+			ownerid: myid,
+			name: eventObject.name,
+			date: eventObject.day + "/" + eventObject.month + "/" + eventObject.year,
+			start: eventObject.start,
+			end: eventObject.end,
+			length: eventObject.length,
+		});
 
 		for (i = 0; i < eventObject.agenda.length; ++i) {
-    		eveRef.child(dayCode).child(nameCode).child("agenda").update({
+			eveRef.child(dayCode).child(nameCode).child("agenda").update({
         		[eventObject.agenda[i].name]: {
-                    start: eventObject.agenda[i].start,
-                    end: eventObject.agenda[i].end,
-                    length: eventObject.agenda[i].length,
-                    description: eventObject.agenda[i].description,
-                    category: eventObject.agenda[i].category
-                }
-            }); 
+					start: eventObject.agenda[i].start,
+					end: eventObject.agenda[i].end,
+					length: eventObject.agenda[i].length,
+					description: eventObject.agenda[i].description,
+					category: eventObject.agenda[i].category
+				}
+			});
 		}
 		eventObject.invited.unshift(vm.usernameRef);
 		var d = new Date(eventObject.year, eventObject.month, eventObject.day, 0, 0, 0, 0);
 		var returnFunction = function (ok, msg, data) {
-			if (ok){
+			if (ok) {
 				callbackFunction(ok, "Event has been created");
-			}
-			else
-			{
+			} else {
 				callbackFunction(false, msg)
 			}
 		}
@@ -255,13 +258,10 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	vm.inviteAll = function (eventDay, eventName, usernameArray, callbackFunction) {
 		var nextCall = function (ok, msg, callback) {
-			if (ok && usernameArray.length > 1)
-			{
+			if (ok && usernameArray.length > 1) {
 				usernameArray.shift();
 				vm.inviteAll(eventDay, eventName, usernameArray, callbackFunction);
-			}
-			else
-			{
+			} else {
 				callbackFunction(ok, msg, null);
 			}
 		}
@@ -284,13 +284,13 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		var dayCode = getDayCode(eventDay);
 		var eventCode = eventName + "_" + usernameRef;
 
-  		useRef.child(username).child("days").child(dayCode).update({
+		useRef.child(username).child("days").child(dayCode).update({
   			[eventCode]: true
-    	});
-  	
-  		eveRef.child(dayCode).child(eventCode).child("invited").update({
+		});
+
+		eveRef.child(dayCode).child(eventCode).child("invited").update({
   			[uid]: true
-  		});
+		});
 		callbackFunction(true, username + " has been added to " + eventName, null);
 	}
 
@@ -299,25 +299,25 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		nameCode = eventName + "_" + vm.usernameRef;
 		myid = vm.auth.uid;
 
-  		eveRef.child(dayCode).child(nameCode).set({
-  			//null
-  		});
+		eveRef.child(dayCode).child(nameCode).set({
+			//null
+		});
 	}
 
 	vm.getUsername = function (uid) {
 		var found = false;
-		useRef.on("value", 
-			function(snapshot) {
-				for (var key in snapshot.val()){
-					if (snapshot.val()[key]["id"] == uid){
+		useRef.on("value",
+			function (snapshot) {
+				for (var key in snapshot.val()) {
+					if (snapshot.val()[key]["id"] == uid) {
 						found = true;
-						callbackFunction(true, "User found", key);		
+						callbackFunction(true, "User found", key);
 					}
 				}
-				if (!found){
+				if (!found) {
 					callbackFunction(false, "User not found", null);
 				}
-			}, 
+			},
 			function (errorObject) {
 				callbackFunction(false, errorObject.code, null);
 			}
@@ -325,14 +325,14 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.getAllUsers = function (callbackFunction) {
-		useRef.on("value", 
-			function(snapshot) {
+		useRef.on("value",
+			function (snapshot) {
 				var usernames = [];
-				for (var key in snapshot.val()){
+				for (var key in snapshot.val()) {
 					usernames.push(key);
 				}
 				callbackFunction(true, "All users in database", usernames);
-			}, 
+			},
 			function (errorObject) {
 				callbackFunction(false, errorObject.code, null);
 			}
@@ -346,7 +346,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 		var mm = day.getMonth();
 		if (mm < 10) {
-			mm = "0" + mm;
+			mm = "0" + (mm + 1);
 		}
 		var yy = day.getFullYear();
 		var dayCode = "d" + dd + "m" + mm + "y" + yy;
