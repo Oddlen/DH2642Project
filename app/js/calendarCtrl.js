@@ -57,15 +57,15 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 		console.log("d1: " + d1);*/
 
 		//schedule.sort(compare);
-		if (schedule[0].date == d1) {
-			console.log(schedule[0]);
-			//for each meeting in day
-			var meeting = 1;
+		//if (schedule[0].date == d1) {
+		console.log(schedule[0]);
+		//for each meeting in day
+		var meeting = 1;
 
-			//$scope.dayschedule1 = "<div class='calday' id='daysched1'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>";
-		} else {
+		$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
+		/*} else {
 			$scope.dayschedule1 = "hej";
-		}
+		}*/
 	};
 
 	/*
@@ -98,12 +98,12 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 
 		//console.log("day " + Agenda.getExampleData().day + " -> " + dd + " && " + Agenda.getExampleData().month + " -> " + mm + " && " + Agenda.getExampleData().year + " -> " + yyyy);
 		/*if (Agenda.getExampleData().day == dd && Agenda.getExampleData().month == mm && Agenda.getExampleData().year == yyyy) {
-			console.log("bingo: " + wday);
-			//console.log(Agenda.getExampleData());*/
+			console.log(Agenda.getExampleData());*/
+		console.log("bingo: " + wday);
 		switch (wday) {
 		case 1:
 			d1 = datestring;
-			$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+			//$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
 			break;
 		case 2:
 			d2 = datestring;
