@@ -1,3 +1,6 @@
+/**
+ * A service which holds objects transfered between calendar and agenda
+ */
 agendaApp.factory('MeetingAgenda', function () {
 
     var exampleAgendaObject1 = {
@@ -31,26 +34,40 @@ agendaApp.factory('MeetingAgenda', function () {
         agenda: [exampleAgendaObject1, exampleAgendaObject2]
     };
 
+    // Initialize
     ms = this;
     ms.meeting = {};
     ms.existingMeeting = true;
     ms.meeting = exampleEventObject;
 
+    /**
+     * Get the whole meeting
+     */
     ms.getMeeting = function(){
         return ms.meeting;
     }
 
+    /**
+     * Set the whole meeting
+     */
     ms.setMeeting = function(newmeeting){
         ms.meeting = newmeeting;
     }
 
+    /**
+     * Sets a boolean telling if the setMeeting is an existing meeting or not
+     */
     ms.setExistingMeeting = function(bool){
         ms.existingMeeting = bool;
     }
 
+    /**
+     * Get the value of the existingMeeting boolean
+     */
     ms.getExistingMeeting = function(){
         return ms.existingMeeting;
     }
 
+    // Returns itself, it is a service
     return ms;
 });

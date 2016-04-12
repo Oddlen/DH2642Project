@@ -72,7 +72,7 @@
 				</div>
 				<div id="meetingtime">
 					<div id="date">
-						<p class="infodesc">{{datestring}}</p>
+						<p class="infodesc">Date:</p>
 						<div class="form-horizontal" id="datehorizontal" ng-hide="isNotOwner()">
 							<div class="input-group">
 								<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" ng-click="open()" is-open="opened" ng-required="true" close-text="Close" />
@@ -86,7 +86,7 @@
 						<p class="infodesc" ng-hide="isOwner()">{{displayDate}}</p>
 					</div>
 					<div id="starttime">
-						<p class="infodesc">{{startstring}}</p>
+						<p class="infodesc">Start Time:</p>
                 <span class="btn btn-default" uib-dropdown auto-close="outsideClick" ng-hide="isNotOwner()" >
                   <a href uib-dropdown-toggle>
 					  {{ displayTime }} <i class="glyphicon glyphicon-time"></i>
@@ -104,7 +104,7 @@
 			<div id="meetingcontent">
 				<div id="participants">
 					<div id="members">
-						<h3 id="inviteheadline">{{invitedheadline}}</h3>
+						<h3 id="inviteheadline">Invited</h3>
 						<div id="memberlist">
 							<div ng-repeat="participant in participants" class="participantdiv">
 								<div class="participantnamediv">
@@ -124,24 +124,24 @@
 					</div>
 					<div id="confirmagenda" ng-hide="isNotOwner()">
 						<button type="button" class="btn btn-success confirmbutton" ng-click="submitAgenda()" ng-disabled="agendaButtonDisabled()">
-							{{confirmagenda}}
+							Confirm agenda
 						</button>
 					</div>
 				</div>
 				<div id="editpart" ng-model="editing" ng-show="isEditing()" ng-hide="isNotEditing()" ng-style="{ 'background-color':getActiveColor()}">
 					<div id="parttitle">
-						<p class="edittext"> {{titlestring}} </p>
+						<p class="edittext"> Title: </p>
 						<input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
 						<p class="edittext" ng-hide="isOwner()">{{getModuleName()}}</p>
 					</div>
 					<div id="partduration">
-						<p class="edittext">{{durationstring}}</p>
+						<p class="edittext">Duration:</p>
 						<input class="form-control" id="duration" type="number" min="{{durationmin}}" placeholder='{{durationplaceholder}}' ng-model="duration" ng-hide="isNotOwner()">
 						<p class="edittext" ng-hide="isOwner()">{{getDuration()}}</p>
-						<p class="edittext">{{minstring}}</p>
+						<p class="edittext">min</p>
 					</div>
 					<div id="partcategory">
-						<p class="edittext">{{categorystring}}</p>
+						<p class="edittext">Category:</p>
 						<select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.Label for type in types" ng-hide="isNotOwner()"></select>
 						<p class="edittext" ng-hide="isOwner()">{{getCategory()}}</p>
 					</div>
@@ -153,19 +153,19 @@
 
 					<div id="closedetails" ng-hide="isOwner()">
 						<button type="button" class="btn btn-success confirmbutton" ng-click="closeDetails()">
-							{{closedetails}}
+							Close
 						</button>
 					</div>
 
 					<div id="cancelediting" ng-hide="isNotOwner()">
 						<button type="button" class="btn btn-danger" ng-click="cancelChanges()">
-							{{cancelediting}}
+							Cancel editing
 						</button>
 					</div>
 
 					<div id="confirmediting" ng-hide="isNotOwner()">
 						<button type="button" class="btn btn-success confirmbutton" ng-click="addModule()" ng-disabled="editButtonDisabled()">
-							{{confirmediting}}
+							Confirm editing
 						</button>
 					</div>
 				</div>
