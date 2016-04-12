@@ -9,6 +9,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5;
 	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
+	//date.setTime(date.getTime() - (24 * 60 * 60 * 1000));
 
 
 
@@ -51,32 +52,21 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 		//console.log("msg: " + msg);
 		//console.log(value);
 		var schedule = value;
-		console.log(schedule[0]);
+		/*console.log("sdate: " + schedule[0].date);
+		console.log("dates the same= " + (d1 == schedule[0].date));
+		console.log("d1: " + d1);*/
 
-		schedule.sort(compare);
-		//if (schedule.date == $scope.day1) {
-		//for each meeting in day
-		var meeting = 1;
-		$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-		/*
-		$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched" + meeting + "' ng-click='toAgenda(true,schedule[meeting])'> <p align='left'><b>" + schedule[meeting - 1].start + "</b></p><p align='center'>" + schedule[meeting - 1].name + "</p><p align='right'><b>" + schedule[meeting - 1].end + "</b></p></div>");*/
-		//}
+		//schedule.sort(compare);
+		if (schedule[0].date == d1) {
+			console.log(schedule[0]);
+			//for each meeting in day
+			var meeting = 1;
+
+			//$scope.dayschedule1 = "<div class='calday' id='daysched1'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>";
+		} else {
+			$scope.dayschedule1 = "hej";
+		}
 	};
-
-	//to showcase how and that the sort works
-	function myfunc() {
-		Agenda.getDay(date, callback);
-		/*abc = Agenda.getExampleData();
-		console.log(abc.agenda[0].start);
-		console.log(abc.agenda[1].start);
-		abc.agenda.sort(compare);
-		abc.agenda.reverse();
-		console.log(abc.agenda[0].start);
-		console.log(abc.agenda[1].start);*/
-
-	}
-
-
 
 	/*
 	 * @param int 1 for shifting 5 days forward and -5 to shift 1 days backward
@@ -87,7 +77,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 
 		var today = date;
 		today.setDate(date.getDate() + int);
-		console.log(today);
+		//console.log(today);
 		Agenda.getDay(today, callback);
 		dd = today.getDate();
 		mm = today.getMonth(); //January is 0!
@@ -109,36 +99,29 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 		//console.log("day " + Agenda.getExampleData().day + " -> " + dd + " && " + Agenda.getExampleData().month + " -> " + mm + " && " + Agenda.getExampleData().year + " -> " + yyyy);
 		/*if (Agenda.getExampleData().day == dd && Agenda.getExampleData().month == mm && Agenda.getExampleData().year == yyyy) {
 			console.log("bingo: " + wday);
-			//console.log(Agenda.getExampleData());
-			switch (wday) {
-			case 1:
-				d1 = datestring;
-				$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
-				break;
-			case 2:
-				d2 = datestring;
-				$scope.dayschedule2 = $sce.trustAsHtml("<div class='calday' id='daysched2' ng-click='toAgenda(true," + Agenda.getExampleData() + ")'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-				$scope.dayschedule1 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule5 = "";
-				break;
-			case 3:
-				d3 = datestring;
-				$scope.dayschedule3 = $sce.trustAsHtml("<div class='calday' id='daysched3'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-				$scope.dayschedule2 = $scope.dayschedule1 = $scope.dayschedule4 = $scope.dayschedule5 = "";
-				break;
-			case 4:
-				d4 = datestring;
-				$scope.dayschedule4 = $sce.trustAsHtml("<div class='calday' id='daysched4'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule1 = $scope.dayschedule5 = "";
-				break;
-			case 5:
-				d5 = datestring;
-				$scope.dayschedule5 = $sce.trustAsHtml("<div class='calday' id='daysched5'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
-				$scope.dayschedule2 = $scope.dayschedule3 = $scope.dayschedule4 = $scope.dayschedule1 = "";
-				break;
-			}
+			//console.log(Agenda.getExampleData());*/
+		switch (wday) {
+		case 1:
+			d1 = datestring;
+			$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + Agenda.getExampleData().start + "</b></p><p align='center'>" + Agenda.getExampleData().name + "</p><p align='right'><b>" + Agenda.getExampleData().end + "</b></p></div>");
+			break;
+		case 2:
+			d2 = datestring;
 
-		}*/
+			break;
+		case 3:
+			d3 = datestring;
+
+			break;
+		case 4:
+			d4 = datestring;
+			break;
+		case 5:
+			d5 = datestring;
+			break;
+		}
+
+		//}
 		dd = "";
 		mm = "";
 		yyyy = "";

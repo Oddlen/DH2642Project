@@ -188,7 +188,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	vm.getDay = function (day, callbackFunction) {
 		var dayCode = getDayCode(day);
-		console.log(dayCode);
+		//console.log(dayCode);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
 				getDayStep2(dayCode, snapshot.val(), callbackFunction);
