@@ -68,6 +68,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		catRef.on("value", function (snapshot) {
 			var categories = snapshot.val();
 			for (var key in categories) {
+				console.log(categories[key]);
 				vm.categoryList.push(categories[key]);
 			}
 				console.log("All categories fetched");
