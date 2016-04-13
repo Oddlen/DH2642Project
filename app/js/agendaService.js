@@ -201,6 +201,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.getEvent = function (day, eventName, ownerName, callbackFunction) {
+		console.log("getEvent");
 		var dayCode = getDayCode(day);
 		eveRef.child(dayCode).child(eventName + "_" + ownerName).on("value",
 			function (snapshot) {
@@ -214,6 +215,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.setEvent = function (eventObject, callbackFunction) {
+		console.log("setEvent");
+
 		dayCode = "d" + eventObject.day + "m" + eventObject.month + "y" + eventObject.year;
 		nameCode = eventObject.name + "_" + eventObject.Owner;
 		myid = vm.auth.uid;

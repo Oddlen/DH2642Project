@@ -63,6 +63,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 		var meeting = 1;
 
 		$scope.dayschedule1 = $sce.trustAsHtml("<div class='calday' id='daysched1'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
+		$scope.$apply();
 		/*} else {
 			$scope.dayschedule1 = "hej";
 		}*/
