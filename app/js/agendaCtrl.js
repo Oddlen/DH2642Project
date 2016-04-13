@@ -134,7 +134,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     var owner = false;
 
     // This should be if(user===schedule.owner){ when everything works
-        if(user!==schedule.owner){
+        if(user===schedule.owner){
             // It is the owner of the meeting
             owner = true;
         }
@@ -302,8 +302,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     $scope.format = 'yyyy/MM/dd';
 
     // The categories used in the application
-    //$scope.types = Agenda.getCategories();
-   $scope.types = [{
+    $scope.types = Agenda.getCategories();
+    console.log($scope.types);
+   /*$scope.types = [{
         Label: 'Introduction',
         Color: '#09baeb'
     }, {
@@ -319,7 +320,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         Label: 'Other',
         Color: '#de9d81'
     }];
-
+*/
     /**
      * Returns the kind of border the module should have
      */

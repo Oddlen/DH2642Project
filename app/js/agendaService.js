@@ -42,9 +42,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	};
 
 	apiKey = 'c10ef2a43abbd9987c78ae942ecc0843';
-	lat = 35;
-	lon = 139;
-
 	this.Weather = $resource('http://api.openweathermap.org/data/2.5/weather',{APPID:apiKey});
 	//'api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&APPID='+apikey;
 	console.log(this.Weather);
@@ -71,9 +68,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 	vm.auth = dataRef.getAuth();
 	vm.categoryList = $cookieStore.get("categoriesCache");
-
-	if (vm.categoryList === null || vm.categoryList === undefined)
+	if (vm.categoryList === null || vm.categoryList === undefined || vm.categoryList == "")
 	{
+		vm.categoryList = [];
 		catRef.on("value", function (snapshot) {
 			var categories = snapshot.val();
 			for (var key in categories) {
@@ -240,7 +237,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		console.log("setEvent");
 
 		dayCode = "d" + eventObject.day + "m" + eventObject.month + "y" + eventObject.year;
-		nameCode = eventObject.name + "_" + eventObject.Owner;
+		nameCode = eventObject.name + "_" + eventObject.owner;
 		myid = vm.auth.uid;
 
 		eveRef.child(dayCode).child(nameCode).set({
@@ -264,7 +261,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			});
 		}
 		eventObject.invited.unshift(vm.usernameRef);
-		var d = new Date(eventObject.year, eventObject.month, eventObject.day, 0, 0, 0, 0);
+		var d = new Date(eventObject.year, eventObject.month-1, eventObject.day, 0, 0, 0, 0);
 		var returnFunction = function (ok, msg, data) {
 			if (ok) {
 				callbackFunction(ok, "Event has been created");
@@ -305,7 +302,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	function inviteStep2(eventDay, eventName, username, uid, callbackFunction) {
 		var dayCode = getDayCode(eventDay);
-		var eventCode = eventName + "_" + usernameRef;
+		var eventCode = eventName + "_" + vm.usernameRef;
 
 		useRef.child(username).child("days").child(dayCode).update({
   			[eventCode]: true
