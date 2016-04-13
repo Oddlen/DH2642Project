@@ -41,7 +41,16 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		return exampleEventObject;
 	};
 
-	// callback function api.
+	apiKey = 'c10ef2a43abbd9987c78ae942ecc0843';
+	lat = 35;
+	lon = 139;
+
+	this.Weather = $resource('http://api.openweathermap.org/data/2.5/weather',{APPID:apiKey});
+	//'api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&APPID='+apikey;
+	console.log(this.Weather);
+
+
+		// callback function api.
 	function exampleCallbackFunction(booleanFalseIfError, stringMessage, JSONData) {
 		// body...
 	}

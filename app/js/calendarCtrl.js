@@ -12,7 +12,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, Agenda, 
 	//date.setTime(date.getTime() - (24 * 60 * 60 * 1000));
 
 
-
 	var user = Agenda.getUser();
 	if (user === "") {
 		$location.url('/home');

@@ -3,22 +3,31 @@
     <img src="homeicon.png" alt="HomeIcon" id="homeicon">
         <h1 id="homeheadline">AGENDA PLANNER</h1>
     </div>
-    <div id="loginbox">
-        <span ng-show='loading' us-spinner="spinnerOptions"></span>
-        <h2 id="loginheadline">LOGIN</h2>
-        <input class="form-control" id="inputusername" name="username" type="text" placeholder='{{usernameplaceholder}}'  ng-model="username">
-        <input class="form-control" id="inputpassword" name="password" type="password" placeholder='{{passwordplaceholder}}'  ng-model="password">
-        <p id="nonmatchinglogin" ng-model="nonmatchingLogin" ng-show="getNonmatchingLogin()">* Username and password do not match</p>
-        <div class="horizontalbuttons">
+    <div>
+        <div id="loginbox">
+            <span ng-show='loading' us-spinner="spinnerOptions"></span>
+            <h2 id="loginheadline">LOGIN</h2>
+            <input class="form-control" id="inputusername" name="username" type="text" placeholder='{{usernameplaceholder}}'  ng-model="username">
+            <input class="form-control" id="inputpassword" name="password" type="password" placeholder='{{passwordplaceholder}}'  ng-model="password">
+            <p id="nonmatchinglogin" ng-model="nonmatchingLogin" ng-show="getNonmatchingLogin()">* Username and password do not match</p>
+            <div class="horizontalbuttons">
                 <button type="button" class="btn-primary btn-md" id="loginButton" ng-click="login()">
                     LOGIN
                 </button>
-            <a href="/#register">
-            <button type="button" class="btn-primary btn-md" id="registerButton">
-                REGISTER
-            </button>
-            </a>
+                <a href="/#register">
+                    <button type="button" class="btn-primary btn-md" id="registerButton">
+                        REGISTER
+                    </button>
+                </a>
+            </div>
         </div>
+    </div>
+    <div id="weather">
+        <h3 class="weatherText">{{weatherLocation}}</h3>
+        <img id="weatherpic" ng-src="{{weatherPic}}" alt="Description" />
+        <p class="weatherText" id="temp">{{temperature}}°C</p>
+        <p class="weatherText">{{weatherDescription}}</p>
+        <span ng-show='wheatherLoading' us-spinner="spinnerOptions"></span>
     </div>
 </div>
 <div id="services" class="pad-section">
