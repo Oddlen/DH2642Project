@@ -3,7 +3,7 @@
  */
 agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
 
-    // Wheather
+    // Weather
     $scope.lat = null;
     $scope.lon = null;
     $scope.weatherLocation = "";
@@ -12,13 +12,14 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
     $scope.wheatherLoading = false;
     $scope.spinnerOptions = {radius:10, width:5, length: 16};
 
+    /**
+     * Function for fetching position of the user to get weather
+     */
     $scope.setPosition = function (position) {
-        console.log(position);
         $scope.lat = position.coords.latitude;
         $scope.lon = position.coords.longitude;
         $scope.wheatherLoading = true;
         Agenda.Weather.get({'lat':$scope.lat,'lon':$scope.lon},function(data){
-            console.log(data);
             if(data.cod=='400'){
                 alert("Invalid request or rate limit exceeded.");
                 $scope.wheatherLoading = false;
@@ -42,6 +43,7 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
                 return;
             }
             $scope.weatherLocation = data.name;
+            // Use the appropriate picture
             if(data.weather.length > 0){
                 $scope.weatherDescription = data.weather[0].description;
                 var weatherStatus = data.weather[0].main;
@@ -72,6 +74,7 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
             console.log($scope.temperature);
             $scope.wheatherLoading = false;
         },function(data){
+            // Error function
             if(data.cod=='400'){
                 alert("Invalid request or rate limit exceeded.");
             }else if(data.cod=='403'){
@@ -87,6 +90,7 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
         });
     }
 
+    // Do the appropriate thing depending on geolocation
     if (navigator.geolocation) {
         var defaultCallback = function(){
             // The user did not allow position, set default to Stockholm long/lat
@@ -95,7 +99,6 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
             position.coords.longitude = 18.0686;
             $scope.setPosition(position);
         }
-        console.log(navigator.geolocation.getCurrentPosition);
         navigator.geolocation.getCurrentPosition($scope.setPosition, defaultCallback);
 
     }
