@@ -4,6 +4,13 @@
  */
 agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda, MeetingAgenda) {
 
+    // Old values
+    $scope.oldname = "";
+    $scope.oldday="";
+    $scope.oldmonth="";
+    $scope.oldyear="";
+
+
     // The properties for the spinner
     $scope.loading = false;
     $scope.spinnerOptions = {radius:10, width:5, length: 16};
@@ -105,6 +112,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         tempstarttime = schedule.start;
         hoursAndMins = tempstarttime.split(":");
         $scope.date = new Date(schedule.year, +schedule.month-1, schedule.day, hoursAndMins[0], hoursAndMins[1]);
+        $scope.oldname = schedule.name;
+        $scope.oldyear = schedule.year;
+        $scope.oldmonth = schedule.day;
     }else{
         // This is a new meeting, initialize a meeting(schedule) object
         $scope.date = new Date();
@@ -605,6 +615,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
         schedule.name = $scope.meetingname;
         schedule.invited=$scope.participants;
+        schedule.oldname = $scope.oldname;
+        schedule.oldyear = $scope.oldyear;
+        schedule.oldmonth = $scope.oldmonth;
+        schedule.oldday = $scope.oldday;
 
         /**
          * Defines the callback function
