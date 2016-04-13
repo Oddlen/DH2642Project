@@ -54,22 +54,32 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	vm = this;
 	waiting = 0;
 	dataArray = [];
-	vm.usernameRef = "";
-	vm.auth = null;
-	vm.categoryList = [];
+	vm.usernameRef = $cookieStore.get("LoggedInUsername");
+	
+	if (vm.usernameRef === null || vm.usernameRef === undefined)
+	{
+		vm.usernameRef = "";
+	}
+	vm.auth = dataRef.getAuth();
+	vm.categoryList = $cookieStore.get("categoriesCache");
 
-	catRef.on("value",
-		function (snapshot) {
+	if (vm.categoryList === null || vm.categoryList === undefined)
+	{
+		catRef.on("value", function (snapshot) {
 			var categories = snapshot.val();
 			for (var key in categories) {
 				vm.categoryList.push(categories[key]);
 			}
-			console.log("All categories fetched");
-		},
-		function (errorObject) {
-			console.log("The read of categories failed: " + errorObject.code);
-		}
-	);
+				console.log("All categories fetched");
+			},
+			function (errorObject) {
+				console.log("The read of categories failed: " + errorObject.code);
+			}
+		);
+		$cookieStore.put("categoriesCache", vm.categoryList);
+	}
+
+	
 
 	vm.getUser = function () {
 		return vm.usernameRef;
@@ -78,6 +88,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	vm.logout = function () {
 		dataRef.unauth();
 		vm.usernameRef = "";
+		$cookieStore.put("LoggedInUsername", "");
 		vm.auth = null;
 	}
 
@@ -94,6 +105,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			} else {
 				console.log("Authenticated successfully.", null);
 				vm.usernameRef = username;
+				$cookieStore.put("LoggedInUsername", username);
 				vm.auth = dataRef.getAuth();
 				callbackFunction(true, "Authenticated successfully.", null);
 			}
@@ -296,13 +308,11 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.removeEvent = function (eventDay, eventName) {
-		dayCode = getDayCode(eventDay);
-		nameCode = eventName + "_" + vm.usernameRef;
-		myid = vm.auth.uid;
-
-		eveRef.child(dayCode).child(nameCode).set({
-			//null
-		});
+		var dayCode = getDayCode(eventDay);
+		var nameCode = eventName + "_" + vm.usernameRef;
+		var url = "https://dh2642.firebaseIO.com/events/" + dayCode + "/" + nameCode;
+		var deleteRef = new Firebase(url);
+		deleteRef.remove();
 	}
 
 	vm.getUsername = function (uid) {
