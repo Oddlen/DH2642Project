@@ -262,11 +262,20 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 		eventObject.invited.unshift(vm.usernameRef);
 		var d = new Date(eventObject.year, eventObject.month-1, eventObject.day, 0, 0, 0, 0);
+		
 		var returnFunction = function (ok, msg, data) {
 			if (ok) {
 				callbackFunction(ok, "Event has been created");
 			} else {
 				callbackFunction(false, msg)
+			}
+		}
+		if (eventObject.oldname != "")
+		{
+			var od = new Date(eventObject.oldyear, eventObject.oldmonth-1, eventObject.oldday, 0, 0, 0, 0);
+			if (od.getTime() != d.getTime() || eventObject.oldame != eventObject.name)
+			{
+				vm.removeEvent(od, eventObject.oldname);
 			}
 		}
 		vm.inviteAll(d, eventObject.name, eventObject.invited, returnFunction);
