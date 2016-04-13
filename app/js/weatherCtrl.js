@@ -20,45 +20,49 @@ agendaApp.controller('WeatherCtrl', function ($scope,$location, Agenda) {
         $scope.lon = position.coords.longitude;
         $scope.wheatherLoading = true;
         Agenda.Weather.get({'lat': $scope.lat, 'lon': $scope.lon}, function (data) {
-            if (data.cod == '400') {
-                alert("Invalid request or rate limit exceeded.");
-                $scope.wheatherLoading = false;
-                return;
-            } else if (data.cod == '403') {
-                alert("Failed authentication request.");
-                $scope.wheatherLoading = false;
-                return;
-            } else if (data.cod == '404') {
-                alert("Request URI invalid.");
-                $scope.wheatherLoading = false;
-                return;
-            }
-            else if (data.cod == '500') {
-                alert("Server error has occurred.");
-                $scope.wheatherLoading = false;
-                return;
-            } else if (data.cod == '503') {
-                alert("Service Unavailable");
+            if (data.cod != '200') {
+                alert("Weather not available.");
                 $scope.wheatherLoading = false;
                 return;
             }
             $scope.weatherLocation = data.name;
+            var night = false;
+            var currtime = new Date();
+            if(currtime.getHours()<7 || currtime.getHours()>=20 ){
+                night = true;
+            }
             // Use the appropriate picture
             if (data.weather.length > 0) {
                 $scope.weatherDescription = data.weather[0].description;
                 var weatherStatus = data.weather[0].main;
                 if ($scope.weatherDescription == "clear sky") {
-                    $scope.weatherPic = "weatherimages/clear.png";
+                    if(night){
+                        $scope.weatherPic = "weatherimages/clearnight.png";
+                    }else{
+                        $scope.weatherPic = "weatherimages/clear.png";
+                    }
                 } else if ($scope.weatherDescription == "few clouds") {
-                    $scope.weatherPic = "weatherimages/fewclouds.png";
+                    if(night){
+                        $scope.weatherPic = "weatherimages/fewcloudsnight.png";
+                    }else{
+                        $scope.weatherPic = "weatherimages/fewclouds.png";
+                    }
                 } else if ($scope.weatherDescription == "scattered clouds") {
-                    $scope.weatherPic = "weatherimages/clouds.png";
+                    if(night){
+                        $scope.weatherPic = "weatherimages/cloudsnight.png";
+                    }else{
+                        $scope.weatherPic = "weatherimages/clouds.png";
+                    }
                 } else if ($scope.weatherDescription == "broken clouds") {
                     $scope.weatherPic = "weatherimages/brokenclouds.png";
                 } else if ($scope.weatherDescription == "shower rain") {
                     $scope.weatherPic = "weatherimages/showerrain.png";
                 } else if ($scope.weatherDescription == "rain") {
-                    $scope.weatherPic = "weatherimages/rain.png";
+                    if(night){
+                        $scope.weatherPic = "weatherimages/rainnight.png";
+                    }else{
+                        $scope.weatherPic = "weatherimages/rain.png";
+                    }
                 } else if ($scope.weatherDescription == "thunderstorm") {
                     $scope.weatherPic = "weatherimages/thunderstorm.png";
                 } else if ($scope.weatherDescription == "snow") {
@@ -70,22 +74,15 @@ agendaApp.controller('WeatherCtrl', function ($scope,$location, Agenda) {
                 }
             }
             // Make it celcius
-            $scope.temperature = Math.round(data.main.temp - 273);
+            $scope.temperature = Math.round(data.main.temp - 273.15);
             console.log($scope.temperature);
             $scope.wheatherLoading = false;
         }, function (data) {
             // Error function
-            if (data.cod == '400') {
-                alert("Invalid request or rate limit exceeded.");
-            } else if (data.cod == '403') {
-                alert("Failed authentication request.");
-            } else if (data.cod == '404') {
-                alert("Request URI invalid.");
-            }
-            else if (data.cod == '500') {
-                alert("Server error has occurred.");
-            } else if (data.cod == '503') {
-                alert("Service Unavailable");
+            if (data.cod != '200') {
+                alert("Weather not available.");
+                $scope.wheatherLoading = false;
+                return;
             }
         });
     }
