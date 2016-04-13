@@ -87,15 +87,17 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
         });
     }
 
-    console.log(navigator.geolocation);
     if (navigator.geolocation) {
-        console.log(navigator.geolocation.getCurrentPosition($scope.setPosition));
-    }else{
-        // The user did not allow position, set default to Stockholm long/lat
-        var position = {};
-        position.coords.latitude =  59.20;
-        position.coords.longitude = 18.04;
-        $scope.setPosition(position);
+        var defaultCallback = function(){
+            // The user did not allow position, set default to Stockholm long/lat
+            var position = {coords:{}};
+            position.coords.latitude =  59.3293;
+            position.coords.longitude = 18.0686;
+            $scope.setPosition(position);
+        }
+        console.log(navigator.geolocation.getCurrentPosition);
+        navigator.geolocation.getCurrentPosition($scope.setPosition, defaultCallback);
+
     }
 
 
