@@ -562,6 +562,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      */
     $scope.submitAgenda = function(){
 
+        console.log(schedule.participants);
+
         // Calculate all fields for submittal
         var hour = $scope.date.getHours(),
             hour = hour<10 ? '0'+hour : hour,

@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div id="weather">
+    <div id="weather" ng-controller="WeatherCtrl">
         <h3 class="weatherText">{{weatherLocation}}</h3>
         <img id="weatherpic" ng-src="{{weatherPic}}" alt="Description" />
         <p class="weatherText" id="temp">{{temperature}}°C</p>
