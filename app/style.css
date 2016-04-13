@@ -47,6 +47,10 @@
 		margin: auto;
 	}
 
+	#navbarweather {
+		color:rgba(240,240,240,1);
+	}
+
 	#weatherpic{
 		display:inline-block;
 		width:50px;
@@ -506,6 +510,10 @@
 		font-size: 150%;
 	}
 	/*Tag by class*/
+
+	.headerweather{
+		display:inline-block;
+	}
 	
 	.calday {
 		background: #a4c7e5;
@@ -551,6 +559,10 @@
 		font-weight: bold;
 		font-size: 120%;
 		vertical-align: top;
+	}
+
+	.navbar-header{
+		width:60%;
 	}
 	
 	.participantdiv {

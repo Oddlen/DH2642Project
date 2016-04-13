@@ -19,8 +19,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     var user = Agenda.getUser();
     if(user===""){
         // The user was not logged in, send to homepage
-        // $location.url('/home');
-        //return;
+        $location.url('/home');
+        return;
     }
 
     // Initial the schedule variable, which holds the whole meeting schedule

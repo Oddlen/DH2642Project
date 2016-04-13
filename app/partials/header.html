@@ -25,14 +25,13 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a href="#/calendar" class="navbar-brand navbar-link" id="navbarhead">AGENDA PLANNER</a>
-			<div id="weather" ng-controller="WeatherCtrl">
+			<div id="navbarweather" ng-controller="WeatherCtrl">
 				<p class="headerweather">{{weatherLocation}}</p>
 				<img id="weatherpicheader" ng-src="{{weatherPic}}" alt="Description" />
 				<p class="headerweather">{{temperature}}°C</p>
 				<span ng-show='wheatherLoading' us-spinner="spinnerOptions"></span>
 			</div>
 		</div>
-
 		<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><p class="navbar-text">Welcome {{user}}!</p> </li>
