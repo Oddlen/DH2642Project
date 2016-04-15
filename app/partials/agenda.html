@@ -50,7 +50,7 @@
 
 				</div>
 				<div id="addEvent" ng-if="isOwner()">
-					<button type="button" id="addEventButton" class="btn-success" ng-click="createAgendaModule()">
+					<button type="button" id="addEventButton" class="btn-success agendabtn" ng-click="createAgendaModule()">
 						<div class="glyphicon glyphicon-plus iconstyle particons"></div>
 					</button>
 				</div>
@@ -123,7 +123,7 @@
 						</div>
 					</div>
 					<div id="confirmagenda" ng-hide="isNotOwner()">
-						<button type="button" class="btn btn-success confirmbutton" ng-click="submitAgenda()" ng-disabled="agendaButtonDisabled()">
+						<button type="button" class="btn btn-success submitbutton" ng-click="submitAgenda()" ng-disabled="agendaButtonDisabled()">
 							Confirm agenda
 						</button>
 					</div>
@@ -132,18 +132,18 @@
 					<div id="parttitle">
 						<p class="edittext"> Title: </p>
 						<input class="form-control" ng-model="entertitle" id="edittitle" type="text" placeholder='{{entertitleplaceholder}}' ng-hide="isNotOwner()">
-						<p class="edittext" ng-hide="isOwner()">{{getModuleName()}}</p>
+						<p class="nonedittext" ng-hide="isOwner()">{{getModuleName()}}</p>
 					</div>
 					<div id="partduration">
 						<p class="edittext">Duration:</p>
 						<input class="form-control" id="duration" type="number" min="{{durationmin}}" placeholder='{{durationplaceholder}}' ng-model="duration" ng-hide="isNotOwner()">
-						<p class="edittext" ng-hide="isOwner()">{{getDuration()}}</p>
+						<p class="nonedittext" ng-hide="isOwner()">{{getDuration()}}</p>
 						<p class="edittext">min</p>
 					</div>
 					<div id="partcategory">
 						<p class="edittext">Category:</p>
 						<select class="form-control" id="editcategory" ng-model="category" ng-options="type as type.Label for type in types" ng-hide="isNotOwner()"></select>
-						<p class="edittext" ng-hide="isOwner()">{{getCategory()}}</p>
+						<p class="nonedittext" ng-hide="isOwner()">{{getCategory()}}</p>
 					</div>
 					<div id="partdescription">
 						<textarea class="form-control" id="description" ng-model="description" placeholder="{{descriptionplaceholder}}" ng-hide="isNotOwner()" />
@@ -152,19 +152,17 @@
 					</div>
 
 					<div id="closedetails" ng-hide="isOwner()">
-						<button type="button" class="btn btn-success confirmbutton" ng-click="closeDetails()">
-							Close
-						</button>
+						<button type="button" class="btn btn-success confirmbutton agendabtn" ng-click="closeDetails()">Close</button>
 					</div>
 
 					<div id="cancelediting" ng-hide="isNotOwner()">
-						<button type="button" class="btn btn-danger" ng-click="cancelChanges()">
+						<button type="button" class="btn btn-danger agendabtn" ng-click="cancelChanges()">
 							Cancel editing
 						</button>
 					</div>
 
 					<div id="confirmediting" ng-hide="isNotOwner()">
-						<button type="button" class="btn btn-success confirmbutton" ng-click="addModule()" ng-disabled="editButtonDisabled()">
+						<button type="button" class="btn btn-success confirmbutton agendabtn" ng-click="addModule()" ng-disabled="editButtonDisabled()">
 							Confirm editing
 						</button>
 					</div>

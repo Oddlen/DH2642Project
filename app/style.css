@@ -39,6 +39,12 @@
 		border-radius: 2%;
 	}
 
+	@media not screen and (min-width:700px){
+		#loginbox{
+			width:70%;
+		}
+	}
+
 	#weather {
 		color:rgba(240,240,240,1);
 		text-align:center;
@@ -49,6 +55,12 @@
 
 	#navbarweather {
 		color:rgba(240,240,240,1);
+	}
+
+	@media not screen and (min-width:700px){
+		#navbarweather {
+			margin-left:5%;
+		}
 	}
 
 	#weatherpic{
@@ -77,6 +89,12 @@
 		margin: auto;
 		border-radius: 2%;
 	}
+
+	@media not screen and (min-width:700px){
+		#registerbox{
+			width:70%;
+		}
+	}
 	
 	#editpart {
 		position: relative;
@@ -90,6 +108,7 @@
 		width: 52%;
 		height: 90%;
 	}
+
 	
 	#previouspagebtn {
 		margin-left: 50%;
@@ -107,6 +126,12 @@
 		margin-top: 2%;
 		padding: 3%;
 		display: inline-block;
+	}
+
+	@media not screen and (min-width:700px){
+		#editmeeting {
+			height:95%;
+		}
 	}
 	
 	#header {
@@ -160,6 +185,12 @@
 		width: 60%;
 		margin-left: 2%;
 	}
+
+	@media not screen and (min-width:700px){
+		#invitation {
+			font-size:70%;
+		}
+	}
 	
 	#memberlist {
 		height: 80%;
@@ -177,13 +208,32 @@
 	#edittitle {
 		width: 80%;
 	}
+
+	@media not screen and (min-width:700px){
+		#edittitle {
+			font-size:70%;
+		}
+	}
 	
 	#editcategory {
 		width: 50%;
 	}
+
+	@media not screen and (min-width:700px){
+		#editcategory {
+			width: 90%;
+			font-size:70%;
+		}
+	}
 	
 	#inviteheadline {
 		margin-top: 0%;
+	}
+
+	@media not screen and (min-width:700px){
+		#inviteheadline {
+			font-size:90%;
+		}
 	}
 	
 	#meetingname {
@@ -200,11 +250,25 @@
 		width: 100%;
 		height: 100%;
 	}
+
+	@media not screen and (min-width:700px){
+		#meetingtitle {
+			font-size:70%;
+		}
+	}
 	
 	#guestmeetingtitle {
 		margin-top: 0%;
 		height: 100%;
 	}
+
+	@media not screen and (min-width:700px){
+		#guestmeetingtitle {
+			font-size:80%;
+		}
+	}
+
+
 	
 	#date {
 		width: 100%;
@@ -238,6 +302,17 @@
 		width: 100%;
 		height: 90%;
 	}
+
+	@media not screen and (min-width:700px){
+		#description {
+			font-size:70%;
+		}
+
+		.agendabtn{
+			width:80% !important;
+			font-size:55% !important;
+		}
+	}
 	
 	#guestdescription {
 		width: 100%;
@@ -248,17 +323,38 @@
 		padding: 2%;
 		color: #3b3b3b;
 	}
+
+	@media not screen and (min-width:700px){
+		#guestdescription {
+			font-size:80%;
+		}
+	}
 	
 	#confirmagenda {
 		position: absolute;
 		top: 85%;
 		left: 50%;
 	}
+
+	@media not screen and (min-width:700px){
+		#confirmagenda {
+			top: 75%;
+			left: 20%;
+		}
+	}
 	
 	#confirmediting {
 		position: absolute;
 		top: 90%;
-		left: 60%;
+		left: 55%;
+	}
+
+	@media not screen and (min-width:700px){
+		#confirmediting {
+			position: absolute;
+			top: 90%;
+			left: 20%;
+		}
 	}
 	
 	#closedetails {
@@ -266,11 +362,23 @@
 		top: 90%;
 		left: 60%;
 	}
+
+	@media not screen and (min-width:700px) {
+		#closedetails {
+			left: 50%;
+		}
+	}
 	
 	#cancelediting {
 		position: absolute;
 		top: 90%;
-		left: 20%;
+		left: 10%;
+	}
+	@media not screen and (min-width:700px){
+		#cancelediting {
+			top: 95%;
+			left: 10%;
+		}
 	}
 	
 	#scheduler {
@@ -278,6 +386,7 @@
 		width: 19%;
 		height: 100%;
 	}
+
 	
 	#editer {
 		display: inline-block;
@@ -285,9 +394,28 @@
 		height: 100%;
 		width: 80%;
 	}
+
+	@media not screen and (min-width:700px){
+		#scheduler {
+			width: 30%;
+			margin-left:-3%;
+		}
+
+
+		#editer {
+			width: 70%;
+		}
+	}
 	
 	#duration {
 		width: 40%;
+	}
+
+	@media not screen and (min-width:700px){
+		#duration {
+			width: 60%;
+			font-size:70%;
+		}
 	}
 	
 	#removeModule {
@@ -324,6 +452,13 @@
 		height: 90%;
 		width: 8%;
 		text-align: center;
+	}
+
+	@media not screen and (min-width:700px){
+		#addButton {
+			width: 23%;
+			margin-right:1%;
+		}
 	}
 	
 	#agendaSidebar {
@@ -363,6 +498,12 @@
 		text-align: center;
 		font-size: 110%;
 		font-weight: bold;
+	}
+
+	@media not screen and (min-width:700px){
+		#meetingInfoText {
+			font-size: 80%;
+		}
 	}
 	
 	#empty {
@@ -410,6 +551,13 @@
 		display: inline-block;
 		width: 10%;
 		height: 10%;
+	}
+	@media not screen and (min-width:700px){
+		.icon-calendar{
+			width:8px;
+			height:8px;
+			margin-left:3px;
+		}
 	}
 	
 	#bs-navbar-collapse-1 {
@@ -463,6 +611,12 @@
 		width: 70%;
 		display: inline-block;
 	}
+
+	@media not screen and (min-width:700px){
+		#datehorizontal {
+			width: 90%;
+		}
+	}
 	
 	#meetinginformation {
 		margin-bottom: 2%;
@@ -471,7 +625,7 @@
 	#addEvent {
 		position: absolute;
 		right: 7%;
-		bottom: 10%;
+		bottom: 13%;
 	}
 	
 	#services {
@@ -509,6 +663,12 @@
 		padding-left: 4%;
 		font-size: 150%;
 	}
+	@media not screen and (min-width:700px){
+		#textLeft {
+			font-size: 80%;
+		}
+	}
+
 	/*Tag by class*/
 
 	.headerweather{
@@ -544,6 +704,30 @@
 		font-weight: bold;
 		font-size: 110%;
 	}
+
+	@media not screen and (min-width:700px){
+		.eventText {
+			font-size: 90%;
+		}
+	}
+
+
+	@media not screen and (min-width:700px){
+		.confirmbutton{
+			width:45px;
+			height:30px;
+			font-size:60%;
+		}
+	}
+
+	@media not screen and (min-width:700px){
+		.submitbutton{
+			width:70px;
+			height:30px;
+			font-size:60% !important;
+		}
+	}
+
 	
 	.textWhite {
 		color: white;
@@ -560,9 +744,21 @@
 		font-size: 120%;
 		vertical-align: top;
 	}
+	@media not screen and (min-width:700px){
+		.infodesc {
+			font-size: 90%;
+		}
+	}
+
 
 	.navbar-header{
 		width:60%;
+	}
+
+	@media not screen and (min-width:700px){
+		.navbar-header{
+			width:95%;
+		}
 	}
 	
 	.participantdiv {
@@ -595,9 +791,20 @@
 	.particons {
 		font-size: 1.1vw;
 	}
+
+	@media not screen and (min-width:700px){
+		.particons {
+			font-size: 3vw;
+		}
+	}
 	
 	.modicons {
 		font-size: 0.7vw;
+	}
+	@media not screen and (min-width:700px){
+		.modicons {
+			font-size: 1.5vw;
+		}
 	}
 	
 	.participantnamediv {
@@ -620,6 +827,12 @@
 		font-weight: bold;
 		color: grey;
 	}
+
+	@media not screen and (min-width:700px){
+		.participant {
+			font-size:70%;
+		}
+	}
 	
 	.iconstyle {
 		color: white;
@@ -630,6 +843,21 @@
 		display: inline-block;
 		font-size: 120%;
 		margin-bottom: 7%;
+	}
+
+	.nonedittext{
+		display: inline-block;
+		font-size: 120%;
+		margin-bottom: 7%;
+	}
+
+	@media not screen and (min-width:700px){
+		.edittext{
+			font-size: 80%;
+		}
+		.nonedittext{
+			font-size: 80%;
+		}
 	}
 	
 	.form-control {
@@ -701,6 +929,12 @@
 		padding-top: 5%;
 		font-size: 150%;
 	}
+	@media not screen and (min-width:700px){
+		.textRight {
+			font-size: 90%;
+		}
+	}
+
 	.weatherText{
 		color:rgba(240,240,240,1);
 	}
