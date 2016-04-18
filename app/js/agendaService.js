@@ -60,6 +60,10 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	vm = this;
 	waiting = 0;
 	dataArray = [];
+	weekArray = [];
+    dayCounter = 0;
+    weekCallback = null;
+    weekStartDate = null;
 	vm.usernameRef = $cookieStore.get("LoggedInUsername");
 	
 	if (vm.usernameRef === null || vm.usernameRef === undefined)
@@ -175,39 +179,71 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		);
 	}
 
-	function getDayStep3(ok, data, callbackFunction) {
-		if (ok) {
-			dataArray.push(data);
-		}
-		if (waiting == 0) {
-			var tempArray = dataArray;
-			dataArray = [];
-			callbackFunction(true, "ok", tempArray);
-		}
+	vm.get5Days = function (day, callbackFunction){
+  		weekArray = [];
+  		dayCounter = 0;
+  		weekCallback = callbackFunction;
+  		weekStartDate = day;
+  		getDay(day, get5DaysStep2);
 	}
 
-	function getDayStep2(day, data, callbackFunction) {
-		for (var key in data) {
-			waiting++;
-			eveRef.child(day).child(key).on("value",
-				function (snapshot) {
-					waiting--;
-					getDayStep3(true, snapshot.val(), callbackFunction);
-				},
-				function (errorObject) {
-					waiting--;
-					console.log("The read failed: " + errorObject.code);
-					getDayStep3(false, errorObject.code, callbackFunction);
-				}
-			);
-		}
+	function get5DaysStep2(ok, msg, data){
+		weekArray.push(data);
+  		dayCounter++;
+  		if (dayCounter == 5) {
+    		weekCallback(true, "5 days of data", weekArray);
+  		}
+  		else
+  		{
+    		var nextDay = new Date();
+    		nextDay.setDate(weekStartDate.getDate() + dayCounter);
+    		vm.getDay(nextDay, get5DaysStep2);
+  		}
 	}
+
+	function getDayStep3(ok, data, callbackFunction) {
+    	if (ok) {
+      		dataArray.push(data);
+    	}
+    	waiting--;
+    	if (waiting == 0) {
+      		var tempArray = dataArray;
+      		dataArray = [];
+      		tempArray.sort(function(a, b) {
+        		var aVal = a.start.replace(':', '');
+        		var bVal = b.start.replace(':', '');
+        		return parseFloat(aVal) - parseFloat(bVal);
+      		});
+    	callbackFunction(true, "ok", tempArray);
+    	}
+  	}
+
+	function getDayStep2(day, data, callbackFunction) {
+    	waiting = 0;
+    	for (var key in data) {
+    		waiting++;
+    	}
+    	if (waiting == 0)
+    	{
+      		callbackFunction(true, "day is empty", []);
+    	}
+    	for (var key in data) {
+      		eveRef.child(day).child(key).on("value",
+        		function (snapshot) {
+          			getDayStep3(true, snapshot.val(), callbackFunction);
+        		},
+        		function (errorObject) {
+          			console.log("The read failed: " + errorObject.code);
+          			getDayStep3(false, errorObject.code, callbackFunction);
+        		}
+      		);
+    	}
+  	}
 
 
 
 	vm.getDay = function (day, callbackFunction) {
 		var dayCode = getDayCode(day);
-		//console.log(dayCode);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
 				getDayStep2(dayCode, snapshot.val(), callbackFunction);
