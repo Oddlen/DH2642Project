@@ -65,7 +65,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		var schedule = value;
 
 		var count = 0;
-
+/*
 		for(event in schedule) {
 
 			if (schedule[count].date === d1) {
@@ -132,7 +132,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 			count++;
 		} 
-
+*/
 			console.log(htmlString1);
 
 
@@ -202,6 +202,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		mm = "";
 		yyyy = "";
 		Agenda.getDay(today, callback);
+		Agenda.get5Days(today, callback);
 
 		return wd;
 	}

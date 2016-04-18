@@ -184,7 +184,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
   		dayCounter = 0;
   		weekCallback = callbackFunction;
   		weekStartDate = day;
-  		getDay(day, get5DaysStep2);
+  		vm.getDay(day, get5DaysStep2);
 	}
 
 	function get5DaysStep2(ok, msg, data){
