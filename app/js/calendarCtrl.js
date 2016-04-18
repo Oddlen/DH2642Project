@@ -53,41 +53,90 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			return 0;
 	}
 
+
 	var callback = function (ok, msg, value) {
-		//console.log("msg: " + msg);
-		//console.log(value);
+
+		var htmlString1 = "";
+		var htmlString2 = "";
+		var htmlString3 = "";
+		var htmlString4 = "";
+		var htmlString5 = "";
+
 		var schedule = value;
 
-		//schedule.sort(compare);
-		if (schedule[0].date === d1) {
+		var count = 0;
 
-			//for each meeting in day
+		for(event in schedule) {
 
-			$scope.dayschedule1 = $sce.trustAsHtml("<div dynamic='daysched1' class='calday' id='daysched1' ng-click='xyz()'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
-			obj[0] = schedule;
-		} else {
-			if(schedule[0].date === d2) {
-				$scope.dayschedule2 = $sce.trustAsHtml("<div dynamic='daysched2' class='calday' id='daysched2' ng-click='toAgenda(true, 1, 0)'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
-				obj[1] = schedule;
-			} else {
-				if(schedule[0].date === d3) {
-					$scope.dayschedule3 = $sce.trustAsHtml("<div dynamic='daysched3' class='calday' id='daysched3' ng-click='toAgenda(true, 2, 0)'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
-					obj[2] = schedule;
+			if (schedule[count].date === d1) {
+
+				//for each meeting in day
+				if(count < schedule.length) {
+					htmlString1 += "<div dynamic='daysched" + (count+1) + "' class='calday' ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+					$scope.dayschedule1 = $sce.trustAsHtml(htmlString1);
 				} else {
-					if(schedule[0].date === d4) {
-						$scope.dayschedule4 = $sce.trustAsHtml("<div dynamic='daysched4' class='calday' id='daysched4' ng-click='toAgenda(true, 3, 0)'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
-						obj[3] = schedule;
-					} else {
-						if(schedule[0].date === d5) {
-							$scope.dayschedule5 = $sce.trustAsHtml("<div dynamic='daysched5' class='calday' id='daysched5' ng-click='toAgenda(true, 4, 0)'> <p align='left'><b>" + schedule[0].start + "</b></p><p align='center'>" + schedule[0].name + "</p><p align='right'><b>" + schedule[0].end + "</b></p></div>");
-							obj[4] = schedule;
-						} 
-					}
+					htmlString1 += "<div dynamic='daysched" + (count+1) + "' class='calday'  ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
 				}
+				obj[0] = schedule;
 			}
-		}
-		$scope.$apply();
+
+			if (schedule[count].date === d2) {
+
+				//for each meeting in day
+				if(count < schedule.length) {
+					htmlString2 += "<div dynamic='daysched" + (count+1) + "' class='calday' ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+					$scope.dayschedule2 = $sce.trustAsHtml(htmlString2);
+				} else {
+					htmlString2 += "<div dynamic='daysched" + (count+1) + "' class='calday'  ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+				}
+				obj[1] = schedule;
+			}
+
+			if (schedule[count].date === d3) {
+
+				//for each meeting in day
+				if(count < schedule.length) {
+					htmlString3 += "<div dynamic='daysched" + (count+1) + "' class='calday' ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+					$scope.dayschedule3 = $sce.trustAsHtml(htmlString3);
+				} else {
+					htmlString3 += "<div dynamic='daysched" + (count+1) + "' class='calday'  ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+				}
+				obj[2] = schedule;
+			}
+
+			if (schedule[count].date === d4) {
+
+				//for each meeting in day
+				if(count < schedule.length) {
+					htmlString4 += "<div dynamic='daysched" + (count+1) + "' class='calday' ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+					$scope.dayschedule4 = $sce.trustAsHtml(htmlString4);
+				} else {
+					htmlString4 += "<div dynamic='daysched" + (count+1) + "' class='calday'  ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+				}
+				obj[3] = schedule;
+			}
+
+			if (schedule[count].date === d5) {
+
+				//for each meeting in day
+				if(count < schedule.length) {
+					htmlString5 += "<div dynamic='daysched" + (count+1) + "' class='calday' ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+					$scope.dayschedule5 = $sce.trustAsHtml(htmlString5);
+				} else {
+					htmlString5 += "<div dynamic='daysched" + (count+1) + "' class='calday'  ng-click='xyz()'> <p align='left'><b>" + schedule[count].start + "</b></p><p align='center'>" + schedule[count].name + "</p><p align='right'><b>" + schedule[count].end + "</b></p></div>";
+				}
+				obj[4] = schedule;
+			}
+
+			count++;
+		} 
+
+			console.log(htmlString1);
+
+
+		//$scope.$apply();
 	};
+
 
 	function xyz () {
 		console.log("xyz");
@@ -145,7 +194,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		datestring = dd + '/' + mm + '/' + yyyy;
 		
 		var wd = setDatestring(today, wday, datestring);
-		console.log(datestring);
+		//console.log(datestring);
 
 		dd = "";
 		mm = "";
