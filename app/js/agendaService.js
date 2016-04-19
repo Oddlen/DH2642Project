@@ -42,12 +42,14 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	};
 
 	apiKey = 'c10ef2a43abbd9987c78ae942ecc0843';
-	this.Weather = $resource('http://api.openweathermap.org/data/2.5/weather',{APPID:apiKey});
+	this.Weather = $resource('http://api.openweathermap.org/data/2.5/weather', {
+		APPID: apiKey
+	});
 	//'api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&APPID='+apikey;
 	console.log(this.Weather);
 
 
-		// callback function api.
+	// callback function api.
 	function exampleCallbackFunction(booleanFalseIfError, stringMessage, JSONData) {
 		// body...
 	}
@@ -61,26 +63,24 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	waiting = 0;
 	dataArray = [];
 	weekArray = [];
-    dayCounter = 0;
-    weekCallback = null;
-    weekStartDate = null;
+	dayCounter = 0;
+	weekCallback = null;
+	weekStartDate = null;
 	vm.usernameRef = $cookieStore.get("LoggedInUsername");
-	
-	if (vm.usernameRef === null || vm.usernameRef === undefined)
-	{
+
+	if (vm.usernameRef === null || vm.usernameRef === undefined) {
 		vm.usernameRef = "";
 	}
 	vm.auth = dataRef.getAuth();
 	vm.categoryList = $cookieStore.get("categoriesCache");
-	if (vm.categoryList === null || vm.categoryList === undefined || vm.categoryList == "")
-	{
+	if (vm.categoryList === null || vm.categoryList === undefined || vm.categoryList == "") {
 		vm.categoryList = [];
 		catRef.on("value", function (snapshot) {
-			var categories = snapshot.val();
-			for (var key in categories) {
-				console.log(categories[key]);
-				vm.categoryList.push(categories[key]);
-			}
+				var categories = snapshot.val();
+				for (var key in categories) {
+					//console.log(categories[key]);
+					vm.categoryList.push(categories[key]);
+				}
 				console.log("All categories fetched");
 			},
 			function (errorObject) {
@@ -90,7 +90,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		$cookieStore.put("categoriesCache", vm.categoryList);
 	}
 
-	
+
 
 	vm.getUser = function () {
 		return vm.usernameRef;
@@ -179,66 +179,63 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		);
 	}
 
-	vm.get5Days = function (day, callbackFunction){
-  		weekArray = [];
-  		dayCounter = 0;
-  		weekCallback = callbackFunction;
-  		weekStartDate = day;
-  		vm.getDay(day, get5DaysStep2);
+	vm.get5Days = function (day, callbackFunction) {
+		weekArray = [];
+		dayCounter = 0;
+		weekCallback = callbackFunction;
+		weekStartDate = day;
+		vm.getDay(day, get5DaysStep2);
 	}
 
-	function get5DaysStep2(ok, msg, data){
+	function get5DaysStep2(ok, msg, data) {
 		weekArray.push(data);
-  		dayCounter++;
-  		if (dayCounter == 5) {
-    		weekCallback(true, "5 days of data", weekArray);
-  		}
-  		else
-  		{
-    		var nextDay = new Date();
-    		nextDay.setDate(weekStartDate.getDate() + dayCounter);
-    		vm.getDay(nextDay, get5DaysStep2);
-  		}
+		dayCounter++;
+		if (dayCounter == 5) {
+			weekCallback(true, "5 days of data", weekArray);
+		} else {
+			var nextDay = new Date();
+			nextDay.setDate(weekStartDate.getDate() + dayCounter);
+			vm.getDay(nextDay, get5DaysStep2);
+		}
 	}
 
 	function getDayStep3(ok, data, callbackFunction) {
-    	if (ok) {
-      		dataArray.push(data);
-    	}
-    	waiting--;
-    	if (waiting == 0) {
-      		var tempArray = dataArray;
-      		dataArray = [];
-      		tempArray.sort(function(a, b) {
-        		var aVal = a.start.replace(':', '');
-        		var bVal = b.start.replace(':', '');
-        		return parseFloat(aVal) - parseFloat(bVal);
-      		});
-    	callbackFunction(true, "ok", tempArray);
-    	}
-  	}
+		if (ok) {
+			dataArray.push(data);
+		}
+		waiting--;
+		if (waiting == 0) {
+			var tempArray = dataArray;
+			dataArray = [];
+			tempArray.sort(function (a, b) {
+				var aVal = a.start.replace(':', '');
+				var bVal = b.start.replace(':', '');
+				return parseFloat(aVal) - parseFloat(bVal);
+			});
+			callbackFunction(true, "ok", tempArray);
+		}
+	}
 
 	function getDayStep2(day, data, callbackFunction) {
-    	waiting = 0;
-    	for (var key in data) {
-    		waiting++;
-    	}
-    	if (waiting == 0)
-    	{
-      		callbackFunction(true, "day is empty", []);
-    	}
-    	for (var key in data) {
-      		eveRef.child(day).child(key).on("value",
-        		function (snapshot) {
-          			getDayStep3(true, snapshot.val(), callbackFunction);
-        		},
-        		function (errorObject) {
-          			console.log("The read failed: " + errorObject.code);
-          			getDayStep3(false, errorObject.code, callbackFunction);
-        		}
-      		);
-    	}
-  	}
+		waiting = 0;
+		for (var key in data) {
+			waiting++;
+		}
+		if (waiting == 0) {
+			callbackFunction(true, "day is empty", []);
+		}
+		for (var key in data) {
+			eveRef.child(day).child(key).on("value",
+				function (snapshot) {
+					getDayStep3(true, snapshot.val(), callbackFunction);
+				},
+				function (errorObject) {
+					console.log("The read failed: " + errorObject.code);
+					getDayStep3(false, errorObject.code, callbackFunction);
+				}
+			);
+		}
+	}
 
 
 
@@ -297,8 +294,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			});
 		}
 		eventObject.invited.unshift(vm.usernameRef);
-		var d = new Date(eventObject.year, eventObject.month-1, eventObject.day, 0, 0, 0, 0);
-		
+		var d = new Date(eventObject.year, eventObject.month - 1, eventObject.day, 0, 0, 0, 0);
+
 		var returnFunction = function (ok, msg, data) {
 			if (ok) {
 				callbackFunction(ok, "Event has been created");
@@ -306,11 +303,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				callbackFunction(false, msg)
 			}
 		}
-		if (eventObject.oldname != "")
-		{
-			var od = new Date(eventObject.oldyear, eventObject.oldmonth-1, eventObject.oldday, 0, 0, 0, 0);
-			if (od.getTime() != d.getTime() || eventObject.oldame != eventObject.name)
-			{
+		if (eventObject.oldname != "") {
+			var od = new Date(eventObject.oldyear, eventObject.oldmonth - 1, eventObject.oldday, 0, 0, 0, 0);
+			if (od.getTime() != d.getTime() || eventObject.oldame != eventObject.name) {
 				vm.removeEvent(od, eventObject.oldname);
 			}
 		}
