@@ -22,7 +22,7 @@
 							dnd-draggable="module"
 							dnd-effect-allowed="move"
 							dnd-moved="onMove({{$index}})"
-							dnd-dragstart="logEvent('Started to drag {{$index}}', event)"
+							dnd-dragstart="startDrag('{{$index}}')"
 							dnd-selected="selected = module"
 							ng-class="{selected: selected === module}"
 							ng-include="'item.html'"
