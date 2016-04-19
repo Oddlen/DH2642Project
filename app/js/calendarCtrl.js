@@ -79,9 +79,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 
 	function setDatestring(today, wday) {
-		console.log("innan: " + today.getDate());
 		today.setDate(date.getDate() + wday);
-		console.log("efter: " + today.getDate());
 
 		dd = today.getDate();
 		mm = today.getMonth(); //January is 0!
@@ -97,6 +95,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		}
 
 		datestring = dd + '/' + mm + '/' + yyyy;
+		console.log(datestring);
 		dd = "";
 		mm = "";
 		yyyy = "";
@@ -106,7 +105,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		switch (wday) {
 
 		case 0:
-			console.log("datestring: " + datestring + " wday: " + wd);
 			d1 = datestring;
 			$scope.day1 = wd;
 			break;
@@ -136,16 +134,15 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	 * @param wday which day of the visible calendar that the function handles
 	 */
 	function loaddates(int) {
-
+		date.setDate(date.getDate() + int);
 		var dat = date;
 
 		var today = new Date(dat.valueOf());
 		var wday = 0;
-		today.setDate(today.getDate() + int);
+		today.setDate(today.getDate());
 
 		while (wday < 5) {
 			setDatestring(today, wday);
-			console.log("--------------------------");
 			wday = wday + 1;
 		}
 		//console.log(wd);
@@ -166,7 +163,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.prevday = function () {
 		resetday();
-		$scope.day1 = loaddates(-5, 1);
+		$scope.day1 = loaddates(-1, 1);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -176,7 +173,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.prevweek = function () {
 		resetday();
-		$scope.day1 = loaddates(-9, 1);
+		$scope.day1 = loaddates(-5, 1);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -185,7 +182,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.nextday = function () {
 		resetday();
-		$scope.day1 = loaddates(-3, 1);
+		$scope.day1 = loaddates(1, 1);
+		console.log(d1);
+		console.log(d5);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -194,7 +193,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.nextweek = function () {
 		resetday();
-		$scope.day1 = loaddates(1, 1);
+		$scope.day1 = loaddates(5, 1);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
