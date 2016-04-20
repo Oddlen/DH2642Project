@@ -52,7 +52,8 @@ agendaApp.factory('MeetingAgenda', function () {
      */
     ms.setMeeting = function(newmeeting){
         ms.meeting = newmeeting;
-        console.log(ms.meeting);
+        //var obj = JSON.parse(ms.meeting);
+        //console.log(obj);
     }
 
     /**

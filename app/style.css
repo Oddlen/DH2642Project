@@ -22,7 +22,7 @@
 	}
 	
 	#addmeetingtext {
-		padding-top: 15px;
+		padding-top: 1%;
 		color: white;
 		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 	}
@@ -654,6 +654,14 @@
 		padding-left: 4%;
 		font-size: 150%;
 	}
+
+	#prevweek {
+		float: right; 
+	}
+
+	#prevday {
+		float: right; 
+	}
 	
 	@media not screen and (min-width:700px) {
 		#textLeft {
@@ -867,7 +875,11 @@
 	.changedays {
 		margin-top: 15%;
 	}
-	
+
+	.changedaysLeft {
+		margin-top: 18%;
+	}
+
 	.event.over {
 		margin-top: 3%;
 		padding-top: -3%;

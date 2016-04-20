@@ -66,13 +66,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	var callback = function (ok, msg, value) {
 
-		var htmlString1 = "";
-		var htmlString2 = "";
-		var htmlString3 = "";
-		var htmlString4 = "";
-		var htmlString5 = "";
 
 		schedule = value;
+		console.log(value);
 
 		var count = 0;
 		value[0].sort(compare);
@@ -81,6 +77,19 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		value[3].sort(compare);
 		value[4].sort(compare);
 
+		writeToSchedule(value);
+		
+	};
+
+
+	function writeToSchedule (value) {
+
+		var htmlString1 = "";
+		var htmlString2 = "";
+		var htmlString3 = "";
+		var htmlString4 = "";
+		var htmlString5 = "";
+		
 		var daynr = 0;
 		for(day in value) {
 			var meetingnr = 0;
@@ -122,7 +131,8 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			daynr++;
 
 		}
-	};
+		$scope.$apply();
+	}
 
 
 	$scope.xyz = function (daynumber, meetingnumber) {
@@ -209,6 +219,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 
 		//Agenda.getDay(today, callback);
+		console.log(today);
 		Agenda.get5Days(today, callback);
 	}
 
