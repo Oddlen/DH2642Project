@@ -25,7 +25,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 
 	$scope.toAgenda = function (bool, day, number) {
-		console.log("ng-clicked!");
 		if (bool) {
 			MeetingAgenda.setExistingMeeting(true);
 			MeetingAgenda.setMeeting(obj[day]);
@@ -42,6 +41,17 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	}
 
+	function toAgenda2 (bool, day, number) {
+
+		MeetingAgenda.setExistingMeeting(true);
+		MeetingAgenda.setMeeting(schedule[day][number]);
+		$location.url('/agenda');
+		console.log("to agenda w/ meeting info");
+		return;
+
+
+	}
+
 
 	function compare(a, b) {
 		if (a.start < b.start)
@@ -52,6 +62,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			return 0;
 	}
 
+	var schedule;
 
 	var callback = function (ok, msg, value) {
 
@@ -61,26 +72,72 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		var htmlString4 = "";
 		var htmlString5 = "";
 
-		var schedule = value;
+		schedule = value;
 
 		var count = 0;
-		schedule[0].sort(compare);
-		schedule[1].sort(compare);
-		schedule[2].sort(compare);
-		schedule[3].sort(compare);
-		schedule[4].sort(compare);
-		//console.log(schedule);
+		value[0].sort(compare);
+		value[1].sort(compare);
+		value[2].sort(compare);
+		value[3].sort(compare);
+		value[4].sort(compare);
+
+		var daynr = 0;
+		for(day in value) {
+			var meetingnr = 0;
+			if(typeof value[daynr] !== 'undefined' ) {
+				for(event in value[daynr]) {
+					console.log(value[daynr][meetingnr]);
+					switch (daynr) {
+
+						case 0:
+							htmlString1 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+ 							console.log(htmlString1);
+ 							$scope.dayschedule1 = htmlString1;
+ 							break;
+						case 1:
+							htmlString2 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+ 							console.log(htmlString2);
+ 							$scope.dayschedule2 = htmlString2;
+							break;
+						case 2:
+							htmlString3 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+ 							console.log(htmlString3);
+ 							$scope.dayschedule3 = htmlString3;
+							break;
+						case 3:
+							htmlString4 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+ 							console.log(htmlString4);
+ 							$scope.dayschedule4 = htmlString4;
+							break;
+						case 4:
+							htmlString5 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+ 							console.log(htmlString5);
+ 							$scope.dayschedule5 = htmlString5;
+							break;
+					}
+					meetingnr++;
+				}
+				meetingnr = 0;
+			}
+			daynr++;
+
+		}
 	};
 
 
-	$scope.xyz = function () {
-		console.log("xyz");
+	$scope.xyz = function (daynumber, meetingnumber) {
+		toAgenda2(true, daynumber, meetingnumber);
 	};
 
 
-	function setDatestring(today, wday) {
+	function setDatestring(tday, wday) {
+
+		var dat = tday;
+
+		var today = new Date(dat.valueOf());
+
 		today.setDate(date.getDate() + wday);
-
+		
 		dd = today.getDate();
 		mm = today.getMonth(); //January is 0!
 		yyyy = today.getFullYear();
@@ -95,7 +152,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		}
 
 		datestring = dd + '/' + mm + '/' + yyyy;
-		console.log(datestring);
+		//console.log(datestring);
 		dd = "";
 		mm = "";
 		yyyy = "";
@@ -104,10 +161,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		//console.log(datestring);
 		switch (wday) {
 
-		case 0:
-			d1 = datestring;
-			$scope.day1 = wd;
-			break;
+
 		case 1:
 			d2 = datestring;
 			$scope.day2 = wd;
@@ -124,8 +178,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			d5 = datestring;
 			$scope.day5 = wd;
 			break;
+		case 0:
+			d1 = datestring;
+			console.log(wd);
+			$scope.day1 = wd;
+			break;
 		}
-		today = "";
+		//today = "";
 
 	}
 
@@ -133,12 +192,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	 * @param int 1 for shifting 5 days forward and -5 to shift 1 days backward
 	 * @param wday which day of the visible calendar that the function handles
 	 */
-	function loaddates(int) {
-		date.setDate(date.getDate() + int);
+	function loaddates(intx) {
+		date.setDate(date.getDate() + intx);
 		var dat = date;
 
 		var today = new Date(dat.valueOf());
 		var wday = 0;
+
 		today.setDate(today.getDate());
 
 		while (wday < 5) {
@@ -163,7 +223,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.prevday = function () {
 		resetday();
-		$scope.day1 = loaddates(-1, 1);
+		loaddates(-1);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -173,7 +233,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.prevweek = function () {
 		resetday();
-		$scope.day1 = loaddates(-5, 1);
+		loaddates(-5);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -182,9 +242,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.nextday = function () {
 		resetday();
-		$scope.day1 = loaddates(1, 1);
-		console.log(d1);
-		console.log(d5);
+		loaddates(1);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -193,7 +251,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 	$scope.nextweek = function () {
 		resetday();
-		$scope.day1 = loaddates(5, 1);
+		loaddates(5);
 		/*$scope.day2 = loaddates(1, 2);
 		$scope.day3 = loaddates(1, 3);
 		$scope.day4 = loaddates(1, 4);
@@ -201,7 +259,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	};
 
 	//init calendar week
-	$scope.day1 = loaddates(0, 1);
+	loaddates(0);
 	/*$scope.day2 = loaddates(1, 2);
 	$scope.day3 = loaddates(1, 3);
 	$scope.day4 = loaddates(1, 4);
