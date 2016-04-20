@@ -688,6 +688,7 @@
 		margin: auto;
 		margin-top: 2%;
 		border-radius: 2%;
+		cursor:pointer;
 	}
 	
 	.navbar {

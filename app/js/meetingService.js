@@ -51,9 +51,23 @@ agendaApp.factory('MeetingAgenda', function () {
      * Set the whole meeting
      */
     ms.setMeeting = function(newmeeting){
-        ms.meeting = newmeeting;
-        //var obj = JSON.parse(ms.meeting);
-        //console.log(obj);
+        var date = newmeeting.date.split("/");
+        var meetingobj = {};
+        meetingobj.day = date[0];
+        meetingobj.month = date[1];
+        meetingobj.year = date[2];
+        meetingobj.name = newmeeting.name;
+        meetingobj.owner = "";
+        meetingobj.start = newmeeting.start;
+        meetingobj.end = newmeeting.end;
+        meetingobj.length = newmeeting.length;
+        meetingobj.invited = [];
+        meetingobj.agenda = [];
+        Object.keys(newmeeting.agenda).forEach(function(key) {
+            var val = newmeeting.agenda[key];
+            meetingobj.agenda.push(val);
+        });
+        ms.meeting = meetingobj;
     }
 
     /**
