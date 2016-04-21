@@ -89,7 +89,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		var htmlString3 = "";
 		var htmlString4 = "";
 		var htmlString5 = "";
-		
+
 		var daynr = 0;
 		for(day in value) {
 			var meetingnr = 0;
