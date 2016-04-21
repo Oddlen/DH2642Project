@@ -154,7 +154,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
      * @param meetingnumber the meeting that was clicked, 0 for the first in the day-panel
      */
 	$scope.xyz = function (daynumber, meetingnumber) {
-		toAgenda(true, daynumber, meetingnumber);
+		toAgenda2(true, daynumber, meetingnumber);
 	};
 
 
@@ -173,9 +173,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		if (dd < 10) {
 			dd = '0' + dd;
 		}
-
+        
+        mm = mm + 1;
 		if (mm < 10) {
-			mm = mm + 1;
 			mm = '0' + mm;
 		}
 
