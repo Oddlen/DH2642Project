@@ -189,8 +189,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      * Checks if the participant is the owner or not
      */
     $scope.participantIsOwner = function(participant){
-        console.log(participant);
-        console.log(schedule.owner);
         if(participant===schedule.owner){
             return true;
         }else{
@@ -652,9 +650,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         /**
          * Defines the callback function
          */
-        var callbk = function(ok,msg){
+        var callbk = function(ok,msg,data){
             // Stop the loading wheel
             $scope.loading = false;
+            console.log(msg);
             if(ok){
                 window.location="/#calendar";
             }else{

@@ -184,11 +184,13 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
   		dayCounter = 0;
   		weekCallback = callbackFunction;
   		weekStartDate = day;
+  		console.log(weekStartDate);
   		vm.getDay(day, get5DaysStep2);
 	}
 
 	function get5DaysStep2(ok, msg, data) {
 		weekArray.push(data);
+		console.log(data);
 		dayCounter++;
 		if (dayCounter == 5) {
 			weekCallback(true, "5 days of data", weekArray);
@@ -196,7 +198,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			var nextDay = new Date();
 
 			nextDay = new Date(weekStartDate.valueOf());
-
 			nextDay.setDate(weekStartDate.getDate() + dayCounter);
 
 			vm.getDay(nextDay, get5DaysStep2);
@@ -206,22 +207,30 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	function getDayStep3(ok, data, callbackFunction) {
 		if (ok) {
 			dataArray.push(data);
+			console.log("i ifsatsen");
+			console.log(dataArray);
+	
 		}
 		waiting--;
 		if (waiting == 0) {
 			var tempArray = dataArray;
+			console.log(dataArray);
 			dataArray = [];
+			console.log(tempArray);
 			tempArray.sort(function (a, b) {
 				var aVal = a.start.replace(':', '');
 				var bVal = b.start.replace(':', '');
 				return parseFloat(aVal) - parseFloat(bVal);
 			});
+
 			callbackFunction(true, "ok", tempArray);
 		}
 	}
 
 	function getDayStep2(day, data, callbackFunction) {
 		waiting = 0;
+		dataArray = [];
+		console.log(data);
 		for (var key in data) {
 			waiting++;
 		}
@@ -302,9 +311,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 		var returnFunction = function (ok, msg, data) {
 			if (ok) {
-				callbackFunction(ok, "Event has been created");
+				callbackFunction(ok, "Event has been created", null);
 			} else {
-				callbackFunction(false, msg)
+				callbackFunction(false, msg, null)
 			}
 		}
 		if (eventObject.oldname != "") {
@@ -358,6 +367,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		eveRef.child(dayCode).child(eventCode).child("invitedNames").update({
   			[username]: true
 		});
+
+		console.log("innan callback invite");
 		callbackFunction(true, username + " has been added to " + eventName, null);
 	}
 
