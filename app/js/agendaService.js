@@ -188,13 +188,18 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	function get5DaysStep2(ok, msg, data) {
+		console.log(data);
 		weekArray.push(data);
 		dayCounter++;
 		if (dayCounter == 5) {
 			weekCallback(true, "5 days of data", weekArray);
 		} else {
 			var nextDay = new Date();
+
+			nextDay = new Date(weekStartDate.valueOf());
+
 			nextDay.setDate(weekStartDate.getDate() + dayCounter);
+
 			vm.getDay(nextDay, get5DaysStep2);
 		}
 	}
@@ -240,6 +245,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 
 	vm.getDay = function (day, callbackFunction) {
+
 		var dayCode = getDayCode(day);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {

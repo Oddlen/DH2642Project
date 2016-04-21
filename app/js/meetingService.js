@@ -65,6 +65,8 @@ agendaApp.factory('MeetingAgenda', function () {
         meetingobj.agenda = [];
         Object.keys(newmeeting.agenda).forEach(function(key) {
             var val = newmeeting.agenda[key];
+            console.log(key);
+            console.log(val);
             meetingobj.agenda.push(val);
         });
         Object.keys(newmeeting.invitedNames).forEach(function(key) {
