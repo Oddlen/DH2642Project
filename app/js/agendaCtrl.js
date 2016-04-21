@@ -4,6 +4,9 @@
  */
 agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda, MeetingAgenda) {
 
+    // Keeps track of the modules
+    var identifier = 0;
+
     // Old values
     $scope.oldname = "";
     $scope.oldday="";
@@ -37,10 +40,20 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      * Function specifying what actions to take when drag-and-dropping the module with index index
      */
     $scope.onMove = function(index){
+
         $scope.modules.splice(index, 1);
+        if($scope.editing === true){
+            for(var i = 0; i < $scope.modules.length; i++){
+                if($scope.modules[i].tempid === $scope.activeModule.tempid){
+                    $scope.modules[i] = $scope.activeModule;
+                    break;
+                }
+            }
+        }
         // Recalculate the start, end times
         $scope.recalculateSchedule();
     }
+
 
     /**
      * Given hour and minute and a totalLength in minute, calculate the new time and format. hour,minute + totalLength => new time
@@ -115,6 +128,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         $scope.oldname = schedule.name;
         $scope.oldyear = schedule.year;
         $scope.oldmonth = schedule.day;
+        for(var i = 0; i < schedule.agenda.length;i++){
+            schedule.agenda[i].tempid = identifier;
+            identifier++;
+        }
     }else{
         // This is a new meeting, initialize a meeting(schedule) object
         $scope.date = new Date();
@@ -175,7 +192,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     $scope.changeActiveModule = function(mod){
         if($scope.creatingModule){
             // The user tries to change module while creating one, this is not allowed
-            alert("You have to finish or cancel the creating of the module first!")
+            alert("You are creating a module. Thus you will have to finish or cancel the creating of the module!")
             return;
         }
 
@@ -281,14 +298,13 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         }
         $scope.activeModule.length=(h<10 ? '0' :'') + h +"h"+(min<10 ? '0' :'') + min+"m";
         for(var i = 0; i < $scope.modules.length; i++){
-            if($scope.modules[i].name === $scope.activeModule.name){
+            if($scope.modules[i].tempid === $scope.activeModule.tempid){
                 $scope.modules[i] = $scope.activeModule;
                 break;
             }
         }
         $scope.recalculateSchedule();
     });
-
 
 
     // The steps for the timepicker, 1 hour and 1 minute at the time
@@ -313,29 +329,12 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
 
     // The categories used in the application
     $scope.types = Agenda.getCategories();
-    console.log($scope.types);
-   /*$scope.types = [{
-        Label: 'Introduction',
-        Color: '#09baeb'
-    }, {
-        Label: 'Presentation',
-        Color: '#e8d956'
-    }, {
-        Label: 'Discussion',
-        Color: '#6fd952'
-    }, {
-        Label: 'Break',
-        Color: '#d69d40'
-    }, {
-        Label: 'Other',
-        Color: '#de9d81'
-    }];
-*/
+
     /**
      * Returns the kind of border the module should have
      */
     $scope.getModuleBorder = function(module){
-        if(module===$scope.activeModule){
+        if(JSON.stringify($scope.activeModule)===JSON.stringify(module)){
             // If it is the active module, then have dotted border
             return "dotted";
         }else{
@@ -347,7 +346,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      * Defines the color given a module
      */
     $scope.getColor = function(module){
-        if($scope.creatingModule && module.name === "Pending.."){
+        if($scope.creatingModule && module.tempid === $scope.activeModule.tempid){
             // It is the currently creating module
             return 'rgba(221,221,221,1)';
         }
@@ -443,9 +442,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     $scope.createAgendaModule = function(){
         $scope.modules = schedule.agenda.slice();
         $scope.activeModule = {};
-        if($scope.creatingModule === true){
-            return;
-        }
 
         $scope.creatingModule = true;
         $scope.editing = true;
@@ -454,6 +450,8 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         $scope.entertitle = "";
         $scope.description = "";
         $scope.activeModule.name = "Pending..";
+        $scope.activeModule.tempid = identifier;
+        identifier++;
         if($scope.modules.length>0){
             $scope.activeModule.start = $scope.modules[$scope.modules.length-1].end;
             $scope.activeModule.end = $scope.modules[$scope.modules.length-1].end;
@@ -474,6 +472,13 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     $scope.cancelChanges = function(){
         $scope.editing = false;
         $scope.creatingModule = false;
+        for(var i = 0; i < $scope.modules.length; i++){
+            if($scope.modules[i].tempid === $scope.activeModule.tempid){
+                $scope.modules[i] = JSON.parse(JSON.stringify($scope.activeModule));;
+                break;
+            }
+        }
+        $scope.activeModule = {};
         $scope.modules = schedule.agenda.slice();
         $scope.recalculateSchedule();
 
@@ -545,9 +550,16 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         $scope.activeModule.name = $scope.entertitle;
         $scope.activeModule.category=$scope.category.Label;
         $scope.activeModule.description=$scope.description;
-        schedule.agenda = $scope.modules.slice();
         $scope.editing = false;
         $scope.creatingModule = false;
+        for(var i = 0; i < $scope.modules.length; i++){
+            if($scope.modules[i].tempid === $scope.activeModule.tempid){
+                $scope.modules[i] = JSON.parse(JSON.stringify($scope.activeModule));;
+                break;
+            }
+        }
+        schedule.agenda = $scope.modules.slice();
+        $scope.activeModule = {};
     };
 
     /**
@@ -563,8 +575,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
             }
         }
         schedule.agenda = $scope.modules.slice();
-        $scope.editing = false;
-        $scope.creatingModule = false;
+        if(JSON.stringify($scope.activeModule)===JSON.stringify(module)){
+            $scope.editing = false;
+            $scope.creatingModule = false;
+        }
         $scope.recalculateSchedule();
     }
 
@@ -573,7 +587,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      */
     $scope.submitAgenda = function(){
 
-        console.log(schedule.participants);
 
         // Calculate all fields for submittal
         var hour = $scope.date.getHours(),
@@ -619,6 +632,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         schedule.oldyear = $scope.oldyear;
         schedule.oldmonth = $scope.oldmonth;
         schedule.oldday = $scope.oldday;
+
+        for(var i = 0; i < schedule.agenda.length;i++){
+            delete schedule.agenda[i].tempid;
+        }
 
         /**
          * Defines the callback function

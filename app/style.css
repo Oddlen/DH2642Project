@@ -1,5 +1,5 @@
 	/*Tag by id*/
-	
+
 	#maindiv {
 		height: 100%;
 	}
@@ -22,7 +22,7 @@
 	}
 	
 	#addmeetingtext {
-		padding-top: 15px;
+		padding-top: 1%;
 		color: white;
 		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
 	}
@@ -38,45 +38,45 @@
 		margin-top: 2%;
 		border-radius: 2%;
 	}
-
-	@media not screen and (min-width:700px){
-		#loginbox{
-			width:70%;
+	
+	@media not screen and (min-width:700px) {
+		#loginbox {
+			width: 70%;
 		}
 	}
-
+	
 	#weather {
-		color:rgba(240,240,240,1);
-		text-align:center;
+		color: rgba(240, 240, 240, 1);
+		text-align: center;
 		width: 40%;
 		padding: 3%;
 		margin: auto;
 	}
-
+	
 	#navbarweather {
-		color:rgba(240,240,240,1);
+		color: rgba(240, 240, 240, 1);
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#navbarweather {
-			margin-left:5%;
+			margin-left: 5%;
 		}
 	}
-
-	#weatherpic{
-		display:inline-block;
-		width:50px;
-		height:50px;
+	
+	#weatherpic {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
 	}
-
-	#weatherpicheader{
-		display:inline-block;
-		width:50px;
-		height:50px;
+	
+	#weatherpicheader {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
 	}
-
-	#temp{
-		display:inline-block;
+	
+	#temp {
+		display: inline-block;
 	}
 	
 	#registerbox {
@@ -89,10 +89,10 @@
 		margin: auto;
 		border-radius: 2%;
 	}
-
-	@media not screen and (min-width:700px){
-		#registerbox{
-			width:70%;
+	
+	@media not screen and (min-width:700px) {
+		#registerbox {
+			width: 70%;
 		}
 	}
 	
@@ -108,7 +108,6 @@
 		width: 52%;
 		height: 90%;
 	}
-
 	
 	#previouspagebtn {
 		margin-left: 50%;
@@ -127,10 +126,10 @@
 		padding: 3%;
 		display: inline-block;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#editmeeting {
-			height:95%;
+			height: 95%;
 		}
 	}
 	
@@ -142,10 +141,6 @@
 	#headertitle {
 		text-align: center;
 		vertical-align: middle;
-	}
-	
-	#day1 {
-		height: 80vh;
 	}
 	
 	#meeting {
@@ -185,10 +180,10 @@
 		width: 60%;
 		margin-left: 2%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#invitation {
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
@@ -208,31 +203,31 @@
 	#edittitle {
 		width: 80%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#edittitle {
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
 	#editcategory {
 		width: 50%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#editcategory {
 			width: 90%;
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
 	#inviteheadline {
 		margin-top: 0%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#inviteheadline {
-			font-size:90%;
+			font-size: 90%;
 		}
 	}
 	
@@ -250,10 +245,10 @@
 		width: 100%;
 		height: 100%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#meetingtitle {
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
@@ -261,14 +256,12 @@
 		margin-top: 0%;
 		height: 100%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#guestmeetingtitle {
-			font-size:80%;
+			font-size: 80%;
 		}
 	}
-
-
 	
 	#date {
 		width: 100%;
@@ -302,15 +295,14 @@
 		width: 100%;
 		height: 90%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#description {
-			font-size:70%;
+			font-size: 70%;
 		}
-
-		.agendabtn{
-			width:80% !important;
-			font-size:55% !important;
+		.agendabtn {
+			width: 80% !important;
+			font-size: 55% !important;
 		}
 	}
 	
@@ -323,10 +315,10 @@
 		padding: 2%;
 		color: #3b3b3b;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#guestdescription {
-			font-size:80%;
+			font-size: 80%;
 		}
 	}
 	
@@ -335,8 +327,8 @@
 		top: 85%;
 		left: 50%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#confirmagenda {
 			top: 75%;
 			left: 20%;
@@ -348,8 +340,8 @@
 		top: 90%;
 		left: 55%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#confirmediting {
 			position: absolute;
 			top: 90%;
@@ -362,7 +354,7 @@
 		top: 90%;
 		left: 60%;
 	}
-
+	
 	@media not screen and (min-width:700px) {
 		#closedetails {
 			left: 50%;
@@ -374,7 +366,8 @@
 		top: 90%;
 		left: 10%;
 	}
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#cancelediting {
 			top: 95%;
 			left: 10%;
@@ -386,7 +379,6 @@
 		width: 19%;
 		height: 100%;
 	}
-
 	
 	#editer {
 		display: inline-block;
@@ -394,14 +386,12 @@
 		height: 100%;
 		width: 80%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#scheduler {
 			width: 30%;
-			margin-left:-3%;
+			margin-left: -3%;
 		}
-
-
 		#editer {
 			width: 70%;
 		}
@@ -410,11 +400,11 @@
 	#duration {
 		width: 40%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#duration {
 			width: 60%;
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
@@ -453,11 +443,11 @@
 		width: 8%;
 		text-align: center;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#addButton {
 			width: 23%;
-			margin-right:1%;
+			margin-right: 1%;
 		}
 	}
 	
@@ -499,8 +489,8 @@
 		font-size: 110%;
 		font-weight: bold;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#meetingInfoText {
 			font-size: 80%;
 		}
@@ -552,11 +542,12 @@
 		width: 10%;
 		height: 10%;
 	}
-	@media not screen and (min-width:700px){
-		.icon-calendar{
-			width:8px;
-			height:8px;
-			margin-left:3px;
+	
+	@media not screen and (min-width:700px) {
+		.icon-calendar {
+			width: 8px;
+			height: 8px;
+			margin-left: 3px;
 		}
 	}
 	
@@ -611,8 +602,8 @@
 		width: 70%;
 		display: inline-block;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		#datehorizontal {
 			width: 90%;
 		}
@@ -663,16 +654,37 @@
 		padding-left: 4%;
 		font-size: 150%;
 	}
-	@media not screen and (min-width:700px){
+
+	#prevweek {
+		float: right; 
+	}
+
+	#prevday {
+		float: right; 
+	}
+
+	#schedulepanel {
+		background-color: rgb(153, 204, 255);
+		font-weight: bold;
+		white-space: nowrap;
+		border: 0.5px black solid;
+	}
+	
+	@media not screen and (min-width:700px) {
 		#textLeft {
 			font-size: 80%;
 		}
 	}
-
 	/*Tag by class*/
+	
 
-	.headerweather{
-		display:inline-block;
+
+	.day {
+		height: 80vh;
+	}
+	
+	.headerweather {
+		display: inline-block;
 	}
 	
 	.calday {
@@ -685,6 +697,7 @@
 		margin: auto;
 		margin-top: 2%;
 		border-radius: 2%;
+		cursor:pointer;
 	}
 	
 	.navbar {
@@ -704,30 +717,28 @@
 		font-weight: bold;
 		font-size: 110%;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.eventText {
 			font-size: 90%;
 		}
 	}
-
-
-	@media not screen and (min-width:700px){
-		.confirmbutton{
-			width:45px;
-			height:30px;
-			font-size:60%;
+	
+	@media not screen and (min-width:700px) {
+		.confirmbutton {
+			width: 45px;
+			height: 30px;
+			font-size: 60%;
 		}
 	}
-
-	@media not screen and (min-width:700px){
-		.submitbutton{
-			width:70px;
-			height:30px;
-			font-size:60% !important;
+	
+	@media not screen and (min-width:700px) {
+		.submitbutton {
+			width: 70px;
+			height: 30px;
+			font-size: 60% !important;
 		}
 	}
-
 	
 	.textWhite {
 		color: white;
@@ -744,20 +755,20 @@
 		font-size: 120%;
 		vertical-align: top;
 	}
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.infodesc {
 			font-size: 90%;
 		}
 	}
-
-
-	.navbar-header{
-		width:60%;
+	
+	.navbar-header {
+		width: 60%;
 	}
-
-	@media not screen and (min-width:700px){
-		.navbar-header{
-			width:95%;
+	
+	@media not screen and (min-width:700px) {
+		.navbar-header {
+			width: 95%;
 		}
 	}
 	
@@ -791,8 +802,8 @@
 	.particons {
 		font-size: 1.1vw;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.particons {
 			font-size: 3vw;
 		}
@@ -801,7 +812,8 @@
 	.modicons {
 		font-size: 0.7vw;
 	}
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.modicons {
 			font-size: 1.5vw;
 		}
@@ -827,10 +839,10 @@
 		font-weight: bold;
 		color: grey;
 	}
-
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.participant {
-			font-size:70%;
+			font-size: 70%;
 		}
 	}
 	
@@ -844,18 +856,18 @@
 		font-size: 120%;
 		margin-bottom: 7%;
 	}
-
-	.nonedittext{
+	
+	.nonedittext {
 		display: inline-block;
 		font-size: 120%;
 		margin-bottom: 7%;
 	}
-
-	@media not screen and (min-width:700px){
-		.edittext{
+	
+	@media not screen and (min-width:700px) {
+		.edittext {
 			font-size: 80%;
 		}
-		.nonedittext{
+		.nonedittext {
 			font-size: 80%;
 		}
 	}
@@ -873,7 +885,11 @@
 	.changedays {
 		margin-top: 15%;
 	}
-	
+
+	.changedaysLeft {
+		margin-top: 18%;
+	}
+
 	.event.over {
 		margin-top: 3%;
 		padding-top: -3%;
@@ -929,14 +945,15 @@
 		padding-top: 5%;
 		font-size: 150%;
 	}
-	@media not screen and (min-width:700px){
+	
+	@media not screen and (min-width:700px) {
 		.textRight {
 			font-size: 90%;
 		}
 	}
-
-	.weatherText{
-		color:rgba(240,240,240,1);
+	
+	.weatherText {
+		color: rgba(240, 240, 240, 1);
 	}
 	/*Tag by item*/
 	
