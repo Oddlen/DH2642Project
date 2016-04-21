@@ -660,7 +660,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
                 alert(msg);
             }
         }
-        console.log(schedule);
         // Start the loading wheel
         $scope.loading = true;
 

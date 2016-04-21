@@ -7,10 +7,18 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		datestring,
 		dd, mm, yyyy,
+<<<<<<< HEAD
 		d1, d2, d3, d4, d5;
 	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
 	var obj = [];
 	$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
+=======
+		d1, d2, d3, d4, d5,
+        schedule;
+	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
+    
+	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
+>>>>>>> 16030822627d6bdd1e4da4b68203e815704045df
 
 	$scope.testAlert = function () {
 		alert('testing');
@@ -22,67 +30,97 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		return;
 	}
 
-
+    /*
+     * Function that sends a meeting to the agenda view
+     * @param day what day the meeting belongs to
+     * @param number the meeting that was clicked, 0 for the first meeting
+     */
 	$scope.toAgenda = function (bool, day, number) {
 		if (bool) {
 			MeetingAgenda.setExistingMeeting(true);
-			MeetingAgenda.setMeeting(obj[day]);
+			MeetingAgenda.setMeeting(schedule[day][number]);
 			$location.url('/agenda');
-			console.log("to agenda w/ meeting info");
 			return;
 
 		} else {
 			MeetingAgenda.setExistingMeeting(false);
 			$location.url('/agenda');
-			console.log("to agenda w/o meeting info");
 			return;
 		}
 
-	}
+	};
 
-	function toAgenda2 (bool, day, number) {
+    /*
+     * Is not used
+     */
+	function toAgenda2(bool, day, number) {
 
 		MeetingAgenda.setExistingMeeting(true);
 		MeetingAgenda.setMeeting(schedule[day][number]);
 		$location.url('/agenda');
-		console.log("to agenda w/ meeting info");
 		return;
 
 
 	}
 
-
+    /*
+     * Simple sort function
+     */
 	function compare(a, b) {
-		if (a.start < b.start)
+		if (a.start < b.start) {
 			return -1;
-		else if (a.start > b.start)
+        } else if (a.start > b.start) {
 			return 1;
-		else
+        } else {
 			return 0;
+        }
 	}
 
-	var schedule;
-
+    /*
+     * @param ok if the call was successful
+     * @param msg message about the returned value
+     * @param value the returned value of the call
+     */
 	var callback = function (ok, msg, value) {
-
-
+        
+        //copy the returned value to save it for later use
 		schedule = value;
-		console.log(value);
 
 		var count = 0;
+        /* No need to sort, already sorted
 		value[0].sort(compare);
 		value[1].sort(compare);
 		value[2].sort(compare);
 		value[3].sort(compare);
+<<<<<<< HEAD
 		value[4].sort(compare);
 
 		if(ok) {
 			writeToSchedule(value);
 		}	
+=======
+		value[4].sort(compare);*/
+        
+        if (ok) {
+		  writeToSchedule(value);
+        } else {
+            $scope.dayschedule1 = "";
+            $scope.dayschedule2 = "";
+            $scope.dayschedule3 = "";
+            $scope.dayschedule4 = "";
+            $scope.dayschedule5 = "";
+            $scope.$apply();
+        }
+		
+>>>>>>> 16030822627d6bdd1e4da4b68203e815704045df
 	};
 
-
-	function writeToSchedule (value) {
+    /*
+     * Takes the returned value of the call and 
+     * writes the meetings to the respective day-panel in the calendar view
+     * @param value 5 days and meetings in them
+     */
+	function writeToSchedule(value) {
 
 		var htmlString1 = "";
 		var htmlString2 = "";
@@ -93,38 +131,32 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		console.log(value);
 
 		var daynr = 0;
-		for(day in value) {
+		for (day in value) {
 			var meetingnr = 0;
-			if(typeof value[daynr] !== 'undefined' ) {
-				for(event in value[daynr]) {
-					console.log(value[daynr][meetingnr]);
+			if (typeof value[daynr] !== 'undefined') {
+				for (event in value[daynr]) {
 					switch (daynr) {
 
-						case 0:
-							htmlString1 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
- 							console.log(htmlString1);
- 							$scope.dayschedule1 = htmlString1;
- 							break;
+                        case 0:
+                            htmlString1 += "<div dynamic='daysched" + (daynr + 1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+                            $scope.dayschedule1 = htmlString1;
+                            break;
 						case 1:
-							htmlString2 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
- 							console.log(htmlString2);
+							htmlString2 += "<div dynamic='daysched" + (daynr + 1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
  							$scope.dayschedule2 = htmlString2;
 							break;
 						case 2:
-							htmlString3 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
- 							console.log(htmlString3);
- 							$scope.dayschedule3 = htmlString3;
-							break;
+                            htmlString3 += "<div dynamic='daysched" + (daynr + 1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+                            $scope.dayschedule3 = htmlString3;
+                            break;
 						case 3:
-							htmlString4 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
- 							console.log(htmlString4);
- 							$scope.dayschedule4 = htmlString4;
-							break;
+                            htmlString4 += "<div dynamic='daysched" + (daynr + 1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+                            $scope.dayschedule4 = htmlString4;
+                            break;
 						case 4:
-							htmlString5 += "<div dynamic='daysched" + (daynr+1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
- 							console.log(htmlString5);
- 							$scope.dayschedule5 = htmlString5;
-							break;
+                            htmlString5 += "<div dynamic='daysched" + (daynr + 1) + "' id='" + daynr + "-" + meetingnr  + "' class='calday' ng-click='xyz(" + daynr + "," + meetingnr + ")'> <p align='left'><b>" + value[daynr][meetingnr].start + "</b></p><p align='center'>" + value[daynr][meetingnr].name + "</p><p align='right'><b>" + value[daynr][meetingnr].end + "</b></p></div>";
+                            $scope.dayschedule5 = htmlString5;
+                            break;
 					}
 					meetingnr++;
 				}
@@ -137,9 +169,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		$scope.$apply();
 	}
 
-
+    /*
+     * Function that is called when a meeting is clicked in a day-panel
+     * @param daynumber what day-panel that is clicked
+     * @param meetingnumber the meeting that was clicked, 0 for the first in the day-panel
+     */
 	$scope.xyz = function (daynumber, meetingnumber) {
-		toAgenda2(true, daynumber, meetingnumber);
+		toAgenda(true, daynumber, meetingnumber);
 	};
 
 
@@ -165,13 +201,10 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		}
 
 		datestring = dd + '/' + mm + '/' + yyyy;
-		//console.log(datestring);
 		dd = "";
 		mm = "";
 		yyyy = "";
 		var wd = weekday[today.getDay()] + " - " + datestring;
-		//console.log("weekday: " + today.getDate());
-		//console.log(datestring);
 		switch (wday) {
 
 
@@ -193,17 +226,16 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			break;
 		case 0:
 			d1 = datestring;
-			console.log(wd);
 			$scope.day1 = wd;
 			break;
 		}
-		//today = "";
 
 	}
 
 	/*
-	 * @param int 1 for shifting 5 days forward and -5 to shift 1 days backward
-	 * @param wday which day of the visible calendar that the function handles
+     * 
+	 * @param intx how many days to shift rom current selected date
+	 * @param wday which day-panel of the visible calendar that the function handles
 	 */
 	function loaddates(intx) {
 		date.setDate(date.getDate() + intx);
@@ -218,15 +250,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			setDatestring(today, wday);
 			wday = wday + 1;
 		}
-		//console.log(wd);
-
-
-		//Agenda.getDay(today, callback);
-		console.log(today);
+        
 		Agenda.get5Days(today, callback);
 	}
 
-
+    /*
+     * Resets all the day-panels in the calendar view 
+     */
 	function resetday() {
 		$scope.dayschedule1 = "";
 		$scope.dayschedule2 = "";
@@ -234,49 +264,40 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		$scope.dayschedule4 = "";
 		$scope.dayschedule5 = "";
 	}
-
+    
+     /*
+     * Shifts day-panels to show one day previous
+    */
 	$scope.prevday = function () {
 		resetday();
 		loaddates(-1);
-		/*$scope.day2 = loaddates(1, 2);
-		$scope.day3 = loaddates(1, 3);
-		$scope.day4 = loaddates(1, 4);
-		$scope.day5 = loaddates(1, 5);*/
-
 	};
 
+    /*
+     * Shifts day-panels to show five days previous
+     */
 	$scope.prevweek = function () {
 		resetday();
 		loaddates(-5);
-		/*$scope.day2 = loaddates(1, 2);
-		$scope.day3 = loaddates(1, 3);
-		$scope.day4 = loaddates(1, 4);
-		$scope.day5 = loaddates(1, 5);*/
 	};
 
+    /*
+     * Shifts day-panels to show the next day
+     */
 	$scope.nextday = function () {
 		resetday();
 		loaddates(1);
-		/*$scope.day2 = loaddates(1, 2);
-		$scope.day3 = loaddates(1, 3);
-		$scope.day4 = loaddates(1, 4);
-		$scope.day5 = loaddates(1, 5);*/
 	};
 
+    /*
+     * Shifts day-panels to show the next 5 days
+     */
 	$scope.nextweek = function () {
 		resetday();
 		loaddates(5);
-		/*$scope.day2 = loaddates(1, 2);
-		$scope.day3 = loaddates(1, 3);
-		$scope.day4 = loaddates(1, 4);
-		$scope.day5 = loaddates(1, 5);*/
 	};
 
-	//init calendar week
+	//Init calendar week
 	loaddates(0);
-	/*$scope.day2 = loaddates(1, 2);
-	$scope.day3 = loaddates(1, 3);
-	$scope.day4 = loaddates(1, 4);
-	$scope.day5 = loaddates(1, 5);*/
 
 });
