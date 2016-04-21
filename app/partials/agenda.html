@@ -115,7 +115,9 @@
 								</button>
 							</div>
 							<div id="addDiv" ng-hide="isNotOwner()">
-								<input class="form-control" id="invitation" name="inviteUsename" type="text" placeholder='{{invitingplaceholder}}'  ng-model="inviting">
+								<select id="invitation"  chosen data-placeholder-text-single="'Enter user to invite'" ng-model="chosenUser" ng-options="user for user in users" ng-change="updateUser(chosenUser)">
+									<option value=""></option>
+								</select>
 								<button ng-click="addParticipant()" type="button" id="addButton" class="btn-success">
 									<div class="glyphicon glyphicon-plus iconstyle particons"></div>
 								</button>

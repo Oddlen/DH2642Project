@@ -3,6 +3,17 @@
  * Also handles the flow depending on if the logged in user is the owner or not.
  */
 agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda, MeetingAgenda) {
+    $scope.users = [];
+    $scope.chosenUser = "";
+    var usercallback = function(status,msg,value){
+        if(status){
+            $scope.users = value;
+        }else{
+            // Do nothing
+        }
+    }
+
+    Agenda.getAllUsers(usercallback);
 
     // Keeps track of the modules
     var identifier = 0;
@@ -118,7 +129,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
 
         }
     }
-
     if(existingMeeting){
         // If the meeting was existing, fetch
         schedule = MeetingAgenda.getMeeting();
@@ -418,6 +428,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
             $scope.inviting =""
         }
         schedule.invited = $scope.participants;
+        $scope.chosenUser ="";
     }
 
     /**
@@ -666,4 +677,10 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         // Set the event to model
         Agenda.setEvent(schedule, callbk)
     };
+
+    $scope.updateUser = function(user){
+        console.log("UPDATE USER");
+        console.log(user);
+        $scope.inviting = user;
+    }
 })

@@ -1,13 +1,12 @@
 /**
  * A service which holds objects transfered between calendar and agenda
  */
-agendaApp.factory('MeetingAgenda', function () {
+agendaApp.factory('MeetingAgenda', function ($cookieStore) {
 
     // Initialize
     ms = this;
-    ms.meeting = {};
-    ms.existingMeeting = true;
-    ms.meeting = {};
+    ms.existingMeeting = $cookieStore.get("existingMeeting");;
+    ms.meeting = $cookieStore.get("meeting");
 
     /**
      * Get the whole meeting
@@ -20,7 +19,6 @@ agendaApp.factory('MeetingAgenda', function () {
      * Set the whole meeting
      */
     ms.setMeeting = function(newmeeting){
-        console.log(newmeeting);
         var date = newmeeting.date.split("/");
         var meetingobj = {};
         meetingobj.day = date[0];
@@ -44,6 +42,7 @@ agendaApp.factory('MeetingAgenda', function () {
         });
 
         ms.meeting = meetingobj;
+        $cookieStore.put("meeting", ms.meeting);
     }
 
     /**
@@ -51,6 +50,7 @@ agendaApp.factory('MeetingAgenda', function () {
      */
     ms.setExistingMeeting = function(bool){
         ms.existingMeeting = bool;
+        $cookieStore.put("existingMeeting", ms.existingMeeting);
     }
 
     /**

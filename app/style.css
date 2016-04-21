@@ -177,13 +177,13 @@
 		height: 80%;
 	}
 	
-	#invitation {
-		width: 60%;
+	#invitation_chosen {
+		width: 60% !important;
 		margin-left: 2%;
 	}
 	
 	@media not screen and (min-width:700px) {
-		#invitation {
+		#invitation_chosen {
 			font-size: 70%;
 		}
 	}

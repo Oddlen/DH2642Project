@@ -1,4 +1,4 @@
-var agendaApp = angular.module('agendaPlanner', ['ngRoute','ngResource','ngSanitize','angularSpinner','ngCookies', 'ui.bootstrap', 'dndLists']);
+var agendaApp = angular.module('agendaPlanner', ['ngRoute','ngResource','ngSanitize','angularSpinner','ngCookies', 'ui.bootstrap', 'dndLists','localytics.directives']);
 
 agendaApp.config(['$routeProvider',
   function($routeProvider) {
