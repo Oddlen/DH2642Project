@@ -57,7 +57,7 @@ agendaApp.factory('MeetingAgenda', function () {
         meetingobj.month = date[1];
         meetingobj.year = date[2];
         meetingobj.name = newmeeting.name;
-        meetingobj.owner = "";
+        meetingobj.owner =newmeeting.ownername;
         meetingobj.start = newmeeting.start;
         meetingobj.end = newmeeting.end;
         meetingobj.length = newmeeting.length;
@@ -67,6 +67,11 @@ agendaApp.factory('MeetingAgenda', function () {
             var val = newmeeting.agenda[key];
             meetingobj.agenda.push(val);
         });
+        Object.keys(newmeeting.invitedNames).forEach(function(key) {
+            var val = newmeeting.invitedNames.agenda[key];
+            meetingobj.invited.push(val);
+        });
+
         ms.meeting = meetingobj;
     }
 

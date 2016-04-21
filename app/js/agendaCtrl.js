@@ -118,7 +118,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
 
         }
     }
-    
+
     if(existingMeeting){
         // If the meeting was existing, fetch
         schedule = MeetingAgenda.getMeeting();
