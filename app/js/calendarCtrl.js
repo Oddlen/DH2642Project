@@ -8,7 +8,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		datestring,
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5;
-	date.setFullYear(2016, 2, 31); //inita dagen att vara 1:a april
+	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
 
 	var obj = [];
 	$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');

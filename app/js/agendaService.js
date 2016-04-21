@@ -188,7 +188,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	function get5DaysStep2(ok, msg, data) {
-		console.log(data);
 		weekArray.push(data);
 		dayCounter++;
 		if (dayCounter == 5) {
