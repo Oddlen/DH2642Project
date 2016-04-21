@@ -147,7 +147,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         schedule.month =  schedule.month[1]?schedule.month:"0"+schedule.month[0];
         schedule.day  =  $scope.date.getDate().toString();
         schedule.day  =  schedule.day[1]?schedule.day:"0"+schedule.day[0];
-
         schedule.name = "";
         schedule.invited=[];
         schedule.agenda = [];
@@ -185,6 +184,19 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
 
     // Initializing the variable for the current module which is modified/created
     $scope.activeModule = {};
+
+    /**
+     * Checks if the participant is the owner or not
+     */
+    $scope.participantIsOwner = function(participant){
+        console.log(participant);
+        console.log(schedule.owner);
+        if(participant===schedule.owner){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     /**
      * Changes which module is the active one

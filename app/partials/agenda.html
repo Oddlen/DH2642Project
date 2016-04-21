@@ -110,7 +110,7 @@
 								<div class="participantnamediv">
 									<p class="participant">{{participant}}</p>
 								</div>
-								<button type="button" class="btn-danger" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()">
+								<button type="button" class="btn-danger" id="removeButton" ng-click="removeParticipant(participant)" ng-hide="isNotOwner()||participantIsOwner(participant)" >
 									<div class="glyphicon glyphicon-minus iconstyle particons"></div>
 								</button>
 							</div>
