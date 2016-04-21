@@ -1,5 +1,5 @@
 	/*Tag by id*/
-	
+
 	#maindiv {
 		height: 100%;
 	}
@@ -662,6 +662,13 @@
 	#prevday {
 		float: right; 
 	}
+
+	#schedulepanel {
+		background-color: rgb(153, 204, 255);
+		font-weight: bold;
+		white-space: nowrap;
+		border: 0.5px black solid;
+	}
 	
 	@media not screen and (min-width:700px) {
 		#textLeft {
@@ -670,6 +677,8 @@
 	}
 	/*Tag by class*/
 	
+
+
 	.day {
 		height: 80vh;
 	}
