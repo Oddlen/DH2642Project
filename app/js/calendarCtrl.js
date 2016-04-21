@@ -7,18 +7,11 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		datestring,
 		dd, mm, yyyy,
-<<<<<<< HEAD
-		d1, d2, d3, d4, d5;
-	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
-	var obj = [];
-	$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
-=======
 		d1, d2, d3, d4, d5,
         schedule;
 	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
     
 	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
->>>>>>> 16030822627d6bdd1e4da4b68203e815704045df
 
 	$scope.testAlert = function () {
 		alert('testing');
@@ -87,19 +80,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		schedule = value;
 
 		var count = 0;
-        /* No need to sort, already sorted
-		value[0].sort(compare);
-		value[1].sort(compare);
-		value[2].sort(compare);
-		value[3].sort(compare);
-<<<<<<< HEAD
-		value[4].sort(compare);
-
-		if(ok) {
-			writeToSchedule(value);
-		}	
-=======
-		value[4].sort(compare);*/
         
         if (ok) {
 		  writeToSchedule(value);
@@ -111,8 +91,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
             $scope.dayschedule5 = "";
             $scope.$apply();
         }
-		
->>>>>>> 16030822627d6bdd1e4da4b68203e815704045df
+
 	};
 
     /*
