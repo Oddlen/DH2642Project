@@ -4,12 +4,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div id="changedaysLeft">
-				<button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">
-					<<</button>
-						<button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">
-							<</button>
+				<button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">&lt;&lt;&nbsp;</button>
+				<button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">&lt;</button>
 			</div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1 col-sm-0"></div>
 			<div id="cal">
 				<div class="col-md-2 col-sm-12">
 					<div class="panel panel-default day" id="day1">
@@ -43,16 +41,16 @@
 					</div>
 
 				</div>
-                <div id="addmeetingtext">
+			</div>
+            <div id="addmeetingtext">
                     <p>Add meeting</p>
                     <button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
                         <div class="glyphicon glyphicon-plus iconstyle particons"></div>
                     </button>
-                </div>
-				<div id="changedaysRight">
-					<button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">></button>
-					<button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">>></button>
-				</div>
-			</div>
+            </div>
+            <div id="changedaysRight">
+                <button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">&gt;</button>
+                <button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">&gt;&gt;</button>
+            </div>
 		</div>
 	</div>

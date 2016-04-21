@@ -161,6 +161,7 @@
 	
 	#calendarmain {
 		height: 100%;
+        position: relative;
 	}
 	
 	#addDiv {
@@ -627,12 +628,12 @@
     #changedaysLeft{
         position:absolute;
         left: 2%;
-        top: 10%;   
+        padding-top: 20%;   
     }
     #changedaysRight{
         position:absolute;
         right: 2%;
-        top: 10%;
+        padding-top: 15%;
     }
 	
 	#services .glyphicon {
@@ -664,14 +665,6 @@
 		padding-top: 3%;
 		padding-left: 4%;
 		font-size: 150%;
-	}
-
-	#prevweek {
-		float: right; 
-	}
-
-	#prevday {
-		float: right; 
 	}
 	
 	@media not screen and (min-width:700px) {
@@ -891,12 +884,12 @@
 		margin-top: 5%;
 	}
 	
-	.changedays {
-		margin-top: 15%;
+	.changedaysRight {
+		margin-top: 10%;
 	}
 
 	.changedaysLeft {
-		margin-top: 18%;
+		margin-top: 20%;
 	}
 
 	.event.over {
