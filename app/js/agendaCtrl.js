@@ -8,6 +8,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     var usercallback = function(status,msg,value){
         if(status){
             $scope.users = value;
+            $scope.$apply();
         }else{
             // Do nothing
         }
@@ -664,7 +665,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         var callbk = function(ok,msg,data){
             // Stop the loading wheel
             $scope.loading = false;
-            console.log(msg);
             if(ok){
                 window.location="/#calendar";
             }else{
@@ -679,8 +679,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     };
 
     $scope.updateUser = function(user){
-        console.log("UPDATE USER");
-        console.log(user);
         $scope.inviting = user;
     }
 })
