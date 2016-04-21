@@ -179,12 +179,12 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		);
 	}
 
-	vm.get5Days = function (day, callbackFunction) {
-		weekArray = [];
-		dayCounter = 0;
-		weekCallback = callbackFunction;
-		weekStartDate = day;
-		vm.getDay(day, get5DaysStep2);
+	vm.get5Days = function (day, callbackFunction){
+  		weekArray = [];
+  		dayCounter = 0;
+  		weekCallback = callbackFunction;
+  		weekStartDate = day;
+  		vm.getDay(day, get5DaysStep2);
 	}
 
 	function get5DaysStep2(ok, msg, data) {
@@ -242,8 +242,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 	}
 
-
-
 	vm.getDay = function (day, callbackFunction) {
 
 		var dayCode = getDayCode(day);
@@ -281,6 +279,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 		eveRef.child(dayCode).child(nameCode).set({
 			ownerid: myid,
+			ownerName: eventObject.owner,
 			name: eventObject.name,
 			date: eventObject.day + "/" + eventObject.month + "/" + eventObject.year,
 			start: eventObject.start,
@@ -356,6 +355,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 		eveRef.child(dayCode).child(eventCode).child("invited").update({
   			[uid]: true
+		});
+		eveRef.child(dayCode).child(eventCode).child("invitedNames").update({
+  			[username]: true
 		});
 		callbackFunction(true, username + " has been added to " + eventName, null);
 	}
