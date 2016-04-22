@@ -304,11 +304,12 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	vm.setEvent = function (eventObject, callbackFunction) {
 		console.log("setEvent");
-		if(eventObject.name === ""){
-			eventObject.name = "Untitled";
+		var name = eventObject.name;
+		name = name.replace(/^[^a-zA-Z0-9]+/g,"");
+		if(name === ""){
+			name = "Untitled";
 		}
-		eventObject.name = eventObject.name.replace(/^[^a-zA-Z0-9]+/g,"");
-		console.log(eventObject.name);
+		eventObject.name = name;
 
 		dayCode = "d" + eventObject.day + "m" + eventObject.month + "y" + eventObject.year;
 		nameCode = eventObject.name + "_" + eventObject.owner;
@@ -323,6 +324,15 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			end: eventObject.end,
 			length: eventObject.length,
 		});
+
+		for(i = 0; i < eventObject.agenda.length){
+			var moduleName = eventObject.agenda[i].name;
+			moduleName = moduleName.replace(/^[^a-zA-Z0-9]+/g,"");
+			if(moduleName === ""){
+				moduleName = "Untitled";
+			}
+			eventObject.agenda[i].name = moduleName;
+		}
 
 		for (i = 0; i < eventObject.agenda.length; ++i) {
 			eveRef.child(dayCode).child(nameCode).child("agenda").update({
