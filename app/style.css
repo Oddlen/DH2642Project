@@ -22,11 +22,21 @@
 	}
 	
 	#addmeetingtext {
-		padding-top: 1%;
-		color: white;
-		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+		padding-top: 27%;
+		color: black;
+		white-space: nowrap;
+		font-weight: bold;
 	}
 	
+	#week {
+		visibility: visible;
+		padding-top: 27%;
+		color: black;
+		font-weight: bold;
+		white-space: nowrap;
+			
+	}
+
 	#loginbox {
 		background: rgba(245, 245, 245, 1);
 		border-color: rgba(221, 221, 221, 1);

@@ -4,18 +4,18 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 col-lg-12 col-sm-12" id="cal">
-                   <div class="col-md-1 col-lg-1 col-sm-1">
-                       <div id="designdiv">
-                        <p>Add meeting</p>
+                <div class="col-md-1 col-lg-1 col-sm-1">
+                    <div id="designdiv">
+                        <p id="week">Week: {{week}}</p>
                         <button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
                             <div class="glyphicon glyphicon-plus iconstyle particons"></div>
                         </button>
-                </div>
-            	<div id="changedaysLeft">
-                    <button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">&lt;&lt;&nbsp;</button>
-                    <button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">&lt;</button>
-                </div>
-            </div>
+                	</div>
+	            	<div id="changedaysLeft">
+	                    <button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">&lt;&lt;&nbsp;</button>
+	                    <button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">&lt;</button>
+	                </div>
+            	</div>
 				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default day" id="day1">
 						<div class="panel-heading schedulepanel">{{day1}}</div>

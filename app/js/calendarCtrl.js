@@ -1,4 +1,4 @@
-agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile, Agenda, MeetingAgenda) {
+agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile, $filter, Agenda, MeetingAgenda) {
 
 	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/'),
 		eventRef = myDataRef.child("events"),
@@ -8,10 +8,10 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		datestring,
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5,
-        schedule;
-	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
+        schedule,
+        w1, w2;
 
-	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
+	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
 
 	$scope.testAlert = function () {
 		alert('testing');
@@ -180,6 +180,8 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
      * @param daynumber what day-panel that is clicked
      * @param meetingnumber the meeting that was clicked, 0 for the first in the day-panel
      */
+    
+
 	$scope.xyz = function (daynumber, meetingnumber) {
 		toAgenda2(true, daynumber, meetingnumber);
 	};
@@ -229,12 +231,22 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		case 4:
 			d5 = datestring;
 			$scope.day5 = wd;
+			w2 = $filter('date')(today, 'ww');
+			if(w1 !== w2) {
+				$scope.week = w1 + "-" + w2;
+			} else {
+				$scope.week = w1;
+			}
+
 			break;
 		case 0:
 			d1 = datestring;
 			$scope.day1 = wd;
+			w1 = $filter('date')(today, 'ww');
 			break;
 		}
+
+
 
 	}
 
