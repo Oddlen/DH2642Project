@@ -207,7 +207,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 		weekArray.push(data);
 		dayCounter++;
-		if (dayCounter == 5) {
+		console.log("days in get week");
+		console.log(dayCounter);
+		if (dayCounter >= 5) {
 			getWeekInProgress = false;
 			weekCallback(true, "5 days of data", weekArray);
 		} else {
