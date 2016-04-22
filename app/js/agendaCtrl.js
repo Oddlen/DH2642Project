@@ -8,7 +8,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     var usercallback = function(status,msg,value){
         if(status){
             $scope.users = value;
-            $scope.$apply();
+            setTimeout(function () {
+                $scope.$apply();
+            }, 200);
         }else{
             // Do nothing
         }

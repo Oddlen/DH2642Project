@@ -75,7 +75,6 @@ agendaApp.controller('WeatherCtrl', function ($scope,$location, Agenda) {
             }
             // Make it celcius
             $scope.temperature = Math.round(data.main.temp - 273.15);
-            console.log($scope.temperature);
             $scope.wheatherLoading = false;
         }, function (data) {
             // Error function
