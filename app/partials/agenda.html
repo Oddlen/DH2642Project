@@ -17,12 +17,20 @@
 				</div>
 
 				<script type="text/ng-template" id="list.html">
-					<ul id="itemlist" dnd-list="modules">
+					<ul id="itemlist" dnd-list="modules" ng-if="isOwner()">
 						<li ng-model="modules" ng-repeat="module in modules"
 							dnd-draggable="module"
 							dnd-effect-allowed="move"
 							dnd-moved="onMove({{$index}})"
 							dnd-dragstart="startDrag('{{$index}}')"
+							dnd-selected="selected = module"
+							ng-class="{selected: selected === module}"
+							ng-include="'item.html'"
+							ng-click="changeActiveModule(module)">
+						</li>
+					</ul>
+					<ul id="itemlist" dnd-list="modules" ng-if="isNotOwner()">
+						<li ng-model="modules" ng-repeat="module in modules"
 							dnd-selected="selected = module"
 							ng-class="{selected: selected === module}"
 							ng-include="'item.html'"
