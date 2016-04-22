@@ -118,6 +118,9 @@
   							d01m01y2016: {
   								eventName1_Wille: true
   							}
+                d27m04y2016: {
+                  database_lecture: true
+                }
   						}
   					}
   				});
@@ -163,6 +166,47 @@
       				}
       			});
       			
+            eventRef.child("d27m04y2016").update({
+                database_lecture_Wille: {
+                  ownerid: myid,
+                  ownerName: "Wille",
+                  invited: {
+                    [myid]: true,
+                  },
+                  invitedNames: {
+                    Wille: true,
+                  },
+                  name: "database_lecture",
+                  date: "27/04/2016",
+                  start: "10:15",
+                  end: "12:00",
+                length: "1h45m",
+                agenda: {
+                  Chapter_1: {
+                    start: "10:15",
+                    end: "10:30",
+                    length: "0h45m",
+                    description: "Presenting the first chapter in the book.",
+                    category: "Presentation"
+                  },
+                  Short_break: {
+                    start: "11:00",
+                    end: "11:15",
+                    length: "0h15m",
+                    description: "Very relaxing",
+                      category: "Break"
+                  },
+                  Chapter_2: {
+                    start: "11:15",
+                    end: "12:00",
+                    length: "0h45m",
+                    description: "Presenting the second chapter in the book.",
+                    category: "Presentation"
+                  }
+                }
+              }
+            });
+
       			myDataRef.unauth();
 
 				myDataRef.authWithPassword({
