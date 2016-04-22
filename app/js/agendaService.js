@@ -292,6 +292,11 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	vm.setEvent = function (eventObject, callbackFunction) {
 		console.log("setEvent");
+		eventObject.name = eventObject.name.replace(/[^a-zA-Z0-9]+/g,"");
+
+		if(eventObject.name === ""){
+			eventObject.name = "Untitled";
+		}
 
 		dayCode = "d" + eventObject.day + "m" + eventObject.month + "y" + eventObject.year;
 		nameCode = eventObject.name + "_" + eventObject.owner;
