@@ -30,7 +30,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			$location.url('/agenda');
 			return;
 		} else {
-			console.log("Something went wrong when trying to go to the agenda");
+			//console.log("Something went wrong when trying to go to the agenda");
             return;
 		}
 
@@ -84,7 +84,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
             $scope.dayschedule3 = "";
             $scope.dayschedule4 = "";
             $scope.dayschedule5 = "";
-            console.log("Apply2");
+            //console.log("Apply2");
             $scope.$apply();
         }
 
@@ -103,7 +103,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		var htmlString4 = "";
 		var htmlString5 = "";
 
-		console.log(value);
+		//console.log(value);
 
 		var daynr = 0;
 		for (day in value) {
