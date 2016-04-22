@@ -24,9 +24,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	}
 
     /*
-     * Function that sends a meeting to the agenda view
-     * @param day what day the meeting belongs to
-     * @param number the meeting that was clicked, 0 for the first meeting
+     * Sends user to agenda view after telling agenda that a new meeting should be created
      */
 	$scope.toAgenda = function (bool, day, number) {
 		if (!bool) {
@@ -41,7 +39,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	};
 
     /*
-     * Is not used
+     * Function that sends a meeting to the agenda view
+     * @param day what day the meeting belongs to
+     * @param number the meeting that was clicked, 0 for the first meeting
      */
 	function toAgenda2(bool, day, number) {
         Agenda.setWorkingDate(date);
@@ -65,31 +65,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			return 0;
         }
 	}
-
-    /*
-     * @param ok if the call was successful
-     * @param msg message about the returned value
-     * @param value the returned value of the call
-     */
-	var callback = function (ok, msg, value) {
-        
-        //copy the returned value to save it for later use
-		schedule = value;
-
-		var count = 0;
-        
-        if (ok) {
-		  writeToSchedule(value);
-        } else {
-            $scope.dayschedule1 = "";
-            $scope.dayschedule2 = "";
-            $scope.dayschedule3 = "";
-            $scope.dayschedule4 = "";
-            $scope.dayschedule5 = "";
-            $scope.$apply();
-        }
-
-	};
 
     /*
      * Takes the returned value of the call and 
@@ -144,6 +119,33 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		value = [];
 		$scope.$apply();
 	}
+    
+    /*
+     * Callback function that handles the returned values
+     * @param ok if the call was successful
+     * @param msg message about the returned value
+     * @param value the returned value of the call
+     */
+	var callback = function (ok, msg, value) {
+        
+        //copy the returned value to save it for later use
+		schedule = value;
+
+		var count = 0;
+        
+        if (ok) {
+		  writeToSchedule(value);
+        } else {
+            alert(msg);
+            $scope.dayschedule1 = "";
+            $scope.dayschedule2 = "";
+            $scope.dayschedule3 = "";
+            $scope.dayschedule4 = "";
+            $scope.dayschedule5 = "";
+            $scope.$apply();
+        }
+
+	};
 
     /*
      * Function that is called when a meeting is clicked in a day-panel
