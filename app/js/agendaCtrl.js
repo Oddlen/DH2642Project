@@ -667,11 +667,13 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
          */
         var callbk = function(ok,msg,data){
             // Stop the loading wheel
-            $scope.loading = false;
             if(ok){
-                window.location="/#calendar";
+                setTimeout(function() {
+                    $scope.loading = false;
+                    window.location="/#calendar";
+                }, 500);
             }else{
-                alert(msg);
+                $scope.loading = false;
             }
         }
         // Start the loading wheel

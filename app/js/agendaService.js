@@ -214,7 +214,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	function getDayStep3(ok, data, callbackFunction) {
 		if (ok) {
-			dataArray.push(data);
+			if(data !==null){
+				dataArray.push(data);
+			}
 		}
 		waiting--;
 		if (waiting == 0) {
@@ -332,8 +334,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			}
 		}
 		if ( (eventObject.oldname != "" && eventObject.oldname != eventObject.name) || (eventObject.oldyear != "" && eventObject.oldyear != eventObject.year) || (eventObject.oldmonth != "" && eventObject.oldmonth != eventObject.month) || (eventObject.oldday != "" && eventObject.oldday != eventObject.day) ) {
-			var od = new Date(eventObject.oldyear, eventObject.oldmonth - 1, eventObject.oldday, 0, 0, 0, 0);
-			if (od.getTime() != d.getTime() || eventObject.oldame != eventObject.name) {
+			var od = new Date(eventObject.oldyear, eventObject.oldmonth, eventObject.oldday, 0, 0, 0, 0);
+			if (od.getTime() != d.getTime() || eventObject.oldname != eventObject.name) {
 				vm.removeEvent(od, eventObject.oldname);
 			}
 		}
