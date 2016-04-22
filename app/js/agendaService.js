@@ -277,7 +277,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			},
 			function (errorObject) {
 				console.log("The read failed: " + errorObject.code);
-				callbackFunction(false, "No data found for this day", [];
+				callbackFunction(false, "No data found for this day", []);
 			}
 		);
 	}
@@ -407,6 +407,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.removeEvent = function (eventDay, eventName) {
+		eventDay.setMonth(eventDay.getMonth()-1);
 		var dayCode = getDayCode(eventDay);
 		var nameCode = eventName + "_" + vm.usernameRef;
 		var url = "https://dh2642.firebaseIO.com/events/" + dayCode + "/" + nameCode;
