@@ -65,8 +65,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	dataArray = [];
 	weekArray = [];
 	dayCounter = 0;
-	getDayInProgress = false;
-	getWeekInProgress = false;
 	weekCallback = null;
 	weekStartDate = null;
 	vm.usernameRef = $cookieStore.get("LoggedInUsername");
@@ -188,11 +186,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.get5Days = function (day, callbackFunction){
-		if (getWeekInProgress)
-		{
-			callbackFunction(false, "Too many database requests", null);
-		}
-		getWeekInProgress = true;
   		weekArray = [];
   		dayCounter = 0;
   		weekCallback = callbackFunction;
@@ -203,22 +196,30 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	function get5DaysStep2(ok, msg, data) {
 		if(vm.usernameRef === ""){
 			weekCallback(false, "Cannot fetch data, logged out", []);
-			return;
 		}
-		weekArray.push(data);
-		dayCounter++;
-		console.log("days in get week");
-		console.log(dayCounter);
-		if (dayCounter >= 5) {
-			getWeekInProgress = false;
-			weekCallback(true, "5 days of data", weekArray);
-		} else {
-			var nextDay = new Date();
+		else if (!ok)
+		{
+			console.log(msg);
+			var sameDay = new Date();
+			sameDay = new Date(weekStartDate.valueOf());
+			sameDay.setDate(weekStartDate.getDate() + dayCounter);
+			vm.getDay(sameDay, get5DaysStep2);
+		}
+		else {
+			weekArray.push(data);
+			dayCounter++;
+			console.log("days in get week");
+			console.log(dayCounter);
+			if (dayCounter >= 5) {
+				weekCallback(true, "5 days of data", weekArray);
+			} else {
+				var nextDay = new Date();
 
-			nextDay = new Date(weekStartDate.valueOf());
-			nextDay.setDate(weekStartDate.getDate() + dayCounter);
+				nextDay = new Date(weekStartDate.valueOf());
+				nextDay.setDate(weekStartDate.getDate() + dayCounter);
 
-			vm.getDay(nextDay, get5DaysStep2);
+				vm.getDay(nextDay, get5DaysStep2);
+			}
 		}
 	}
 
@@ -237,7 +238,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				var bVal = b.start.replace(':', '');
 				return parseFloat(aVal) - parseFloat(bVal);
 			});
-			getDayInProgress = false;
 			callbackFunction(true, "ok", tempArray);
 		}
 	}
@@ -270,11 +270,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			callbackFunction(false, "Not logged in", null);
 			return;
 		}
-		if (getDayInProgress) {
-			callbackFunction(false, "Too many database calls", null);
-			return
-		}
-		getDayInProgress = true;
 		var dayCode = getDayCode(day);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
@@ -282,7 +277,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			},
 			function (errorObject) {
 				console.log("The read failed: " + errorObject.code);
-				getDayInProgress = false;
 				callbackFunction(false, "No data found for this day", null);
 			}
 		);
