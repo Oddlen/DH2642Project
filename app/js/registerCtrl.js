@@ -35,7 +35,7 @@ agendaApp.controller('RegisterCtrl', function ($scope,$location,Agenda) {
             var callback = function (ok, msg) {
                 // Stop the loading wheel
                 $scope.loading = false;
-                console.log(msg);
+                //console.log(msg);
                 if(ok){
                     $scope.$apply(function() {
                         $scope.usernameTaken = false;

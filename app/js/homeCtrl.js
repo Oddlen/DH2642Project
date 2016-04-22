@@ -42,7 +42,7 @@ agendaApp.controller('HomeCtrl', function ($scope,$location, Agenda) {
         var callback = function(ok,msg){
             // Stop the spinner
             $scope.loading = false;
-            console.log(msg);
+           // console.log(msg);
             if(ok){
                 $scope.$apply(function() {
                     $scope.nonmatchingLogin=false;

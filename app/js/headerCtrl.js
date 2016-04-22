@@ -10,7 +10,7 @@ agendaApp.controller('HeaderCtrl', function ($scope,$location, Agenda) {
 	 * A function for loading home-page, which depends on if the user is logged in or not
 	 */
 	$scope.loadHome = function () {
-		console.log("load");
+		//console.log("load");
 		if($scope.user===""){
 			$location.url('/home');
 		}else{
