@@ -3,14 +3,14 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	var myDataRef = new Firebase('https://dh2642.firebaseIO.com/'),
 		eventRef = myDataRef.child("events"),
 		agendaArray = [],
-		date = new Date(),
+		date = Agenda.getWorkingDate(),
 		weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		datestring,
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5,
         schedule;
-	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
-    
+	//date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a januari
+    console.log(date);
 	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
 
 	$scope.testAlert = function () {
@@ -29,16 +29,13 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
      * @param number the meeting that was clicked, 0 for the first meeting
      */
 	$scope.toAgenda = function (bool, day, number) {
-		if (bool) {
-			MeetingAgenda.setExistingMeeting(true);
-			MeetingAgenda.setMeeting(schedule[day][number]);
+		if (!bool) {
+            MeetingAgenda.setExistingMeeting(false);
 			$location.url('/agenda');
 			return;
-
 		} else {
-			MeetingAgenda.setExistingMeeting(false);
-			$location.url('/agenda');
-			return;
+			console.log("Something went wrong when trying to go to the agenda");
+            return;
 		}
 
 	};
@@ -47,7 +44,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
      * Is not used
      */
 	function toAgenda2(bool, day, number) {
-
+        Agenda.setWorkingDate(date);
 		MeetingAgenda.setExistingMeeting(true);
 		MeetingAgenda.setMeeting(schedule[day][number]);
 		$location.url('/agenda');
