@@ -59,8 +59,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	useRef = dataRef.child("users");
 	eveRef = dataRef.child("events");
 	catRef = dataRef.child("categories");
-	vm.workingDate = new Date();
 	vm = this;
+	vm.workingDate = new Date();
 	waiting = 0;
 	dataArray = [];
 	weekArray = [];

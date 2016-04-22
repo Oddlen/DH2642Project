@@ -10,12 +10,94 @@
       		var usersRef = myDataRef.child("users");
       		var eventRef = myDataRef.child("events");
       		var catRef = myDataRef.child("categories");
+          var WilleUID = "";
+          var JockeUID = "";
+          var MarkUID = "";
+          var MarcusUID = "";
       		createUsers();
       		createCategories();
-      		createEventsStep1();
+
+          function getUIDsStep1(){
+            myDataRef.authWithPassword({
+              email: "Wille@mail.com",
+              password: "WillePassword"
+          }, function(error, authData) {
+              if (error) {
+                console.log("Login Failed!", error);
+                console.log("Stopped at createEventsStep1.");
+              } else {
+                console.log("Authenticated successfully with payload:", authData);
+                getUIDsStep2();
+              }
+          }
+        );
+      }
+
+      function getUIDsStep2(){  
+        WilleUID = myDataRef.getAuth().uid;
+        myDataRef.unauth();
+
+        myDataRef.authWithPassword({
+              email: "Mark@mail.com",
+              password: "MarkPassword"
+          }, function(error, authData) {
+              if (error) {
+                console.log("Login Failed!", error);
+                console.log("Stopped at createEventsStep2");
+              } else {
+                console.log("Authenticated successfully with payload:", authData);
+                getUIDsStep3();
+              }
+          }
+        );
+      }
+
+      function getUIDsStep3(){  
+        MarkUID = myDataRef.getAuth().uid;
+        myDataRef.unauth();
+
+        myDataRef.authWithPassword({
+              email: "Marcus@mail.com",
+              password: "MarcusPassword"
+          }, function(error, authData) {
+              if (error) {
+                console.log("Login Failed!", error);
+                console.log("Stopped at createEventsStep2");
+              } else {
+                console.log("Authenticated successfully with payload:", authData);
+                getUIDsStep4();
+              }
+          }
+        );
+      }
+
+      function getUIDsStep4(){  
+        MarcusUID = myDataRef.getAuth().uid;
+        myDataRef.unauth();
+
+        myDataRef.authWithPassword({
+              email: "Jocke@mail.com",
+              password: "JockePassword"
+          }, function(error, authData) {
+              if (error) {
+                console.log("Login Failed!", error);
+                console.log("Stopped at createEventsStep2");
+              } else {
+                console.log("Authenticated successfully with payload:", authData);
+                getUIDsStep5();
+              }
+          }
+        );
+      }
+
+
+      function getUIDsStep5(){  
+        JockeUID = myDataRef.getAuth().uid;
+        myDataRef.unauth();
+        createEventsStep1();
+      }
 
       		function createUsers(){
-
       			myDataRef.createUser({
   						email: "Wille@mail.com",
   						password: "WillePassword"
@@ -64,6 +146,7 @@
               }
           }
         );
+      getUIDsStep1();
       }
 
 			function createCategories(){
@@ -146,21 +229,24 @@
      								end: "08:30",
      								length: "0h20m",
      								description: "Very important stuff",
-     								category: "Introduction"
+     								category: "Introduction",
+                    name: "name1"
      							},
      							name2: {
      								start: "08:30",
      								end: "08:40",
      								length: "0h10m",
      								description: "Very relaxing",
-     									category: "Break"
+     								category: "Break",
+                    name: "name2"
      							},
      							name3: {
      								start: "08:40",
      								end: "09:10",
      								length: "0h30m",
      								description: "Very Cool stuff",
-     								category: "Other"
+     								category: "Other",
+                    name: "name3"
      							}
      						}
       				}
@@ -187,21 +273,24 @@
                     end: "10:30",
                     length: "0h45m",
                     description: "Presenting the first chapter in the book.",
-                    category: "Presentation"
+                    category: "Presentation",
+                    name: "Chapter_1"
                   },
                   Short_break: {
                     start: "11:00",
                     end: "11:15",
                     length: "0h15m",
                     description: "Very relaxing",
-                      category: "Break"
+                    category: "Break",
+                    name: "Short_break"
                   },
                   Chapter_2: {
                     start: "11:15",
                     end: "12:00",
                     length: "0h45m",
                     description: "Presenting the second chapter in the book.",
-                    category: "Presentation"
+                    category: "Presentation",
+                    name: "Chapter_2"
                   }
                 }
               }
@@ -260,21 +349,24 @@
                     end: "08:30",
                     length: "0h20m",
                     description: "Very important stuff",
-                    category: "Introduction"
+                    category: "Introduction",
+                    name: "name1"
                   },
                   name2: {
                     start: "08:30",
                     end: "08:40",
                     length: "0h10m",
                     description: "Very relaxing",
-                      category: "Break"
+                    category: "Break",
+                    name: "name2"
                   },
                   name3: {
                     start: "08:40",
                     end: "09:10",
                     length: "0h30m",
                     description: "Very Cool stuff",
-                    category: "Other"
+                    category: "Other",
+                    name: "name3"
                   }
                 }
               }
@@ -333,21 +425,24 @@
                     end: "08:30",
                     length: "0h20m",
                     description: "Very important stuff",
-                    category: "Introduction"
+                    category: "Introduction",
+                    name: "name1"
                   },
                   name2: {
                     start: "08:30",
                     end: "08:40",
                     length: "0h10m",
                     description: "Very relaxing",
-                      category: "Break"
+                    category: "Break",
+                    name: "name2"
                   },
                   name3: {
                     start: "08:40",
                     end: "09:10",
                     length: "0h30m",
                     description: "Very Cool stuff",
-                    category: "Other"
+                    category: "Other",
+                    name: "name3"
                   }
                 }
               }
@@ -406,21 +501,24 @@
                     end: "08:30",
                     length: "0h20m",
                     description: "Very important stuff",
-                    category: "Introduction"
+                    category: "Introduction",
+                    name: "name1"
                   },
                   name2: {
                     start: "08:30",
                     end: "08:40",
                     length: "0h10m",
                     description: "Very relaxing",
-                      category: "Break"
+                    category: "Break",
+                    name: "name2"
                   },
                   name3: {
                     start: "08:40",
                     end: "09:10",
                     length: "0h30m",
                     description: "Very Cool stuff",
-                    category: "Other"
+                    category: "Other",
+                    name: "name3"
                   }
                 }
               }
