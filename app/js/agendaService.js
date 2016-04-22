@@ -59,6 +59,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	useRef = dataRef.child("users");
 	eveRef = dataRef.child("events");
 	catRef = dataRef.child("categories");
+	vm.workingDate = new Date();
 	vm = this;
 	waiting = 0;
 	dataArray = [];
@@ -78,7 +79,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		catRef.on("value", function (snapshot) {
 				var categories = snapshot.val();
 				for (var key in categories) {
-					//console.log(categories[key]);
 					vm.categoryList.push(categories[key]);
 				}
 				console.log("All categories fetched");
@@ -90,7 +90,13 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		$cookieStore.put("categoriesCache", vm.categoryList);
 	}
 
+	vm.setWorkingDate = function (newDate) {
+		vm.workingDate = newDate;
+	}
 
+	vm.getWorkingDate = function () {
+		return vm.workingDate;
+	}
 
 	vm.getUser = function () {
 		return vm.usernameRef;
@@ -308,7 +314,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 					end: eventObject.agenda[i].end,
 					length: eventObject.agenda[i].length,
 					description: eventObject.agenda[i].description,
-					category: eventObject.agenda[i].category
+					category: eventObject.agenda[i].category,
+					name: eventObject.agenda[i].name
 				}
 			});
 		}
