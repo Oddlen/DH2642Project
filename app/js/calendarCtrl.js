@@ -11,8 +11,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
         schedule,
         w1, w2;
 
-	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
-
 	$scope.testAlert = function () {
 		alert('testing');
 	};
