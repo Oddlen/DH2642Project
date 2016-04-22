@@ -341,8 +341,8 @@
 			left: 20%;
 		}
 		#removeagenda {
-			top: 75%;
-			left: 1%;
+			top: 80%;
+			left: 20%;
 		}
 
 	}
@@ -749,7 +749,7 @@
 		.submitbutton {
 			width: 70px;
 			height: 30px;
-			font-size: 60% !important;
+			font-size: 55% !important;
 		}
 	}
 	

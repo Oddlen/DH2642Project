@@ -140,7 +140,9 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         $scope.date = new Date(schedule.year, +schedule.month-1, schedule.day, hoursAndMins[0], hoursAndMins[1]);
         $scope.oldname = schedule.name;
         $scope.oldyear = schedule.year;
-        $scope.oldmonth = schedule.day;
+        console.log($scope.oldyear);
+        $scope.oldmonth = schedule.month;
+        $scope.oldday = schedule.day;
         for(var i = 0; i < schedule.agenda.length;i++){
             schedule.agenda[i].tempid = identifier;
             identifier++;
@@ -681,20 +683,26 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         Agenda.setEvent(schedule, callbk)
     };
 
+    /**
+     * Updates which user to invite
+     */
     $scope.updateUser = function(user){
         $scope.inviting = user;
     }
 
+    /**
+     * Removes an agenda
+     */
     $scope.removeAgenda = function(){
-                $scope.oldday="";
-                $scope.oldmonth="";
-                $scope.oldyear="";
+        $scope.loading = true;
                 var date = null;
                 if($scope.oldday!=="" && $scope.oldmonth !=="" && $scope.oldyear !=="" && $scope.oldname !== ""){
-                    date = new Date($scope.oldyear,$scope.oldmonth,$scope.oldyear);
+                    date = new Date($scope.oldyear,$scope.oldmonth,$scope.oldday);
                     Agenda.removeEvent(date,$scope.oldname);
+                    $scope.loading = false;
                     window.location="/#calendar";
                 }else{
+                    $scope.loading = false;
                     window.location="/#calendar";
                 }
     }
