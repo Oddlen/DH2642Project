@@ -302,11 +302,11 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 
 	vm.setEvent = function (eventObject, callbackFunction) {
 		console.log("setEvent");
-		eventObject.name = eventObject.name.replace(/[^a-zA-Z0-9]+/g,"");
-
 		if(eventObject.name === ""){
 			eventObject.name = "Untitled";
 		}
+		eventObject.name = eventObject.name.replace(/^[^a-zA-Z0-9]+/g,"");
+		console.log(eventObject.name);
 
 		dayCode = "d" + eventObject.day + "m" + eventObject.month + "y" + eventObject.year;
 		nameCode = eventObject.name + "_" + eventObject.owner;
@@ -404,6 +404,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		var dayCode = getDayCode(eventDay);
 		var nameCode = eventName + "_" + vm.usernameRef;
 		var url = "https://dh2642.firebaseIO.com/events/" + dayCode + "/" + nameCode;
+		console.log(url);
 		var deleteRef = new Firebase(url);
 		deleteRef.remove();
 	}

@@ -140,7 +140,6 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
         $scope.date = new Date(schedule.year, +schedule.month-1, schedule.day, hoursAndMins[0], hoursAndMins[1]);
         $scope.oldname = schedule.name;
         $scope.oldyear = schedule.year;
-        console.log($scope.oldyear);
         $scope.oldmonth = schedule.month;
         $scope.oldday = schedule.day;
         for(var i = 0; i < schedule.agenda.length;i++){
