@@ -325,7 +325,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			length: eventObject.length,
 		});
 
-		for(i = 0; i < eventObject.agenda.length){
+		for(i = 0; i < eventObject.agenda.length;i++){
 			var moduleName = eventObject.agenda[i].name;
 			moduleName = moduleName.replace(/^[^a-zA-Z0-9]+/g,"");
 			if(moduleName === ""){
