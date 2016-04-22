@@ -9,8 +9,8 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5,
         schedule;
-	//date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a januari
-    console.log(date);
+	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
+
 	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
 
 	$scope.testAlert = function () {
@@ -67,6 +67,32 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 	}
 
     /*
+     * @param ok if the call was successful
+     * @param msg message about the returned value
+     * @param value the returned value of the call
+     */
+	var callback = function (ok, msg, value) {
+        
+        //copy the returned value to save it for later use
+		schedule = value;
+
+		var count = 0;
+        
+        if (ok) {
+		  writeToSchedule(value);
+        } else {
+            $scope.dayschedule1 = "";
+            $scope.dayschedule2 = "";
+            $scope.dayschedule3 = "";
+            $scope.dayschedule4 = "";
+            $scope.dayschedule5 = "";
+            console.log("Apply2");
+            $scope.$apply();
+        }
+
+	};
+
+    /*
      * Takes the returned value of the call and 
      * writes the meetings to the respective day-panel in the calendar view
      * @param value 5 days and meetings in them
@@ -117,7 +143,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 		}
 		value = [];
-		$scope.$apply();
+		      setTimeout(function () {
+                  $scope.$apply();
+              }, 200);
 	}
     
     /*
@@ -228,7 +256,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			setDatestring(today, wday);
 			wday = wday + 1;
 		}
-        
 		Agenda.get5Days(today, callback);
 	}
 

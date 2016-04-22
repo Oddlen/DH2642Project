@@ -38,6 +38,21 @@ agendaApp.directive('dynamic', function ($compile) {
     };
   })**/
 
+agendaApp.directive('ngConfirmClick', [
+  function(){
+    return {
+      link: function (scope, element, attr) {
+        var msg = attr.ngConfirmClick || "Are you sure?";
+        var clickAction = attr.confirmedClick;
+        element.bind('click',function (event) {
+          if ( window.confirm(msg) ) {
+            scope.$eval(clickAction)
+          }
+        });
+      }
+    };
+  }])
+
 agendaApp.directive('compile', ['$compile', function ($compile) {
     return function(scope, element, attrs) {
       scope.$watch(
