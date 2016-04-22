@@ -322,6 +322,12 @@
 			font-size: 80%;
 		}
 	}
+
+	#removeagenda {
+		position: absolute;
+		top: 85%;
+		left: 5%;
+	}
 	
 	#confirmagenda {
 		position: absolute;
@@ -334,6 +340,11 @@
 			top: 75%;
 			left: 20%;
 		}
+		#removeagenda {
+			top: 75%;
+			left: 1%;
+		}
+
 	}
 	
 	#confirmediting {

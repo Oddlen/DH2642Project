@@ -684,4 +684,18 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
     $scope.updateUser = function(user){
         $scope.inviting = user;
     }
+
+    $scope.removeAgenda = function(){
+                $scope.oldday="";
+                $scope.oldmonth="";
+                $scope.oldyear="";
+                var date = null;
+                if($scope.oldday!=="" && $scope.oldmonth !=="" && $scope.oldyear !=="" && $scope.oldname !== ""){
+                    date = new Date($scope.oldyear,$scope.oldmonth,$scope.oldyear);
+                    Agenda.removeEvent(date,$scope.oldname);
+                    window.location="/#calendar";
+                }else{
+                    window.location="/#calendar";
+                }
+    }
 })

@@ -124,6 +124,10 @@
 							</div>
 						</div>
 					</div>
+					<div id="removeagenda" ng-hide="isNotOwner()">
+						<button type="button" class="btn btn-danger submitbutton" confirmed-click="removeAgenda()" ng-confirm-click="Are you sure you want to remove?">Remove agenda</button>
+					</div>
+
 					<div id="confirmagenda" ng-hide="isNotOwner()">
 						<button type="button" class="btn btn-success submitbutton" ng-click="submitAgenda()" ng-disabled="agendaButtonDisabled()">
 							Confirm agenda
