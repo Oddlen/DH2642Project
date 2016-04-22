@@ -277,7 +277,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			},
 			function (errorObject) {
 				console.log("The read failed: " + errorObject.code);
-				callbackFunction(false, "No data found for this day", null);
+				callbackFunction(false, "No data found for this day", [];
 			}
 		);
 	}
@@ -350,7 +350,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				callbackFunction(false, msg, null)
 			}
 		}
-		if (eventObject.oldname != "") {
+		if ( (eventObject.oldname != "" && eventObject.oldname != eventObject.name) || (eventObject.oldyear != "" && eventObject.oldyear != eventObject.year) || (eventObject.oldmonth != "" && eventObject.oldmonth != eventObject.month) || (eventObject.oldday != "" && eventObject.oldday != eventObject.day) ) {
 			var od = new Date(eventObject.oldyear, eventObject.oldmonth - 1, eventObject.oldday, 0, 0, 0, 0);
 			if (od.getTime() != d.getTime() || eventObject.oldame != eventObject.name) {
 				vm.removeEvent(od, eventObject.oldname);
