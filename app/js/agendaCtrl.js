@@ -563,6 +563,7 @@ agendaApp.controller('AgendaCtrl', function ($scope, $timeout,$location, Agenda,
      */
     $scope.closeDetails = function(){
         $scope.editing = false;
+        $scope.activeModule = {};
     }
 
     /**

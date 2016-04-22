@@ -189,6 +189,9 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	function get5DaysStep2(ok, msg, data) {
+		if(vm.usernameRef === "" || data===null){
+			weekCallback(false, "Cannot fetch data, logged out", []);
+		}
 		weekArray.push(data);
 		console.log(data);
 		dayCounter++;
@@ -251,7 +254,10 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.getDay = function (day, callbackFunction) {
-
+		if(vm.usernameRef === ""){
+			callbackFunction(false, "Not logged in", null);
+			return;
+		}
 		var dayCode = getDayCode(day);
 		useRef.child(vm.usernameRef).child("days").child(dayCode).on("value",
 			function (snapshot) {
