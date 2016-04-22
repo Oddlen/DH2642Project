@@ -9,7 +9,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 		dd, mm, yyyy,
 		d1, d2, d3, d4, d5,
         schedule;
-	date.setFullYear(2016, 3, 1); //inita dagen att vara 1:a april
+	date.setFullYear(2016, 0, 1); //inita dagen att vara 1:a april
     
 	//$scope.trustedHtml = $sce.trustAsHtml('<button ng-click="testAlert()">Submit</button>');
 
@@ -89,6 +89,7 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
             $scope.dayschedule3 = "";
             $scope.dayschedule4 = "";
             $scope.dayschedule5 = "";
+            console.log("Apply2");
             $scope.$apply();
         }
 
@@ -145,7 +146,9 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 
 		}
 		value = [];
-		$scope.$apply();
+		      setTimeout(function () {
+                  $scope.$apply();
+              }, 200);
 	}
 
     /*
@@ -229,7 +232,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
 			setDatestring(today, wday);
 			wday = wday + 1;
 		}
-        
 		Agenda.get5Days(today, callback);
 	}
 
