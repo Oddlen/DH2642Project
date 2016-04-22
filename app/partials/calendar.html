@@ -3,54 +3,63 @@
 <div id="calendarmain">
 	<div class="container-fluid">
 		<div class="row">
-			<div id="changedaysLeft">
-				<button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">&lt;&lt;&nbsp;</button>
-				<button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">&lt;</button>
-			</div>
-            <div class="col-md-1 col-sm-0"></div>
-			<div id="cal">
-				<div class="col-md-2 col-sm-12">
+			<div class="col-md-12 col-lg-12 col-sm-12" id="cal">
+                   <div class="col-md-1 col-lg-1 col-sm-1">
+                       <div id="designdiv">
+                        <p>Add meeting</p>
+                        <button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
+                            <div class="glyphicon glyphicon-plus iconstyle particons"></div>
+                        </button>
+                </div>
+            	<div id="changedaysLeft">
+                    <button id="prevweek" type="button" class="btn btn-primary" ng-click="prevweek()">&lt;&lt;&nbsp;</button>
+                    <button id="prevday" type="button" class="btn btn-primary" ng-click="prevday()">&lt;</button>
+                </div>
+            </div>
+				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default day" id="day1">
 						<div class="panel-heading schedulepanel">{{day1}}</div>
 						<div class="panel-body" compile="dayschedule1"></div>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-12">
+				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default day" id="day2">
 						<div class="panel-heading schedulepanel">{{day2}}</div>
 						<div class="panel-body" compile="dayschedule2"></div>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-12">
+				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default day" id="day3">
 						<div class="panel-heading schedulepanel">{{day3}}</div>
 
 						<div class="panel-body" compile="dayschedule3"></div>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-12">
+				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default  day" id="day4">
 						<div class="panel-heading schedulepanel">{{day4}}</div>
 						<div class="panel-body" compile="dayschedule4"></div>
 					</div>
 				</div>
-				<div class="col-md-2 col-sm-12">
+				<div class="col-md-2 col-lg-2 col-sm-10">
 					<div class="panel panel-default day" id="day5">
 						<div class="panel-heading schedulepanel">{{day5}}</div>
 						<div class="panel-body" compile="dayschedule5"></div>
 					</div>
 
 				</div>
+                 <div class="col-md-1 col-lg-1 col-sm-1">
+                <div id="addmeetingtext">
+                        <p>Add meeting</p>
+                        <button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
+                            <div class="glyphicon glyphicon-plus iconstyle particons"></div>
+                        </button>
+                </div>
+                <div id="changedaysRight">
+                    <button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">&gt;</button>
+                    <button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">&gt;&gt;</button>
+                </div>
+            </div>
 			</div>
-            <div id="addmeetingtext">
-                    <p>Add meeting</p>
-                    <button type="button" id="addmeeting" class="btn btn-primary" ng-click="toAgenda(false)">
-                        <div class="glyphicon glyphicon-plus iconstyle particons"></div>
-                    </button>
-            </div>
-            <div id="changedaysRight">
-                <button id="nextday" type="button" class="btn btn-primary" ng-click="nextday()">&gt;</button>
-                <button id="nextweek" type="button" class="btn btn-primary" ng-click="nextweek()">&gt;&gt;</button>
-            </div>
 		</div>
 	</div>
