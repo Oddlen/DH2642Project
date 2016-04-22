@@ -203,22 +203,31 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	function get5DaysStep2(ok, msg, data) {
 		if(vm.usernameRef === ""){
 			weekCallback(false, "Cannot fetch data, logged out", []);
-			return;
 		}
-		weekArray.push(data);
-		dayCounter++;
-		console.log("days in get week");
-		console.log(dayCounter);
-		if (dayCounter >= 5) {
-			getWeekInProgress = false;
-			weekCallback(true, "5 days of data", weekArray);
-		} else {
-			var nextDay = new Date();
+		else if (!ok)
+		{
+			console.log(msg);
+			var sameDay = new Date();
+			sameDay = new Date(weekStartDate.valueOf());
+			sameDay.setDate(weekStartDate.getDate() + dayCounter);
+			vm.getDay(sameDay, get5DaysStep2);
+		}
+		else {
+			weekArray.push(data);
+			dayCounter++;
+			console.log("days in get week");
+			console.log(dayCounter);
+			if (dayCounter >= 5) {
+				getWeekInProgress = false;
+				weekCallback(true, "5 days of data", weekArray);
+			} else {
+				var nextDay = new Date();
 
-			nextDay = new Date(weekStartDate.valueOf());
-			nextDay.setDate(weekStartDate.getDate() + dayCounter);
+				nextDay = new Date(weekStartDate.valueOf());
+				nextDay.setDate(weekStartDate.getDate() + dayCounter);
 
-			vm.getDay(nextDay, get5DaysStep2);
+				vm.getDay(nextDay, get5DaysStep2);
+			}
 		}
 	}
 
