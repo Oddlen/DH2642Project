@@ -45,8 +45,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	this.Weather = $resource('http://api.openweathermap.org/data/2.5/weather', {
 		APPID: apiKey
 	});
-	//'api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&APPID='+apikey;
-	console.log(this.Weather);
 
 
 	// callback function api.
@@ -81,10 +79,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				for (var key in categories) {
 					vm.categoryList.push(categories[key]);
 				}
-				console.log("All categories fetched");
 			},
 			function (errorObject) {
-				console.log("The read of categories failed: " + errorObject.code);
 			}
 		);
 		$cookieStore.put("categoriesCache", vm.categoryList);
@@ -110,17 +106,14 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	vm.login = function (username, password, callbackFunction) {
-		console.log("Login");
 		vm.logout();
 		dataRef.authWithPassword({
 			email: username + "@mail.com",
 			password: password
 		}, function (error, authData) {
 			if (error) {
-				console.log("Login Failed!", error);
 				callbackFunction(false, "Login Failed.", null);
 			} else {
-				console.log("Authenticated successfully.", null);
 				vm.usernameRef = username;
 				$cookieStore.put("LoggedInUsername", username);
 				vm.auth = dataRef.getAuth();
@@ -136,10 +129,8 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 			},
 			function (error, userData) {
 				if (error) {
-					console.log("Error creating user:", error);
 					callbackFunction(false, "Could not create the new user.", null);
 				} else {
-					console.log("Successfully created user account.");
 					createUserStep2(username, password, callbackFunction);
 
 				}
@@ -159,7 +150,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 					}
 				}, function (error) {
 					if (error) {
-						console.log('Synchronization failed', error);
 						callbackFunction(false, "Error when creating user.", null);
 					} else {
 						callbackFunction(true, "User has been created.", null);
@@ -175,17 +165,19 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	vm.getUID = function (username, callbackFunction) {
 		useRef.child(username).child("id").on("value",
 			function (snapshot) {
-				console.log(snapshot.val());
 				callbackFunction(true, "The UID of " + username, snapshot.val())
 			},
 			function (errorObject) {
-				console.log("The read failed: " + errorObject.code);
 				callbackFunction(false, "Could not get the UID of " + username + " " + errorObject.code, null)
 			}
 		);
 	}
 
 	vm.get5Days = function (day, callbackFunction){
+		if(vm.usernameRef === ""){
+			callbackFunction(false, "Not logged in", null);
+			return;
+		}
   		weekArray = [];
   		dayCounter = 0;
   		weekCallback = callbackFunction;
@@ -199,7 +191,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		}
 		else if (!ok)
 		{
-			console.log(msg);
 			var sameDay = new Date();
 			sameDay = new Date(weekStartDate.valueOf());
 			sameDay.setDate(weekStartDate.getDate() + dayCounter);
@@ -208,8 +199,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		else {
 			weekArray.push(data);
 			dayCounter++;
-			console.log("days in get week");
-			console.log(dayCounter);
 			if (dayCounter >= 5) {
 				weekCallback(true, "5 days of data", weekArray);
 			} else {
@@ -230,9 +219,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		waiting--;
 		if (waiting == 0) {
 			var tempArray = dataArray;
-			console.log(dataArray);
 			dataArray = [];
-			console.log(tempArray);
 			tempArray.sort(function (a, b) {
 				var aVal = a.start.replace(':', '');
 				var bVal = b.start.replace(':', '');
@@ -245,7 +232,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	function getDayStep2(day, data, callbackFunction) {
 		waiting = 0;
 		dataArray = [];
-		console.log(data);
 		for (var key in data) {
 			waiting++;
 		}
@@ -258,7 +244,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 					getDayStep3(true, snapshot.val(), callbackFunction);
 				},
 				function (errorObject) {
-					console.log("The read failed: " + errorObject.code);
 					getDayStep3(false, errorObject.code, callbackFunction);
 				}
 			);
@@ -276,28 +261,24 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				getDayStep2(dayCode, snapshot.val(), callbackFunction);
 			},
 			function (errorObject) {
-				console.log("The read failed: " + errorObject.code);
 				callbackFunction(false, "No data found for this day", []);
 			}
 		);
 	}
 
 	vm.getEvent = function (day, eventName, ownerName, callbackFunction) {
-		console.log("getEvent");
 		var dayCode = getDayCode(day);
 		eveRef.child(dayCode).child(eventName + "_" + ownerName).on("value",
 			function (snapshot) {
 				callbackFunction(true, day, snapshot.val());
 			},
 			function (errorObject) {
-				console.log("read for " + dayCode + "->" + eventName + "_" + ownerName + "failed", errorObject.code);
 				callbackFunction(false, "data for " + dayCode + "->" + eventName + "_" + ownerName + "could not be accesed", null);
 			}
 		);
 	}
 
 	vm.setEvent = function (eventObject, callbackFunction) {
-		console.log("setEvent");
 		var name = eventObject.name;
 		name = name.replace(/^[^a-zA-Z0-9]+/g,"");
 		if(name === ""){
@@ -381,7 +362,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 				inviteStep2(eventDay, eventName, username, snapshot.val(), callbackFunction);
 			},
 			function (errorObject) {
-				console.log("The read failed: " + errorObject.code);
 				callbackFunction(false, "Could not get the UID of " + username + " " + errorObject.code, null)
 			}
 		);
@@ -402,7 +382,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
   			[username]: true
 		});
 
-		console.log("innan callback invite");
 		callbackFunction(true, username + " has been added to " + eventName, null);
 	}
 
@@ -411,7 +390,6 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 		var dayCode = getDayCode(eventDay);
 		var nameCode = eventName + "_" + vm.usernameRef;
 		var url = "https://dh2642.firebaseIO.com/events/" + dayCode + "/" + nameCode;
-		console.log(url);
 		var deleteRef = new Firebase(url);
 		deleteRef.remove();
 	}

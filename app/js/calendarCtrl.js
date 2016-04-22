@@ -162,7 +162,6 @@ agendaApp.controller('CalendarCtrl', function ($scope, $sce, $location, $compile
         if (ok) {
 		  writeToSchedule(value);
         } else {
-            alert(msg);
             $scope.dayschedule1 = "";
             $scope.dayschedule2 = "";
             $scope.dayschedule3 = "";
