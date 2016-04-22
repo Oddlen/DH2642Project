@@ -201,7 +201,7 @@ agendaApp.factory('Agenda', function ($resource, $cookieStore) {
 	}
 
 	function get5DaysStep2(ok, msg, data) {
-		if(vm.usernameRef === "" || data===null){
+		if(vm.usernameRef === ""){
 			weekCallback(false, "Cannot fetch data, logged out", []);
 			return;
 		}
